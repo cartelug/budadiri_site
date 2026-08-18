@@ -1,0 +1,21 @@
+BUDADIRI EAST WEBSITE — V2 VISUAL UPDATE
+
+Major upgrades
+- New premium civic visual system with richer depth, spacing and responsive typography.
+- Rebuilt floating glass navigation and full-screen mobile menu.
+- New mobile bottom dock for Home, Vision, Impact and Community.
+- Hero redesign with layered portrait treatment, floating information cards and responsive CTA layout.
+- Mobile-first CSS tuned for 390px, 620px, 820px and tablet/desktop breakpoints.
+- Horizontal swipe/snap development pillars on small screens.
+- Improved dashboard cards, stats, forms, media grids, callouts, resources and footer.
+- Animated page-entry transition and scroll progress indicator.
+- IntersectionObserver reveal/stagger animations.
+- Scroll-triggered stat counters and progress bar animations.
+- Pointer parallax on the hero portrait and subtle 3D tilt on cards for supported desktop devices.
+- Animated before/after comparison remains touch-friendly.
+- Respects prefers-reduced-motion accessibility settings.
+- Better focus states and touch target sizes.
+- No external CSS/JS framework dependency.
+
+Content/data note
+The V2 build preserves the source-grounded content, downloadable source documents and media archive from V1. Prototype project statuses are not represented as official completion data.
