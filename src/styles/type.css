@@ -19,7 +19,6 @@
 .statement {
   font-size: var(--fs-mega);
   font-weight: 800;
-  font-stretch: 96%;
   line-height: 0.845;
   letter-spacing: var(--track-mega);
   text-transform: uppercase;
