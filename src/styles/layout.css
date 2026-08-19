@@ -14,9 +14,6 @@
   padding-inline: var(--pad);
 }
 
-.wrap--narrow { max-width: calc(1100px + var(--pad) * 2); }
-.wrap--bleed { max-width: none; padding-inline: var(--pad); }
-
 .grid {
   display: grid;
   grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
@@ -24,21 +21,7 @@
 }
 
 .section { padding-block: var(--section); }
-.section--lg { padding-block: var(--section-lg); }
-.section--tight { padding-block: clamp(3rem, 6vw, 6rem); }
 .section--flush-top { padding-top: 0; }
-.section--flush-bottom { padding-bottom: 0; }
-
-/* ── rules ──────────────────────────────────────────────────────
-   A hairline is the primary divider on this site. It is 1px at any
-   density and it always spans the same measure as the content.   */
-.rule {
-  border: 0;
-  border-top: 1px solid var(--rule);
-  margin: 0;
-}
-.rule--strong { border-top-color: var(--fg); opacity: 0.85; }
-.rule--faint { border-top-color: var(--rule-2); }
 
 /* The terrace mark: nine hairlines cut to a hillside profile. Used
    where a section change needs more than a single line. */
@@ -67,11 +50,6 @@
 /* ── section headers ────────────────────────────────────────────
    Deliberately not one shape. Sections choose whichever of these
    reads correctly for their content; several use none of them.  */
-.head-block {
-  display: grid;
-  gap: var(--s5);
-}
-
 .head-split {
   display: grid;
   gap: var(--s5);
@@ -86,14 +64,9 @@
 
 /* ── stacks ─────────────────────────────────────────────────── */
 .stack { display: grid; align-content: start; }
-.stack-2 { gap: var(--s2); }
 .stack-3 { gap: var(--s3); }
 .stack-4 { gap: var(--s4); }
 .stack-5 { gap: var(--s5); }
-.stack-6 { gap: var(--s6); }
-.stack-7 { gap: var(--s7); }
-
-.flow > * + * { margin-top: var(--s5); }
 
 /* ── figures ────────────────────────────────────────────────────
    Photography is square-cornered and edge-aware. Captions sit under
@@ -115,21 +88,3 @@
   border-top: 1px solid var(--rule);
 }
 
-.ratio-band  { aspect-ratio: 780 / 365; }
-.ratio-photo { aspect-ratio: 4 / 5; }
-.ratio-wide  { aspect-ratio: 16 / 9; }
-.ratio-square{ aspect-ratio: 1; }
-
-/* Full-bleed escape hatch for image bands inside a padded wrap. */
-.bleed {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
-@media (min-width: 760px) {
-  .only-mobile { display: none !important; }
-}
-@media (max-width: 759.98px) {
-  .only-desktop { display: none !important; }
-}

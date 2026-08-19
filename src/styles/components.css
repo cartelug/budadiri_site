@@ -168,12 +168,9 @@
   background: currentColor;
   flex: none;
 }
-.status--moving { color: var(--moss); }
 .status--raised { color: var(--gold); }
 .status--parliament { color: var(--forest-3); }
 .status--verified { color: var(--clay); }
-.field--forest .status--moving,
-.field--ink .status--moving { color: #a8bd72; }
 .field--forest .status--parliament,
 .field--ink .status--parliament { color: #7fc4a3; }
 .field--forest .status--verified,

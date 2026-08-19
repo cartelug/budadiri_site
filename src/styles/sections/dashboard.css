@@ -92,8 +92,6 @@
   color: var(--fg-dim);
   max-width: 46ch;
 }
-.record__value--tight { max-width: 26ch; }
-
 @media (max-width: 759.98px) {
   /* Phone: an editorial block, never a squeezed table — and it reads in
      the order a person asks the questions in. */
@@ -151,7 +149,6 @@
     column-gap: clamp(1.5rem, 3vw, 3rem);
   }
   .record .record__key { display: none; }
-  .record .record__key--keep { display: block; }
 }
 
 .dash__foot {

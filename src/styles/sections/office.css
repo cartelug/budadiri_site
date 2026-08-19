@@ -22,8 +22,6 @@
   .office__form  { grid-column: 6 / -1; }
 }
 
-.office__title { max-width: 12ch; }
-
 /* ── step rail ───────────────────────────────────────────────── */
 .steps {
   display: grid;

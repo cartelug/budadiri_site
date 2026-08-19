@@ -78,16 +78,6 @@
 .prose > * + * { margin-top: 0.95em; }
 .prose strong { font-weight: 600; color: var(--fg); }
 
-.quote {
-  font-family: var(--font-text);
-  font-size: clamp(1.5rem, 3.4vw, 2.9rem);
-  font-weight: 300;
-  line-height: 1.22;
-  letter-spacing: -0.017em;
-  max-width: 22ch;
-  text-wrap: balance;
-}
-
 /* Signage: section markers, field labels, table headers, eyebrows. */
 .marker {
   font-family: var(--font-display);
@@ -159,7 +149,4 @@
   opacity: 0.55;
 }
 
-.text-dim { color: var(--fg-dim); }
-.text-mute { color: var(--fg-mute); }
-.measure-tight { max-width: var(--measure-tight); }
 .measure-wide { max-width: var(--measure-wide); }
