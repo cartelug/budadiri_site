@@ -2,12 +2,12 @@
 """Trim the two variable faces to what this site actually sets.
 
 The Google latin subset carries about twice the glyphs these pages use,
-and two variation axes they never vary. On a metered connection in
+plus a variation axis Newsreader never varies. On a metered connection in
 Sironko the webfont is the largest single cost of a first visit, so both
 files are instanced and subset here, and the results are committed.
 
-    Archivo    90 KB -> 18 KB   (width pinned at 100, weight kept)
-    Newsreader 132 KB -> 32 KB  (optical size pinned at 20, weight kept)
+    Montserrat  38 KB -> 23 KB   (weight range trimmed, full wght axis kept)
+    Newsreader 132 KB -> 32 KB   (optical size pinned at 20, weight kept)
 
 Newsreader's optical-size axis costs 40 KB on its own. It is pinned at
 20 rather than dropped to a display value because the serif does more
@@ -24,7 +24,7 @@ OUT = Path("public/fonts")
 CHARS = OUT.parent.parent / "tools" / "font-charset.txt"
 
 FACES = [
-    ("archivo-latin", ["wdth=100", "wght=300:900"]),
+    ("montserrat-latin", ["wght=300:900"]),
     ("newsreader-latin", ["opsz=20", "wght=200:700"]),
 ]
 

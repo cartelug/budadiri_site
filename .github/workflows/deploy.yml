@@ -67,6 +67,15 @@ jobs:
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
             echo "::error::Pages still builds from a branch — set Settings > Pages > Source > GitHub Actions. This deploy will be overwritten."
+            # The default GITHUB_TOKEN cannot change repository Settings —
+            # that call needs a human with admin rights, and it always
+            # returns 403 here (confirmed: "Resource not accessible by
+            # integration"). Fail the job so that is visible on the Actions
+            # tab as a red run rather than a green one with a buried log
+            # line. Once a human flips the setting, build_type reads
+            # "workflow" above and this step exits 0 before ever reaching
+            # this branch — so it self-clears with no further action here.
+            exit 1
           fi
 
       - name: Configure Pages

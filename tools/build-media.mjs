@@ -155,14 +155,14 @@ const ogBand = await sharp(path.join(SRC, 'budadiri-today.jpg'))
 
 const ogText = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
   <rect width="1200" height="630" fill="#0B241A" fill-opacity="0.42"/>
-  <text x="72" y="150" font-family="Archivo, Helvetica, sans-serif" font-size="20"
+  <text x="72" y="150" font-family="Montserrat, Helvetica, sans-serif" font-size="20"
         letter-spacing="6" fill="#C9A227">BUDADIRI COUNTY EAST &#183; SIRONKO</text>
-  <text x="68" y="330" font-family="Archivo, Helvetica, sans-serif" font-size="126"
+  <text x="68" y="330" font-family="Montserrat, Helvetica, sans-serif" font-size="126"
         font-weight="800" letter-spacing="-5" fill="#F2EEE4">PROGRESS</text>
-  <text x="68" y="446" font-family="Archivo, Helvetica, sans-serif" font-size="126"
+  <text x="68" y="446" font-family="Montserrat, Helvetica, sans-serif" font-size="126"
         font-weight="800" letter-spacing="-5" fill="#F2EEE4">YOU CAN SEE.</text>
   <rect x="72" y="516" width="120" height="2" fill="#C9A227"/>
-  <text x="72" y="566" font-family="Archivo, Helvetica, sans-serif" font-size="24"
+  <text x="72" y="566" font-family="Montserrat, Helvetica, sans-serif" font-size="24"
         fill="#F2EEE4" fill-opacity="0.78">Office of Hon. Julius Nakiyi &#183; Member of Parliament</text>
 </svg>`);
 

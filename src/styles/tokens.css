@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────────────────────────────
    BUDADIRI EAST — design tokens
 
-   Two faces carry the identity. Archivo is the structural voice:
+   Two faces carry the identity. Montserrat is the structural voice:
    signage, labels, data, the big statements. Newsreader is the
    speaking voice: ledes, quotations, anything that reads like a
    person wrote it. Nothing else is loaded.
@@ -9,10 +9,10 @@
 
 /* Both faces are instanced and subset by tools/build-fonts.py: the axes
    this site never varies are pinned out, and the character set is the one
-   the pages actually contain. 222 KB of webfont becomes 52 KB. */
+   the pages actually contain. 166 KB of webfont becomes 56 KB. */
 @font-face {
-  font-family: 'Archivo';
-  src: url('/fonts/archivo-latin.woff2') format('woff2-variations');
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat-latin.woff2') format('woff2-variations');
   font-weight: 300 900;
   font-style: normal;
   font-display: swap;
@@ -57,7 +57,7 @@
   /* ── type ─────────────────────────────────────────────────────
      One ratio, applied at three densities. The mega size is allowed
      to eat a third of the viewport; the quiet sizes stay quiet.    */
-  --font-display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-text: 'Newsreader', Georgia, 'Times New Roman', serif;
 
   --fs-mega:    min(clamp(3.1rem, 11vw, 10.5rem), 17.5svh);

@@ -41,7 +41,7 @@ Every one of these is linked at the point of use and listed again on
 
 ## Type
 
-Archivo and Newsreader (Google Fonts, SIL Open Font License), self-hosted as
+Montserrat and Newsreader (Google Fonts, SIL Open Font License), self-hosted as
 latin-subset variable `woff2`. No other font is loaded.
 
 ## Third-party photography
