@@ -1,0 +1,259 @@
+/* ─────────────────────────────────────────────────────────────────
+   Navigation.
+
+   No floating glass bar. The header sits on the page, inverts its
+   own colour to match whatever field is behind it, and becomes
+   opaque only once you have left the first screen.
+   ───────────────────────────────────────────────────────────────── */
+
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 90;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  color: var(--ink);
+  transition: transform var(--t-mid) var(--ease-out),
+              background var(--t-mid) var(--ease-ui),
+              color var(--t-mid) var(--ease-ui),
+              border-color var(--t-mid) var(--ease-ui);
+  border-bottom: 1px solid transparent;
+}
+
+.header--dark { color: #eef0e6; }
+
+.header--over-menu { background: transparent; border-bottom-color: transparent; }
+
+.header.is-solid {
+  background: var(--paper);
+  border-bottom-color: rgba(20, 21, 15, 0.14);
+}
+.header--dark.is-solid {
+  background: var(--forest-2);
+  border-bottom-color: rgba(238, 240, 230, 0.16);
+}
+
+/* Out of the way on the way down, back on the way up. */
+.header.is-hidden { transform: translateY(-101%); }
+
+.header__inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s5);
+}
+
+/* ── wordmark ─────────────────────────────────────────────────── */
+.wordmark {
+  display: grid;
+  gap: 2px;
+  line-height: 1;
+  padding-block: 0.5rem;
+}
+.wordmark__name {
+  font-family: var(--font-display);
+  font-size: clamp(0.94rem, 1.5vw, 1.06rem);
+  font-weight: 720;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+.wordmark__role {
+  font-family: var(--font-display);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  opacity: 0.62;
+}
+
+/* ── desktop links ────────────────────────────────────────────── */
+.nav {
+  display: none;
+  align-items: center;
+  gap: clamp(1.1rem, 2.2vw, 2.1rem);
+}
+@media (min-width: 1100px) { .nav { display: flex; } }
+
+.nav__link {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 520;
+  letter-spacing: 0.02em;
+  padding-block: 0.5rem;
+  color: inherit;
+  opacity: 0.72;
+  transition: opacity var(--t-fast) var(--ease-ui);
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--t-mid) var(--ease-out);
+}
+@media (hover: hover) {
+  .nav__link:hover { opacity: 1; }
+  .nav__link:hover::after { transform: scaleX(1); transform-origin: left; }
+}
+.nav__link[aria-current='page'] { opacity: 1; }
+.nav__link[aria-current='page']::after { transform: scaleX(1); }
+
+.header__actions { display: flex; align-items: center; gap: var(--s4); }
+.header .action { padding-block: 0.6em; }
+.header__cta { display: none; }
+@media (min-width: 1100px) { .header__cta { display: inline-flex; } }
+
+/* ── menu button ───────────────────────────────────────────────
+   Two rules that become an x. 48px target, label read by AT.    */
+.menu-btn {
+  width: 48px;
+  height: 48px;
+  margin-right: -12px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 2;
+}
+@media (min-width: 1100px) { .menu-btn { display: none; } }
+
+.menu-btn__bars { display: block; width: 24px; height: 10px; position: relative; }
+.menu-btn__bars::before,
+.menu-btn__bars::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform var(--t-mid) var(--ease-out);
+}
+.menu-btn__bars::before { top: 0; }
+.menu-btn__bars::after { bottom: 0; }
+.menu-btn[aria-expanded='true'] .menu-btn__bars::before { transform: translateY(4.25px) rotate(45deg); }
+.menu-btn[aria-expanded='true'] .menu-btn__bars::after { transform: translateY(-4.25px) rotate(-45deg); }
+
+/* ── full-screen menu ──────────────────────────────────────────
+   A deep green field with the constituency index set as a list.
+   It clips open from the top edge; items follow in sequence.    */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  background: var(--forest-2);
+  color: #eef0e6;
+  display: grid;
+  grid-template-rows: var(--header-h) 1fr auto;
+  padding-inline: var(--pad);
+  padding-bottom: max(var(--s6), env(safe-area-inset-bottom));
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  transition: clip-path 0.62s var(--ease-out), visibility 0s linear 0.62s;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.menu.is-open {
+  clip-path: inset(0 0 0 0);
+  visibility: visible;
+  transition: clip-path 0.62s var(--ease-out), visibility 0s;
+}
+
+.menu__head {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: var(--fs-label);
+  font-weight: 620;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.menu__list {
+  align-self: center;
+  display: grid;
+  padding-block: var(--s6);
+  border-top: 1px solid rgba(238, 240, 230, 0.16);
+}
+
+.menu__item { border-bottom: 1px solid rgba(238, 240, 230, 0.16); }
+
+.menu__link {
+  display: grid;
+  grid-template-columns: 3.1rem 1fr auto;
+  align-items: baseline;
+  gap: var(--s3);
+  padding-block: clamp(0.7rem, 2.2vw, 1.05rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 8.5vw, 3.2rem);
+  font-weight: 640;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  line-height: 1;
+  transition: color var(--t-fast) var(--ease-ui);
+}
+.menu__num {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  opacity: 0.45;
+  transform: translateY(-0.35em);
+}
+.menu__link .arrow {
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateX(-0.4em);
+  transition: opacity var(--t-fast) var(--ease-ui), transform var(--t-mid) var(--ease-out);
+}
+.menu__link[aria-current='page'] { color: var(--gold-2); }
+.menu__link[aria-current='page'] .arrow,
+.menu__link:hover .arrow,
+.menu__link:focus-visible .arrow { opacity: 1; transform: none; }
+.menu__link:active { color: var(--gold-2); }
+
+/* Staged entrance; the CSS holds the closed state so the script
+   only has to toggle one class. */
+.menu__item,
+.menu__foot > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+.menu.is-open .menu__item,
+.menu.is-open .menu__foot > * {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(0.16s + var(--i, 0) * 0.045s);
+}
+
+.menu__foot {
+  display: grid;
+  gap: var(--s4);
+  padding-top: var(--s5);
+  border-top: 1px solid rgba(238, 240, 230, 0.16);
+}
+.menu__foot .action { --action-fg: var(--gold-2); }
+
+body.is-locked { overflow: hidden; }
+
+/* ── scroll indicator ──────────────────────────────────────────
+   A 1px reading position on the very top edge. Not a progress bar
+   with a gradient in it.                                        */
+.readline {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+  background: var(--gold);
+  z-index: 95;
+  pointer-events: none;
+}

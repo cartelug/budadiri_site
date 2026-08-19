@@ -1,0 +1,166 @@
+/* ─────────────────────────────────────────────────────────────────
+   Typographic roles.
+
+   Hierarchy is built from scale, weight, width and space — not from
+   colour and not from decoration. A heading is allowed to be huge or
+   allowed to be very quiet; there is no default middle setting.
+   ───────────────────────────────────────────────────────────────── */
+
+.statement,
+.display,
+.title,
+.head {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+/* Hero-scale. Occupies 30–50% of a desktop viewport by design. */
+.statement {
+  font-size: var(--fs-mega);
+  font-weight: 800;
+  font-stretch: 96%;
+  line-height: 0.845;
+  letter-spacing: var(--track-mega);
+  text-transform: uppercase;
+  text-wrap: nowrap;
+}
+
+.display {
+  font-size: var(--fs-display);
+  font-weight: 780;
+  line-height: 0.92;
+  letter-spacing: -0.038em;
+}
+
+.title {
+  font-size: var(--fs-title);
+  font-weight: 740;
+  line-height: 0.98;
+  letter-spacing: -0.032em;
+}
+
+.head {
+  font-size: var(--fs-head);
+  font-weight: 660;
+  line-height: 1.12;
+  letter-spacing: -0.021em;
+  text-wrap: pretty;
+}
+
+.sub {
+  font-family: var(--font-display);
+  font-size: var(--fs-sub);
+  font-weight: 560;
+  line-height: 1.28;
+  letter-spacing: -0.012em;
+}
+
+/* The serif carries anything written in a human voice. */
+.lede {
+  font-family: var(--font-text);
+  font-size: var(--fs-lede);
+  font-weight: 350;
+  line-height: 1.52;
+  letter-spacing: 0.003em;
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+.prose {
+  font-family: var(--font-text);
+  font-size: 1.05rem;
+  font-weight: 380;
+  line-height: 1.66;
+  max-width: var(--measure);
+  color: var(--fg-dim);
+  text-wrap: pretty;
+}
+.prose > * + * { margin-top: 0.95em; }
+.prose strong { font-weight: 600; color: var(--fg); }
+
+.quote {
+  font-family: var(--font-text);
+  font-size: clamp(1.5rem, 3.4vw, 2.9rem);
+  font-weight: 300;
+  line-height: 1.22;
+  letter-spacing: -0.017em;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+/* Signage: section markers, field labels, table headers, eyebrows. */
+.marker {
+  font-family: var(--font-display);
+  font-size: var(--fs-label);
+  font-weight: 620;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  display: block;
+}
+
+.marker--rule {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+}
+.marker--rule::before {
+  content: '';
+  width: 1.9em;
+  height: 1px;
+  background: var(--accent);
+  flex: none;
+}
+
+.micro {
+  font-family: var(--font-display);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+.caption {
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  font-weight: 420;
+  line-height: 1.45;
+  color: var(--fg-mute);
+  max-width: 44ch;
+}
+
+/* Figures line up in columns wherever they are compared. */
+.num {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
+  letter-spacing: -0.02em;
+}
+
+.figure-lg {
+  font-size: clamp(2.6rem, 6.5vw, 5.2rem);
+  font-weight: 720;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+}
+
+/* Chapter numbering. Set in outline so it never shouts. */
+.index {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  /* currentColor would resolve to the transparent fill, so the stroke
+     colour has to be named outright. */
+  -webkit-text-stroke: 1px var(--fg);
+  color: transparent;
+  opacity: 0.55;
+}
+
+.text-dim { color: var(--fg-dim); }
+.text-mute { color: var(--fg-mute); }
+.measure-tight { max-width: var(--measure-tight); }
+.measure-wide { max-width: var(--measure-wide); }

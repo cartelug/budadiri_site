@@ -1,0 +1,170 @@
+/* ─────────────────────────────────────────────────────────────────
+   BUDADIRI EAST — design tokens
+
+   Two faces carry the identity. Archivo is the structural voice:
+   signage, labels, data, the big statements. Newsreader is the
+   speaking voice: ledes, quotations, anything that reads like a
+   person wrote it. Nothing else is loaded.
+   ───────────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo-latin.woff2') format('woff2-variations');
+  font-weight: 300 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/newsreader-latin.woff2') format('woff2-variations');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* ── palette ──────────────────────────────────────────────────
+     Forest and charcoal do the architecture. Paper and stone do the
+     breathing. Clay and gold are rationed: gold appears as a rule,
+     a figure or a marker, never as a surface.                     */
+  --ink:        #14150f;
+  --ink-2:      #21231a;
+  --forest:     #123a2a;
+  --forest-2:   #0b241a;
+  --forest-3:   #1f5c44;
+  --paper:      #f2eee4;
+  --paper-2:    #e8e2d4;
+  --stone:      #ded6c4;
+  --clay:       #9d4f2e;
+  --clay-2:     #c07a55;
+  --moss:       #6c7a4a;
+  --gold:       #c19725;
+  --gold-2:     #e0bc55;
+
+  /* ── field variables, re-bound per section ─────────────────── */
+  --bg:      var(--paper);
+  --fg:      var(--ink);
+  --fg-dim:  #5b5f4f;
+  --fg-mute: #8a8b7c;
+  --rule:    rgba(20, 21, 15, 0.16);
+  --rule-2:  rgba(20, 21, 15, 0.09);
+  --accent:  var(--clay);
+
+  /* ── type ─────────────────────────────────────────────────────
+     One ratio, applied at three densities. The mega size is allowed
+     to eat a third of the viewport; the quiet sizes stay quiet.    */
+  --font-display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-text: 'Newsreader', Georgia, 'Times New Roman', serif;
+
+  --fs-mega:    min(clamp(3.1rem, 11vw, 10.5rem), 17.5svh);
+  --fs-display: clamp(2.55rem, 8.4vw, 7rem);
+  --fs-title:   clamp(2rem, 5.4vw, 4.15rem);
+  --fs-head:    clamp(1.45rem, 3vw, 2.3rem);
+  --fs-sub:     clamp(1.12rem, 1.7vw, 1.42rem);
+  --fs-lede:    clamp(1.09rem, 1.42vw, 1.36rem);
+  --fs-body:    clamp(0.99rem, 1.06vw, 1.075rem);
+  --fs-small:   0.875rem;
+  --fs-label:   0.7rem;
+  --fs-micro:   0.64rem;
+
+  --track-mega:  -0.045em;
+  --track-label: 0.17em;
+
+  /* ── measure ──────────────────────────────────────────────────
+     Line length is capped in characters, not pixels, so the serif
+     and the sans both land near 62–72 characters.                 */
+  --measure:      64ch;
+  --measure-wide: 78ch;
+  --measure-tight: 46ch;
+
+  /* ── space ────────────────────────────────────────────────── */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+  --s8: 4.5rem;
+  --s9: 7rem;
+
+  --section:    clamp(4.5rem, 9.5vw, 10.5rem);
+  --section-lg: clamp(6rem, 13vw, 14rem);
+
+  /* ── grid ─────────────────────────────────────────────────────
+     4 columns on a phone, 6 on a tablet, 12 on a desktop. Sections
+     place themselves on it by name; there are no span utilities to
+     scatter through the markup.                                   */
+  --cols: 4;
+  --gutter: 14px;
+  --pad: clamp(20px, 5.2vw, 76px);
+  --max: 1520px;
+
+  /* ── geometry ─────────────────────────────────────────────────
+     Square by default. Radius is a utility affordance, not a look. */
+  --r0: 0;
+  --r1: 2px;
+  --r2: 4px;
+  --r3: 7px;
+
+  /* ── motion ───────────────────────────────────────────────────
+     One ease for entrances, one for interface response.           */
+  --ease:     cubic-bezier(0.22, 0.61, 0.24, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-ui:  cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 0.22s;
+  --t-mid:  0.45s;
+  --t-slow: 0.9s;
+
+  --header-h: 68px;
+}
+
+@media (min-width: 760px) {
+  :root { --cols: 6; --gutter: 20px; --header-h: 76px; }
+}
+
+@media (min-width: 1100px) {
+  :root { --cols: 12; --gutter: 24px; --header-h: 84px; }
+}
+
+/* ── fields ─────────────────────────────────────────────────────
+   The page moves light → off-white → deep green → image → stone →
+   black → light. A field re-binds the colour variables; everything
+   inside it inherits without knowing where it sits.               */
+.field { background: var(--bg); color: var(--fg); position: relative; }
+
+.field--paper { --bg: var(--paper); }
+
+.field--stone {
+  --bg: var(--paper-2);
+  --rule: rgba(20, 21, 15, 0.19);
+  --rule-2: rgba(20, 21, 15, 0.11);
+}
+
+.field--forest {
+  --bg: var(--forest);
+  --fg: #eef0e6;
+  --fg-dim: rgba(238, 240, 230, 0.72);
+  --fg-mute: rgba(238, 240, 230, 0.5);
+  --rule: rgba(238, 240, 230, 0.24);
+  --rule-2: rgba(238, 240, 230, 0.12);
+  --accent: var(--gold-2);
+}
+
+.field--ink {
+  --bg: var(--ink);
+  --fg: #eceade;
+  --fg-dim: rgba(236, 234, 222, 0.68);
+  --fg-mute: rgba(236, 234, 222, 0.44);
+  --rule: rgba(236, 234, 222, 0.2);
+  --rule-2: rgba(236, 234, 222, 0.1);
+  --accent: var(--gold-2);
+}
