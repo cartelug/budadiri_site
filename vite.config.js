@@ -6,13 +6,15 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(fileURLToPath(import.meta.url));
 const partialsDir = path.join(root, 'src/partials');
 
-/*  Where the site will be served from.
+/*  This site does not care where it is served from.
  *
- *  A GitHub Pages project site lives under /<repo>/, a custom domain or a
- *  user site lives at /. Set BASE_PATH at build time and every path in the
- *  output follows; the default is a domain root.
+ *  Every page sits at the top level and every asset in a folder beside
+ *  them, so relative URLs are unambiguous: the same build works at a
+ *  domain root, under /<repo>/ on GitHub Pages, or in a subfolder on
+ *  someone's shared hosting. Nothing has to be configured, and there is
+ *  no build flag left to get wrong.
  */
-const base = process.env.BASE_PATH || '/';
+const base = './';
 
 /*  A 40-line include step instead of a template dependency.
  *
@@ -56,15 +58,16 @@ function partials() {
   };
 }
 
-/*  Vite rebases the assets it processes, but not the two kinds of URL this
+/*  Vite makes its own assets relative, but not the two kinds of URL this
  *  site uses most: files served verbatim from public/, and links from one
- *  page to another. This runs after Vite's own pass and prefixes anything
- *  still rooted at / — including every candidate inside a srcset.
+ *  page to another. This runs after Vite's own pass and turns anything
+ *  still rooted at / into a relative path — including every candidate
+ *  inside a srcset.
  */
 function rebaseAbsoluteUrls() {
-  const needsPrefix = (url) =>
-    url.startsWith('/') && !url.startsWith('//') && !url.startsWith(base);
-  const prefix = (url) => base + url.slice(1);
+  const needsPrefix = (url) => url.startsWith('/') && !url.startsWith('//');
+  /* Pages sit at the top level, so dropping the leading slash is enough. */
+  const prefix = (url) => url.slice(1);
 
   const rewriteHtml = (html) =>
     html
@@ -87,17 +90,17 @@ function rebaseAbsoluteUrls() {
   return {
     name: 'budadiri-rebase',
     apply: 'build',
-    transformIndexHtml: {
-      order: 'post',
-      handler: (html) => (base === '/' ? html : rewriteHtml(html)),
-    },
+    transformIndexHtml: { order: 'post', handler: rewriteHtml },
+
     generateBundle(_options, bundle) {
-      if (base === '/') return;
       for (const file of Object.values(bundle)) {
         if (!file.fileName.endsWith('.css') || file.type !== 'asset') continue;
+        /* Stylesheets are emitted into assets/, so they climb one level
+           to reach the fonts and images sitting beside it. */
+        const up = '../'.repeat(file.fileName.split('/').length - 1);
         file.source = String(file.source).replace(
           /url\((['"]?)(\/[^)'"]+)\1\)/g,
-          (whole, quote, url) => (needsPrefix(url) ? `url(${quote}${prefix(url)}${quote})` : whole),
+          (whole, quote, url) => (needsPrefix(url) ? `url(${quote}${up}${url.slice(1)}${quote})` : whole),
         );
       }
     },

@@ -3,8 +3,6 @@
  * rendered a page at a time, each thumbnail lazily loaded. */
 const LABELS = { vision2040: 'Vision 2040', ndpiv: 'NDP IV', manifesto: 'NRM Manifesto' };
 const PAGE = 60;
-/* Trailing slash guaranteed by Vite; '/' at a domain root. */
-const BASE = import.meta.env.BASE_URL;
 
 export async function initArchive(root) {
   const grid = root.querySelector('[data-plates]');
@@ -34,7 +32,7 @@ export async function initArchive(root) {
       button.className = 'plate';
       button.innerHTML =
         `<img loading="lazy" decoding="async" width="${record.w}" height="${record.h}"` +
-        ` src="${BASE}${record.t}" alt="Figure from ${LABELS[record.d]}">` +
+        ` src="${record.t}" alt="Figure from ${LABELS[record.d]}">` +
         `<span class="plate__doc">${LABELS[record.d]}</span>`;
       button.addEventListener('click', () => open(record));
       frag.append(button);
@@ -50,7 +48,7 @@ export async function initArchive(root) {
   const open = (record) => {
     if (!box) return;
     const img = box.querySelector('img');
-    img.src = `${BASE}${record.s}`;
+    img.src = record.s;
     img.alt = `Full figure from ${LABELS[record.d]}`;
     box.hidden = false;
     box.querySelector('[data-close]').focus();
@@ -82,7 +80,7 @@ export async function initArchive(root) {
   more?.addEventListener('click', () => render(false));
 
   try {
-    records = await fetch(`${BASE}data/media-archive.json`).then((r) => r.json());
+    records = await fetch('data/media-archive.json').then((r) => r.json());
   } catch {
     if (count) count.textContent = 'The archive index could not be loaded.';
     return;

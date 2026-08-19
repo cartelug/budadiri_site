@@ -1,8 +1,8 @@
 # Publish the constituency site to GitHub Pages.
 #
-# BASE_PATH is derived from where Pages will actually serve this repo:
-# a project site lives under /<repo>/, a user site or a custom domain
-# lives at the root. Nothing else in the build needs to know.
+# The build is path-independent — every URL it emits is relative — so there
+# is nothing here pointing at a particular domain or subfolder, and moving
+# the site later needs no change to this file.
 
 name: Deploy to GitHub Pages
 
@@ -32,26 +32,28 @@ jobs:
           node-version: 22
           cache: npm
 
-      # enablement flips the repository from the legacy "deploy from a
-      # branch" mode — which would publish the unbuilt repo root — to
-      # building from this workflow. Safe to leave on; it is idempotent.
+      # enablement moves the repository off the legacy "deploy from a
+      # branch" mode, which would publish the unbuilt source. Idempotent.
       - name: Configure Pages
-        id: pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
 
       - run: npm ci
 
-      # configure-pages reports /<repo> for a project site and / for a user
-      # site or custom domain. Vite wants a trailing slash either way.
-      - name: Build
+      - run: npm run build
+
+      # One root-absolute URL is enough to break the site on a project
+      # page, and it fails silently in a browser. Catch it here instead.
+      - name: Check every URL is relative
         run: |
-          BASE="${{ steps.pages.outputs.base_path }}"
-          [ -z "$BASE" ] && BASE="/"
-          case "$BASE" in */) ;; *) BASE="$BASE/" ;; esac
-          echo "Building for base $BASE"
-          BASE_PATH="$BASE" npm run build
+          bad=$(grep -rlE '(href|src)="/[^/]' dist --include='*.html' || true)
+          bad="$bad $(grep -rl 'url(/' dist --include='*.css' || true)"
+          if [ -n "$(echo "$bad" | tr -d '[:space:]')" ]; then
+            echo "::error::absolute URLs found in: $bad"
+            exit 1
+          fi
+          echo "all URLs are relative"
 
       - uses: actions/upload-pages-artifact@v3
         with:
