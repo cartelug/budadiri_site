@@ -50,8 +50,8 @@
 
 .stage__name {
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 3.9vw, 2.85rem);
-  font-weight: var(--w-air);
+  font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+  font-weight: var(--w-display);
   line-height: 1.1;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -62,7 +62,7 @@
 .stage.is-on .stage__name { opacity: 1; }
 
 .stage__note {
-  font-family: var(--font-text);
+  font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.5;
   color: var(--fg-dim);
@@ -75,7 +75,7 @@
 .stage.is-on .stage__note { opacity: 1; transform: none; }
 
 .stage__scale {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-micro);
   font-weight: var(--w-sign);
   letter-spacing: 0.14em;

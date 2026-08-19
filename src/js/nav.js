@@ -22,7 +22,7 @@ export function initHeader() {
   let ticking = false;
 
   /* Which sections want a light header. Read once; sections do not move. */
-  const darkFields = [...document.querySelectorAll('.field--forest, .field--ink, [data-nav="dark"]')];
+  const darkFields = [...document.querySelectorAll('.field--canopy, .field--basalt, [data-nav="dark"]')];
 
   const measure = () => {
     const y = window.scrollY;

@@ -50,7 +50,7 @@
 .step-mark[data-state='current'] .step-mark__bar::after { transform: scaleX(1); }
 .step-mark[data-state='current'] .step-mark__bar::after { background: var(--accent); }
 .step-mark__label {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-micro);
   font-weight: var(--w-sign);
   letter-spacing: 0.13em;
@@ -72,15 +72,15 @@
 
 .step__question {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.8vw, 2.55rem);
-  font-weight: var(--w-light);
+  font-size: clamp(1.55rem, 3.5vw, 2.35rem);
+  font-weight: var(--w-display);
   line-height: 1.2;
   letter-spacing: 0.006em;
   max-width: 20ch;
   text-wrap: balance;
 }
 .step__hint {
-  font-family: var(--font-text);
+  font-family: var(--font-sans);
   font-size: 1.02rem;
   line-height: 1.5;
   color: var(--fg-dim);
@@ -125,9 +125,9 @@
   background: color-mix(in srgb, var(--fg) 3%, transparent);
 }
 .receipt__ref {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: clamp(1.6rem, 4.5vw, 2.6rem);
-  font-weight: var(--w-light);
+  font-weight: var(--w-display);
   letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
 }
@@ -143,7 +143,7 @@
   gap: var(--s3);
   padding-block: 0.85rem;
   border-top: 1px solid var(--rule-2);
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-small);
 }
 .office__path li:last-child { border-bottom: 1px solid var(--rule-2); }

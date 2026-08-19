@@ -74,13 +74,6 @@ const contourSvg = (stroke, opacityScale) => {
 await fs.writeFile('public/img/contour-dark.svg', contourSvg('#0d2a1f', 0.5));
 await fs.writeFile('public/img/contour-light.svg', contourSvg('#f2eee4', 0.42));
 
-/* Inlined into the hero so it can inherit colour and be drawn on load. */
-const heroRings = contourPaths({ cx: 700, cy: 330, count: 13, step: 40 });
-await fs.writeFile('src/partials/contours.html',
-  `<svg class="contours" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-${heroRings.map(({ d, t }, i) => `  <path d="${d}" pathLength="1" style="--i:${i};--w:${(1.4 - t * 0.75).toFixed(2)};--o:${(0.16 + (1 - t) * 0.5).toFixed(3)}"/>`).join('\n')}
-</svg>\n`);
-
 /* ── terraces: the hairline rule used as a section divider ───────── */
 const rows = Array.from({ length: 8 }, (_, i) => {
   const y = 6 + i * 11;
@@ -90,4 +83,88 @@ const rows = Array.from({ length: 8 }, (_, i) => {
 await fs.writeFile('src/partials/terrace.html',
   `<svg class="terrace" viewBox="0 0 400 88" aria-hidden="true" focusable="false">${rows}</svg>\n`);
 
-console.log('graphics: grain tile, 2 contour fields, hero contours, terrace rule');
+/* ── the profile: a cross-section of the flank this county farms ──
+ *
+ *  This is the mark the whole site is built on. Mount Elgon is a shield
+ *  volcano, so its flank is concave: gentle where the road runs, steep
+ *  by the time you reach the park boundary. The curve below is that
+ *  form — elevation rising from the valley floor at 1,150 m to the
+ *  boundary at 2,400 m across roughly eighteen kilometres — cut by the
+ *  radial stream valleys that give the slope its spurs.
+ *
+ *  It is schematic. It is drawn to the real range and the real shape of
+ *  the flank, and it is captioned as schematic everywhere it appears,
+ *  because nothing on this site claims to be a survey it is not.
+ */
+const FLOOR = 1150;
+const RIDGE = 2400;
+
+/* Elevation in metres at distance t (0 = valley road, 1 = boundary). */
+const elevation = (t) => {
+  const shield = Math.pow(t, 1.42);              /* the concave flank   */
+  const spurs = Math.sin(t * 13.5) * 0.021       /* stream valleys      */
+    + Math.sin(t * 27 + 1.2) * 0.009
+    + Math.sin(t * 41 + 0.4) * 0.004;
+  return FLOOR + (RIDGE - FLOOR) * Math.max(0, Math.min(1, shield + spurs * (0.35 + t)));
+};
+
+const W = 1200;
+const H = 320;
+const PAD_B = 26;
+const x = (t) => t * W;
+const y = (m) => H - PAD_B - ((m - FLOOR) / (RIDGE - FLOOR)) * (H - PAD_B - 14);
+
+const ridgeLine = () => {
+  const steps = 96;
+  let d = `M0 ${y(elevation(0)).toFixed(0)}`;
+  for (let i = 1; i <= steps; i++) {
+    const t = i / steps;
+    d += `L${x(t).toFixed(0)} ${y(elevation(t)).toFixed(0)}`;
+  }
+  return d;
+};
+
+/* Strata: the same curve repeated below itself, the way a slope is
+   shaded on a contour map. They fade as they go down into the valley. */
+const strata = () => {
+  const out = [];
+  for (let i = 1; i <= 6; i++) {
+    const drop = i * 17;
+    const steps = 48;
+    let d = `M0 ${(y(elevation(0)) + drop).toFixed(0)}`;
+    for (let k = 1; k <= steps; k++) {
+      const t = k / steps;
+      d += `L${x(t).toFixed(0)} ${(y(elevation(t)) + drop).toFixed(0)}`;
+    }
+    out.push({ d, o: (0.3 - i * 0.038).toFixed(2) });
+  }
+  return out;
+};
+
+/* The four bands this constituency is read in. */
+const BANDS = [1400, 1700, 2000];
+const bandTicks = () => BANDS.map((m) => {
+  /* Invert the elevation curve to find where that metre mark falls. */
+  let lo = 0; let hi = 1;
+  for (let i = 0; i < 40; i++) {
+    const mid = (lo + hi) / 2;
+    if (elevation(mid) < m) lo = mid; else hi = mid;
+  }
+  const t = (lo + hi) / 2;
+  return { m, x: x(t).toFixed(0), y: y(m).toFixed(0) };
+});
+
+const profile = [
+  `<svg class="profile" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true" focusable="false">`,
+  '  <g class="profile__strata">',
+  ...strata().map(({ d, o }, i) => `    <path d="${d}" pathLength="1" style="--i:${i};--o:${o}"/>`),
+  '  </g>',
+  ...bandTicks().map(({ x: tx, y: ty }, i) =>
+    `  <line class="profile__tick" x1="${tx}" y1="${ty}" x2="${tx}" y2="${H}" style="--i:${i}"/>`),
+  `  <path class="profile__ridge" d="${ridgeLine()}" pathLength="1"/>`,
+  '</svg>',
+].join('\n');
+
+await fs.writeFile('src/partials/profile.html', profile + '\n');
+
+console.log('graphics: grain tile, 2 contour fields, terrace rule, elevation profile');

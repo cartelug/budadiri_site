@@ -1,100 +1,131 @@
 /* ─────────────────────────────────────────────────────────────────
    BUDADIRI EAST — design tokens
 
-   Two faces carry the identity. Montserrat is the structural voice:
-   signage, labels, data, the big statements. Newsreader is the
-   speaking voice: ledes, quotations, anything that reads like a
-   person wrote it. Nothing else is loaded.
+   The constituency is a place before it is an office, and the place
+   is a mountainside. Everything below is derived from that: the
+   palette is the west flank of Mount Elgon read from the top down —
+   basalt, canopy, coffee cherry, laterite soil, morning mist — and
+   the layout has an altitude axis in it, so a section can place a
+   thing on the slope by naming the metres it sits at.
 
-   Montserrat is set light and open here rather than heavy and tight.
-   A constituency office should read as composed, not as a poster
-   shouting at the people it serves — so weight is spent sparingly,
-   space is spent freely, and the photographs are what carry volume.
+   Three voices, and nothing else is loaded:
+
+     Vollkorn        the mountain voice. Statements, titles, ledes.
+                     Set in sentence case at 600 — written, not shouted.
+     Chivo           the working voice. Running text, labels, controls.
+     IBM Plex Mono   the instrument voice. Altitudes, references,
+                     dates, statuses. Anything a reader might check.
+
+   The rule that keeps this honest: the mono face only ever carries
+   something verifiable. If it is set in Plex Mono, there is a source
+   for it.
    ───────────────────────────────────────────────────────────────── */
 
-/* Both faces are instanced and subset by tools/build-fonts.py: the axes
-   this site never varies are pinned out, and the character set is the one
-   the pages actually contain. 166 KB of webfont becomes 56 KB. */
+/* Each face is downloaded, instanced to the weight range this site
+   varies, and subset to the characters these pages contain by
+   tools/build-fonts.py. Three families, 53 KB in total. */
 @font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/montserrat-latin.woff2') format('woff2-variations');
-  font-weight: 300 900;
+  font-family: 'Vollkorn';
+  src: url('/fonts/vollkorn.woff2') format('woff2-variations');
+  font-weight: 400 800;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Newsreader';
-  src: url('/fonts/newsreader-latin.woff2') format('woff2-variations');
-  font-weight: 200 700;
+  font-family: 'Chivo';
+  src: url('/fonts/chivo.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('/fonts/plex-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('/fonts/plex-mono-500.woff2') format('woff2');
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  /* ── palette ──────────────────────────────────────────────────
-     Paper is the ground the site actually stands on — a warm, near
-     white that lets photography do the colour work. Forest and bark
-     are the two dark bands the page is allowed to fall into; neither
-     is black, because black reads as a screen and these pages are
-     about a place. Clay and gold are rationed: gold appears as a
-     rule, a figure or a marker, never as a surface.               */
-  --ink:        #1c1d15;
-  --forest:     #16412f;
-  --forest-2:   #0d2a1e;
-  --forest-3:   #24664c;
-  --bark:       #2a2419;
-  --paper:      #faf7ef;
-  --paper-2:    #f0ebde;
-  --clay:       #9d4f2e;
-  --clay-2:     #c78a63;
-  --gold:       #b8912c;
-  --gold-2:     #dcbb62;
+  /* ── the flank, from the ridge down ───────────────────────────
+     Basalt is the rock the mountain is made of and the darkest the
+     site goes; canopy is the forest that holds the catchment above
+     the gardens; cherry is ripe arabica and is the only colour
+     allowed to mean *look here*; laterite is the red soil the roads
+     are cut into, and it means risk, delay or damage; mist is the
+     cloud that sits on the slope every morning and is the ground
+     almost every page stands on.                                  */
+  --basalt:     #20241d;
+  --basalt-2:   #171a13;
+  --canopy:     #4e6141;
+  --canopy-2:   #3a4a31;
+  --canopy-3:   #8ba471;
+  --cherry:     #c58a4a;
+  /* Two more cherries, and neither is decoration: a ripening tint
+     that clears 4.5:1 on the canopy band, and a deep one for the
+     rare warm accent on mist, where cherry itself is unreadable. */
+  --cherry-lit: #e3ae76;
+  --cherry-2:   #8a5a1e;
+  --laterite:   #8c3b26;
+  --laterite-2: #c67a5e;
+  --mist:       #eae7dc;
+  --mist-2:     #ded9c9;
 
-  /* ── field variables, re-bound per section ─────────────────── */
-  --bg:      var(--paper);
-  --fg:      var(--ink);
-  --fg-dim:  #56594a;
-  --fg-mute: #8b8d7e;
-  --rule:    rgba(28, 29, 21, 0.13);
-  --rule-2:  rgba(28, 29, 21, 0.07);
-  --accent:  var(--clay);
+  /* ── field variables, re-bound per band ─────────────────────── */
+  --bg:      var(--mist);
+  --fg:      var(--basalt);
+  --fg-dim:  #4c5142;
+  --fg-mute: #64695a;
+  --rule:    rgba(32, 36, 29, 0.18);
+  --rule-2:  rgba(32, 36, 29, 0.09);
+  --tick:    rgba(32, 36, 29, 0.3);
+  /* On mist the accent is laterite: cherry is too pale against the
+     paper to carry text at any size. On the dark bands it is cherry,
+     which laterite is too close to the ground to do. */
+  --accent:  var(--laterite);
 
-  /* ── type ─────────────────────────────────────────────────────
-     One ratio, applied at three densities. The mega size is allowed
-     to eat a third of the viewport; the quiet sizes stay quiet.    */
-  --font-display: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-text: 'Newsreader', Georgia, 'Times New Roman', serif;
+  /* ── type ───────────────────────────────────────────────────── */
+  --font-display: 'Vollkorn', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-sans:    'Chivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --fs-mega:    min(clamp(2.9rem, 10.2vw, 9.5rem), 17svh);
-  --fs-display: clamp(2.35rem, 7.4vw, 6rem);
-  --fs-title:   clamp(1.85rem, 4.9vw, 3.7rem);
-  --fs-head:    clamp(1.35rem, 2.7vw, 2.05rem);
-  --fs-sub:     clamp(1.1rem, 1.65vw, 1.38rem);
-  --fs-lede:    clamp(1.09rem, 1.42vw, 1.36rem);
-  --fs-body:    clamp(0.99rem, 1.06vw, 1.075rem);
+  --fs-mega:    clamp(2.55rem, 7.6vw, 5.9rem);
+  --fs-display: clamp(2.05rem, 5.4vw, 4rem);
+  --fs-title:   clamp(1.7rem, 3.8vw, 2.85rem);
+  --fs-head:    clamp(1.25rem, 2.3vw, 1.72rem);
+  --fs-sub:     clamp(1.06rem, 1.5vw, 1.24rem);
+  --fs-lede:    clamp(1.06rem, 1.35vw, 1.22rem);
+  --fs-body:    clamp(0.99rem, 1.02vw, 1.06rem);
   --fs-small:   0.875rem;
-  --fs-label:   0.7rem;
-  --fs-micro:   0.64rem;
+  --fs-label:   0.72rem;
+  --fs-micro:   0.66rem;
 
-  /* Weight and tracking move together: the lighter a setting is, the
-     more air it needs between letters to stay solid on screen. */
-  --w-air:     300;
-  --w-light:   340;
+  --w-light:   350;
   --w-plain:   400;
-  --w-sign:    520;
-  --w-strong:  600;
+  --w-med:     500;
+  --w-sign:    600;
+  --w-strong:  700;
+  /* Vollkorn holds a page at 600; 700 is for a single turned phrase. */
+  --w-display: 600;
 
-  --track-mega:    0.028em;
-  --track-display: 0.012em;
-  --track-title:   0.006em;
-  --track-label:   0.2em;
+  /* A serif at display size needs pulling in; small caps need air. */
+  --track-mega:  -0.021em;
+  --track-title: -0.014em;
+  --track-label:  0.15em;
+  --track-mono:   0.09em;
 
-  /* ── measure ──────────────────────────────────────────────────
-     Line length is capped in characters, not pixels, so the serif
-     and the sans both land near 62–72 characters.                 */
   --measure:      64ch;
-  --measure-wide: 78ch;
+  --measure-wide: 76ch;
 
   /* ── space ────────────────────────────────────────────────── */
   --s1: 0.25rem;
@@ -107,27 +138,29 @@
   --s8: 4.5rem;
   --s9: 7rem;
 
-  --section:    clamp(5.25rem, 11vw, 13rem);
-  --section-lg: clamp(7rem, 15vw, 17rem);
+  --section:    clamp(4.5rem, 9vw, 10rem);
+  --section-lg: clamp(6rem, 13vw, 14rem);
 
-  /* ── grid ─────────────────────────────────────────────────────
-     4 columns on a phone, 6 on a tablet, 12 on a desktop. Sections
-     place themselves on it by name; there are no span utilities to
-     scatter through the markup.                                   */
+  /* ── grid ─────────────────────────────────────────────────── */
   --cols: 4;
   --gutter: 14px;
   --pad: clamp(20px, 5.2vw, 76px);
   --max: 1520px;
 
-  /* ── geometry ─────────────────────────────────────────────────
-     Square by default. Radius is a utility affordance, not a look. */
+  /* ── the altitude axis ────────────────────────────────────────
+     The one number the whole site is organised on. Anything that
+     sits somewhere real on the flank carries --alt in metres, and
+     the layout works out where that lands between the valley floor
+     and the park boundary. Positions are computed from elevation,
+     not chosen by eye — which is the point.                       */
+  --alt-floor: 1150;
+  --alt-ridge: 2400;
+  --alt-span: 1250;
+
   --r0: 0;
   --r1: 2px;
   --r2: 4px;
-  --r3: 7px;
 
-  /* ── motion ───────────────────────────────────────────────────
-     One ease for entrances, one for interface response.           */
   --ease:     cubic-bezier(0.22, 0.61, 0.24, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-ui:  cubic-bezier(0.4, 0, 0.2, 1);
@@ -135,49 +168,53 @@
   --t-mid:  0.45s;
   --t-slow: 0.9s;
 
-  --header-h: 68px;
+  --header-h: 66px;
 }
 
 @media (min-width: 760px) {
-  :root { --cols: 6; --gutter: 20px; --header-h: 76px; }
+  :root { --cols: 6; --gutter: 20px; --header-h: 74px; }
 }
 
 @media (min-width: 1100px) {
-  :root { --cols: 12; --gutter: 24px; --header-h: 84px; }
+  :root { --cols: 12; --gutter: 24px; --header-h: 82px; }
 }
 
-/* ── fields ─────────────────────────────────────────────────────
-   The page moves paper → off-white → deep green → image → bark →
-   paper. A field re-binds the colour variables; everything inside
-   it inherits without knowing where it sits.                      */
+/* ── bands ──────────────────────────────────────────────────────
+   A band re-binds the colour variables; everything inside inherits
+   without knowing where it sits. The page descends the mountain:
+   basalt and canopy up top, mist by the time it reaches the road. */
 .field { background: var(--bg); color: var(--fg); position: relative; }
 
-.field--paper { --bg: var(--paper); }
+.field--mist { --bg: var(--mist); }
 
-.field--stone {
-  --bg: var(--paper-2);
-  --rule: rgba(28, 29, 21, 0.15);
-  --rule-2: rgba(28, 29, 21, 0.08);
+/* The tilled panel — a half-step down from mist, for anything that
+   should read as a working surface rather than a page. */
+.field--terrace {
+  --bg: var(--mist-2);
+  --fg-mute: #565b4c;
+  --rule: rgba(32, 36, 29, 0.2);
+  --rule-2: rgba(32, 36, 29, 0.1);
+  --tick: rgba(32, 36, 29, 0.34);
 }
 
-.field--forest {
-  --bg: var(--forest);
-  --fg: #f0f2e8;
-  --fg-dim: rgba(240, 242, 232, 0.74);
-  --fg-mute: rgba(240, 242, 232, 0.52);
-  --rule: rgba(240, 242, 232, 0.2);
-  --rule-2: rgba(240, 242, 232, 0.1);
-  --accent: var(--gold-2);
+.field--canopy {
+  --bg: var(--canopy-2);
+  --fg: #f2efe4;
+  --fg-dim: rgba(242, 239, 228, 0.86);
+  --fg-mute: rgba(242, 239, 228, 0.72);
+  --rule: rgba(242, 239, 228, 0.26);
+  --rule-2: rgba(242, 239, 228, 0.12);
+  --tick: rgba(242, 239, 228, 0.4);
+  --accent: var(--cherry-lit);
 }
 
-/* Not black. A dark band on this site is bark, soil and shadow —
-   the same warmth as the paper, turned down. */
-.field--ink {
-  --bg: var(--bark);
-  --fg: #f0ece0;
-  --fg-dim: rgba(240, 236, 224, 0.7);
-  --fg-mute: rgba(240, 236, 224, 0.46);
-  --rule: rgba(240, 236, 224, 0.17);
-  --rule-2: rgba(240, 236, 224, 0.09);
-  --accent: var(--gold-2);
+.field--basalt {
+  --bg: var(--basalt);
+  --fg: #eae7dc;
+  --fg-dim: rgba(234, 231, 220, 0.78);
+  --fg-mute: rgba(234, 231, 220, 0.64);
+  --rule: rgba(234, 231, 220, 0.2);
+  --rule-2: rgba(234, 231, 220, 0.1);
+  --tick: rgba(234, 231, 220, 0.32);
+  --accent: var(--cherry);
 }
