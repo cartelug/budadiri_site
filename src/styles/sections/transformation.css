@@ -79,17 +79,23 @@
   height: 100%;
   object-fit: cover;
 }
-/* The projection is revealed by an inset clip driven from script. */
+/* The projection is revealed by an inset clip driven from script, and it
+   arrives from the right — the page reads today on the left, 2036 on the
+   right, and the copy above the frame says exactly that.
+
+   `--wipe` is the left inset: 100% is entirely today, 0% entirely 2036.
+   The CSS default is a half-and-half split so the comparison still reads
+   with JavaScript off; the script sets it on init and takes over. */
 .transform__layer--future {
-  --wipe: 100%;
-  clip-path: inset(0 var(--wipe) 0 0);
+  --wipe: 50%;
+  clip-path: inset(0 0 0 var(--wipe));
 }
 
 .transform__seam {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(100% - var(--wipe, 100%));
+  left: var(--wipe, 50%);
   width: 1px;
   background: var(--gold-2);
   box-shadow: 0 0 0 0 transparent;

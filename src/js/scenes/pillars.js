@@ -19,8 +19,13 @@ export async function initPillars(section) {
     rail.forEach((btn, i) => btn.setAttribute('aria-current', String(i === index)));
   };
 
-  if (!env.scenes) { chapters.forEach((c) => c.classList.remove('is-active')); return; }
+  /* The stacked layout is the default in CSS. Only once this module is
+     certain it will pin does it opt the section into the held layout —
+     so reduced motion, a narrow viewport or no JavaScript at all still
+     leaves all five chapters on the page. */
+  if (!env.scenes) return;
 
+  section.classList.add('is-pinned');
   setActive(0);
 
   const { ScrollTrigger } = await import('../motion.js').then((m) => m.scroller());
