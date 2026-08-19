@@ -1,9 +1,11 @@
 /* ─────────────────────────────────────────────────────────────────
    Typographic roles.
 
-   Hierarchy is built from scale, weight, width and space — not from
-   colour and not from decoration. A heading is allowed to be huge or
-   allowed to be very quiet; there is no default middle setting.
+   Hierarchy is built from scale, width and space rather than from
+   weight, colour or decoration. Headings are set light and open: at
+   these sizes a light letterform reads as confidence and a heavy one
+   reads as a poster. Emphasis, where a heading needs it, comes from
+   the serif turning a phrase — not from more ink.
    ───────────────────────────────────────────────────────────────── */
 
 .statement,
@@ -11,15 +13,15 @@
 .title,
 .head {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: var(--w-light);
   text-wrap: balance;
 }
 
-/* Hero-scale. Occupies 30–50% of a desktop viewport by design. */
+/* Hero-scale. Occupies 30–45% of a desktop viewport by design. */
 .statement {
   font-size: var(--fs-mega);
-  font-weight: 800;
-  line-height: 0.845;
+  font-weight: var(--w-air);
+  line-height: 1.02;
   letter-spacing: var(--track-mega);
   text-transform: uppercase;
   text-wrap: nowrap;
@@ -27,32 +29,32 @@
 
 .display {
   font-size: var(--fs-display);
-  font-weight: 780;
-  line-height: 0.92;
-  letter-spacing: -0.038em;
+  font-weight: var(--w-air);
+  line-height: 1.1;
+  letter-spacing: var(--track-display);
 }
 
 .title {
   font-size: var(--fs-title);
-  font-weight: 740;
-  line-height: 0.98;
-  letter-spacing: -0.032em;
+  font-weight: var(--w-light);
+  line-height: 1.16;
+  letter-spacing: var(--track-title);
 }
 
 .head {
   font-size: var(--fs-head);
-  font-weight: 660;
-  line-height: 1.12;
-  letter-spacing: -0.021em;
+  font-weight: var(--w-plain);
+  line-height: 1.32;
+  letter-spacing: 0.004em;
   text-wrap: pretty;
 }
 
 .sub {
   font-family: var(--font-display);
   font-size: var(--fs-sub);
-  font-weight: 560;
-  line-height: 1.28;
-  letter-spacing: -0.012em;
+  font-weight: var(--w-plain);
+  line-height: 1.42;
+  letter-spacing: 0.004em;
 }
 
 /* The serif carries anything written in a human voice. */
@@ -76,13 +78,15 @@
   text-wrap: pretty;
 }
 .prose > * + * { margin-top: 0.95em; }
-.prose strong { font-weight: 600; color: var(--fg); }
+.prose strong { font-weight: var(--w-strong); color: var(--fg); }
 
-/* Signage: section markers, field labels, table headers, eyebrows. */
+/* Signage: section markers, field labels, table headers, eyebrows.
+   Small type is the one place weight is spent, because a 0.7rem
+   label set light disappears on a cheap screen. */
 .marker {
   font-family: var(--font-display);
   font-size: var(--fs-label);
-  font-weight: 620;
+  font-weight: var(--w-sign);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--fg-dim);
@@ -92,11 +96,11 @@
 .marker--rule {
   display: flex;
   align-items: center;
-  gap: 0.9em;
+  gap: 1.1em;
 }
 .marker--rule::before {
   content: '';
-  width: 1.9em;
+  width: 2.6em;
   height: 1px;
   background: var(--accent);
   flex: none;
@@ -105,8 +109,8 @@
 .micro {
   font-family: var(--font-display);
   font-size: var(--fs-micro);
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-weight: var(--w-sign);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--fg-mute);
 }
@@ -114,8 +118,8 @@
 .caption {
   font-family: var(--font-display);
   font-size: var(--fs-small);
-  font-weight: 420;
-  line-height: 1.45;
+  font-weight: var(--w-plain);
+  line-height: 1.5;
   color: var(--fg-mute);
   max-width: 44ch;
 }
@@ -130,23 +134,23 @@
 
 .figure-lg {
   font-size: clamp(2.6rem, 6.5vw, 5.2rem);
-  font-weight: 720;
-  line-height: 0.86;
-  letter-spacing: -0.045em;
+  font-weight: var(--w-air);
+  line-height: 0.94;
+  letter-spacing: -0.01em;
 }
 
 /* Chapter numbering. Set in outline so it never shouts. */
 .index {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.6rem, 7vw, 5.5rem);
-  line-height: 0.8;
-  letter-spacing: -0.05em;
+  font-weight: var(--w-light);
+  font-size: clamp(2.4rem, 6.4vw, 5rem);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
   /* currentColor would resolve to the transparent fill, so the stroke
      colour has to be named outright. */
   -webkit-text-stroke: 1px var(--fg);
   color: transparent;
-  opacity: 0.55;
+  opacity: 0.4;
 }
 
 .measure-wide { max-width: var(--measure-wide); }

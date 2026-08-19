@@ -101,11 +101,14 @@
 }
 @media (max-width: 759.98px) {
   /* Vertical setting needs a margin the phone does not have; the credit
-     runs under the plate instead. */
+     runs under the plate instead — and is allowed to wrap, because the
+     name and the office together are longer than a phone is wide. */
   .hero__plate-caption {
     position: static;
     writing-mode: horizontal-tb;
     text-align: right;
+    white-space: normal;
+    line-height: 1.5;
     padding-top: 0.6rem;
   }
 }

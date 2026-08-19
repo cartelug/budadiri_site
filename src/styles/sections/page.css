@@ -97,9 +97,12 @@
 .footer__link {
   font-family: var(--font-display);
   font-size: 0.95rem;
-  font-weight: 440;
+  font-weight: var(--w-plain);
   color: var(--fg-dim);
-  padding-block: 0.3rem;
+  /* A thumb, not a cursor: the row is a full 44px target even though
+     the line it holds is much shorter than that. */
+  min-height: 44px;
+  padding-block: 0.55rem;
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
@@ -142,7 +145,7 @@
 .filter {
   font-family: var(--font-display);
   font-size: var(--fs-label);
-  font-weight: 600;
+  font-weight: var(--w-sign);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 0.75rem 1rem;
@@ -191,7 +194,7 @@
   padding: 0.3rem 0.45rem;
   font-family: var(--font-display);
   font-size: 0.56rem;
-  font-weight: 620;
+  font-weight: var(--w-sign);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   background: var(--ink);
@@ -263,7 +266,7 @@
 .cmap__region {
   font-family: var(--font-display);
   font-size: 15px;
-  font-weight: 620;
+  font-weight: var(--w-sign);
   letter-spacing: 0.02em;
   fill: var(--fg-mute);
   text-transform: uppercase;
@@ -327,13 +330,13 @@
   align-items: baseline;
 }
 .clause:last-child { border-bottom: 1px solid var(--rule-2); }
-.clause__num { font-family: var(--font-display); font-size: var(--fs-micro); font-weight: 620; letter-spacing: 0.14em; color: var(--fg-mute); }
+.clause__num { font-family: var(--font-display); font-size: var(--fs-micro); font-weight: var(--w-sign); letter-spacing: 0.14em; color: var(--fg-mute); }
 .clause__word {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3.6vw, 2.6rem);
-  font-weight: 680;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.45rem, 3.4vw, 2.45rem);
+  font-weight: var(--w-light);
+  line-height: 1.14;
+  letter-spacing: 0.006em;
 }
 .clause__obliges {
   font-family: var(--font-text);

@@ -50,10 +50,10 @@
 
 .stage__name {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4.2vw, 3.1rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.035em;
+  font-size: clamp(1.45rem, 3.9vw, 2.85rem);
+  font-weight: var(--w-air);
+  line-height: 1.1;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--fg);
   opacity: 0.26;
@@ -77,7 +77,7 @@
 .stage__scale {
   font-family: var(--font-display);
   font-size: var(--fs-micro);
-  font-weight: 620;
+  font-weight: var(--w-sign);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-mute);
@@ -104,4 +104,17 @@
   .stage__name { opacity: 1; }
   .stage__note { opacity: 1; transform: none; }
   .framework__line { transform: scaleY(1); }
+}
+
+/* Below the desktop grid only one stage is ever inside the reading band
+   at a time, so dimming the rest leaves a column of grey names over
+   empty gaps where their notes should be. On a phone every stage is
+   simply readable; the line still draws as you go, which is the part
+   that actually carries the idea. */
+@media (max-width: 899.98px) {
+  .stage__name { opacity: 1; }
+  .stage__note { opacity: 1; transform: none; }
+  .stage__doc { opacity: 1; }
+  .stage__dot { background: var(--fg-mute); transform: none; }
+  .stage.is-on .stage__dot { background: var(--accent); transform: scale(1.6); }
 }

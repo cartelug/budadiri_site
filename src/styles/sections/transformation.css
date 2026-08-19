@@ -117,11 +117,11 @@
   padding: 0.55rem 0.8rem;
   font-family: var(--font-display);
   font-size: var(--fs-micro);
-  font-weight: 640;
+  font-weight: var(--w-sign);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #f2eee4;
-  background: rgba(11, 36, 26, 0.72);
+  color: #faf7ef;
+  background: rgba(13, 42, 30, 0.78);
   transition: opacity var(--t-mid) var(--ease-ui);
 }
 .transform__stamp--today { left: 0; }
@@ -139,8 +139,8 @@
 .transform__word {
   font-family: var(--font-display);
   font-size: clamp(0.95rem, 2.1vw, 1.6rem);
-  font-weight: 600;
-  letter-spacing: -0.015em;
+  font-weight: var(--w-plain);
+  letter-spacing: 0.02em;
   color: var(--fg-mute);
   transition: color 0.5s var(--ease-out);
 }

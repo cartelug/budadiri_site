@@ -17,11 +17,11 @@
   gap: 0.7em;
   font-family: var(--font-display);
   font-size: var(--fs-label);
-  font-weight: 640;
+  font-weight: var(--w-sign);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--action-fg);
-  padding-block: 0.85em;
+  padding-block: 0.95em;
   position: relative;
   min-height: 44px;
   align-content: center;
@@ -54,15 +54,15 @@
 .action:active { transform: translateY(1px); }
 
 .action--lg {
-  font-size: 0.82rem;
-  letter-spacing: 0.13em;
+  font-size: 0.78rem;
+  letter-spacing: 0.19em;
 }
 
 /* ── bordered action ─────────────────────────────────────────── */
 .action--outline {
   border: 1px solid var(--rule);
-  padding: 1.05em 1.5em;
-  border-radius: var(--r1);
+  padding: 1.2em 1.9em;
+  border-radius: var(--r0);
   transition: border-color var(--t-fast) var(--ease-ui),
               background var(--t-fast) var(--ease-ui),
               color var(--t-fast) var(--ease-ui);
@@ -79,9 +79,9 @@
 /* ── solid action — one per page ─────────────────────────────── */
 .action--solid {
   background: var(--forest);
-  color: #f5f2e8;
-  padding: 1.15em 1.6em;
-  border-radius: var(--r1);
+  color: #f7f4ec;
+  padding: 1.3em 2em;
+  border-radius: var(--r0);
   overflow: hidden;
   transition: background var(--t-fast) var(--ease-ui);
 }
@@ -89,9 +89,9 @@
 .field--forest .action--solid,
 .field--ink .action--solid { background: var(--gold); color: var(--ink); }
 @media (hover: hover) {
-  .action--solid:hover { background: var(--ink); color: #f5f2e8; }
+  .action--solid:hover { background: var(--ink); color: #f7f4ec; }
   .field--forest .action--solid:hover,
-  .field--ink .action--solid:hover { background: #f2eee4; color: var(--ink); }
+  .field--ink .action--solid:hover { background: #faf7ef; color: var(--ink); }
 }
 
 /* ── inline editorial link ─────────────────────────────────────
@@ -131,7 +131,7 @@
 .tag {
   font-family: var(--font-display);
   font-size: var(--fs-micro);
-  font-weight: 600;
+  font-weight: var(--w-sign);
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--fg-mute);
@@ -157,7 +157,7 @@
   gap: 0.55em;
   font-family: var(--font-display);
   font-size: var(--fs-micro);
-  font-weight: 640;
+  font-weight: var(--w-sign);
   letter-spacing: 0.13em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -201,7 +201,7 @@
 .field-row > label {
   font-family: var(--font-display);
   font-size: var(--fs-label);
-  font-weight: 620;
+  font-weight: var(--w-sign);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--fg-dim);
@@ -215,7 +215,7 @@
   padding: 1rem 1.05rem;
   background: color-mix(in srgb, var(--fg) 3%, transparent);
   border: 1px solid var(--rule);
-  border-radius: var(--r3);
+  border-radius: var(--r1);
   font-family: var(--font-display);
   font-size: 1.0625rem;
   line-height: 1.45;
@@ -266,7 +266,7 @@
   min-height: 48px;
   padding: 0.7rem 1.05rem;
   border: 1px solid var(--rule);
-  border-radius: var(--r2);
+  border-radius: var(--r1);
   font-family: var(--font-display);
   font-size: 0.9rem;
   font-weight: 500;
@@ -303,7 +303,7 @@
 }
 .table th {
   font-size: var(--fs-micro);
-  font-weight: 640;
+  font-weight: var(--w-sign);
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--fg-mute);

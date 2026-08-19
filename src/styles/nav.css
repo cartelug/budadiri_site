@@ -21,17 +21,17 @@
   border-bottom: 1px solid transparent;
 }
 
-.header--dark { color: #eef0e6; }
+.header--dark { color: #f0f2e8; }
 
 .header--over-menu { background: transparent; border-bottom-color: transparent; }
 
 .header.is-solid {
   background: var(--paper);
-  border-bottom-color: rgba(20, 21, 15, 0.14);
+  border-bottom-color: rgba(28, 29, 21, 0.12);
 }
 .header--dark.is-solid {
   background: var(--forest-2);
-  border-bottom-color: rgba(238, 240, 230, 0.16);
+  border-bottom-color: rgba(240, 242, 232, 0.15);
 }
 
 /* Out of the way on the way down, back on the way up. */
@@ -48,24 +48,26 @@
 /* ── wordmark ─────────────────────────────────────────────────── */
 .wordmark {
   display: grid;
-  gap: 2px;
+  gap: 5px;
   line-height: 1;
   padding-block: 0.5rem;
 }
+/* Set the way the name would be cut into a building: open, even and
+   not competing with the page underneath it. */
 .wordmark__name {
   font-family: var(--font-display);
-  font-size: clamp(0.94rem, 1.5vw, 1.06rem);
-  font-weight: 720;
-  letter-spacing: -0.015em;
+  font-size: clamp(0.86rem, 1.35vw, 0.97rem);
+  font-weight: var(--w-sign);
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 .wordmark__role {
   font-family: var(--font-display);
   font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.13em;
+  font-weight: var(--w-plain);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  opacity: 0.62;
+  opacity: 0.58;
 }
 
 /* ── desktop links ────────────────────────────────────────────── */
@@ -79,12 +81,13 @@
 .nav__link {
   position: relative;
   font-family: var(--font-display);
-  font-size: 0.82rem;
-  font-weight: 520;
-  letter-spacing: 0.02em;
+  font-size: 0.7rem;
+  font-weight: var(--w-sign);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   padding-block: 0.5rem;
   color: inherit;
-  opacity: 0.72;
+  opacity: 0.66;
   transition: opacity var(--t-fast) var(--ease-ui);
 }
 .nav__link::after {
@@ -148,7 +151,7 @@
   inset: 0;
   z-index: 85;
   background: var(--forest-2);
-  color: #eef0e6;
+  color: #f0f2e8;
   display: grid;
   grid-template-rows: var(--header-h) 1fr auto;
   padding-inline: var(--pad);
@@ -170,7 +173,7 @@
   align-items: center;
   font-family: var(--font-display);
   font-size: var(--fs-label);
-  font-weight: 620;
+  font-weight: var(--w-sign);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   opacity: 0.6;
@@ -180,31 +183,31 @@
   align-self: center;
   display: grid;
   padding-block: var(--s6);
-  border-top: 1px solid rgba(238, 240, 230, 0.16);
+  border-top: 1px solid rgba(240, 242, 232, 0.15);
 }
 
-.menu__item { border-bottom: 1px solid rgba(238, 240, 230, 0.16); }
+.menu__item { border-bottom: 1px solid rgba(240, 242, 232, 0.15); }
 
 .menu__link {
   display: grid;
   grid-template-columns: 3.1rem 1fr auto;
   align-items: baseline;
   gap: var(--s3);
-  padding-block: clamp(0.7rem, 2.2vw, 1.05rem);
+  padding-block: clamp(0.72rem, 2.2vw, 1.1rem);
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 8.5vw, 3.2rem);
-  font-weight: 640;
-  letter-spacing: -0.035em;
+  font-size: clamp(1.5rem, 6.6vw, 2.55rem);
+  font-weight: var(--w-air);
+  letter-spacing: 0.045em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.1;
   transition: color var(--t-fast) var(--ease-ui);
 }
 .menu__num {
   font-size: var(--fs-micro);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  opacity: 0.45;
-  transform: translateY(-0.35em);
+  font-weight: var(--w-sign);
+  letter-spacing: 0.14em;
+  opacity: 0.42;
+  transform: translateY(-0.25em);
 }
 .menu__link .arrow {
   font-size: 0.9rem;
@@ -237,7 +240,7 @@
   display: grid;
   gap: var(--s4);
   padding-top: var(--s5);
-  border-top: 1px solid rgba(238, 240, 230, 0.16);
+  border-top: 1px solid rgba(240, 242, 232, 0.15);
 }
 .menu__foot .action { --action-fg: var(--gold-2); }
 

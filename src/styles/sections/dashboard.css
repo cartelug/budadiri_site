@@ -52,7 +52,7 @@
 .dash__count-unit {
   font-family: var(--font-display);
   font-size: var(--fs-micro);
-  font-weight: 600;
+  font-weight: var(--w-sign);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-mute);
@@ -69,10 +69,10 @@
 
 .record__subject {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.4vw, 1.75rem);
-  font-weight: 640;
-  letter-spacing: -0.022em;
-  line-height: 1.1;
+  font-size: clamp(1.18rem, 2.3vw, 1.7rem);
+  font-weight: var(--w-plain);
+  letter-spacing: 0.004em;
+  line-height: 1.28;
   text-wrap: balance;
 }
 
@@ -80,7 +80,7 @@
 .record__key {
   font-family: var(--font-display);
   font-size: var(--fs-micro);
-  font-weight: 620;
+  font-weight: var(--w-sign);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-mute);

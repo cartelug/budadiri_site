@@ -19,30 +19,32 @@
 }
 
 /* ── tones, one per chapter ──────────────────────────────────── */
-.pillar-ch { --tone: var(--forest); --tone-fg: #eef0e6; }
-.pillar-ch--1 { --tone: #123a2a; }
-.pillar-ch--2 { --tone: #1d2418; }
-.pillar-ch--3 { --tone: #14150f; }
-.pillar-ch--4 { --tone: #3a3123; }
-.pillar-ch--5 { --tone: #55321f; }
+/* Five tones walked from canopy down to cleared soil — the same
+   ground at five different depths, not five different brand colours. */
+.pillar-ch { --tone: var(--forest); --tone-fg: #f0f2e8; }
+.pillar-ch--1 { --tone: #16412f; }
+.pillar-ch--2 { --tone: #21341f; }
+.pillar-ch--3 { --tone: #2a2419; }
+.pillar-ch--4 { --tone: #3d3324; }
+.pillar-ch--5 { --tone: #55341f; }
 
 .pillar-ch__num {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 6vw, 4.6rem);
-  font-weight: 720;
-  line-height: 0.8;
-  letter-spacing: -0.05em;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  font-weight: var(--w-light);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
   -webkit-text-stroke: 1px var(--tone-fg);
   color: transparent;
-  opacity: 0.55;
+  opacity: 0.4;
 }
 
 .pillar-ch__title {
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 5.6vw, 4.2rem);
-  font-weight: 750;
-  line-height: 0.92;
-  letter-spacing: -0.038em;
+  font-size: clamp(2rem, 5.2vw, 3.9rem);
+  font-weight: var(--w-air);
+  line-height: 1.06;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 .pillar-ch__title .place {
@@ -70,9 +72,9 @@
   font-weight: 480;
   letter-spacing: 0.01em;
   padding-block: 0.62rem;
-  border-top: 1px solid rgba(238, 240, 230, 0.16);
+  border-top: 1px solid rgba(240, 242, 232, 0.16);
 }
-.pillar-ch__list li:last-child { border-bottom: 1px solid rgba(238, 240, 230, 0.16); }
+.pillar-ch__list li:last-child { border-bottom: 1px solid rgba(240, 242, 232, 0.16); }
 
 .pillar-ch__plate { position: relative; }
 .pillar-ch__plate img {
@@ -82,7 +84,7 @@
 }
 .pillar-ch__plate figcaption {
   padding-top: 0.7rem;
-  border-top: 1px solid rgba(238, 240, 230, 0.2);
+  border-top: 1px solid rgba(240, 242, 232, 0.2);
   margin-top: 0.7rem;
 }
 
@@ -181,7 +183,7 @@
     grid-column: 1 / 3;
     display: grid;
     gap: 0.35rem;
-    color: #eef0e6;
+    color: #f0f2e8;
   }
   .pillars__rail button {
     display: flex;
@@ -189,7 +191,7 @@
     gap: 0.7rem;
     font-family: var(--font-display);
     font-size: var(--fs-micro);
-    font-weight: 620;
+    font-weight: var(--w-sign);
     letter-spacing: 0.12em;
     color: currentColor;
     white-space: nowrap;
@@ -237,7 +239,14 @@
   }
   .pillars.is-pinned .pillar-ch__head { display: grid; gap: var(--s5); align-content: center; }
   .pillars.is-pinned .pillar-ch__meta { display: flex; align-items: baseline; gap: var(--s5); }
-  .pillars.is-pinned .pillar-ch__plate { max-width: 520px; justify-self: end; width: 100%; }
+  /* Held at the full height of the stage rather than as a 3:2 letterbox
+     with dead field beneath it: the photograph is the other half of the
+     chapter, so it is given the other half of the screen. */
+  .pillars.is-pinned .pillar-ch__plate { justify-self: end; width: 100%; }
+  /* Square rather than the 3:2 the file is cut at: it fills the half of
+     the stage the chapter is given, and still crops within the source
+     rather than scaling it up. */
+  .pillars.is-pinned .pillar-ch__plate img { aspect-ratio: 1 / 1; }
   .pillars.is-pinned .pillar-ch__list { margin-top: var(--s5); }
 
   /* Each chapter's parts arrive in order, not all at once. */

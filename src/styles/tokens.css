@@ -5,6 +5,11 @@
    signage, labels, data, the big statements. Newsreader is the
    speaking voice: ledes, quotations, anything that reads like a
    person wrote it. Nothing else is loaded.
+
+   Montserrat is set light and open here rather than heavy and tight.
+   A constituency office should read as composed, not as a poster
+   shouting at the people it serves — so weight is spent sparingly,
+   space is spent freely, and the photographs are what carry volume.
    ───────────────────────────────────────────────────────────────── */
 
 /* Both faces are instanced and subset by tools/build-fonts.py: the axes
@@ -28,30 +33,31 @@
 
 :root {
   /* ── palette ──────────────────────────────────────────────────
-     Forest and charcoal do the architecture. Paper and stone do the
-     breathing. Clay and gold are rationed: gold appears as a rule,
-     a figure or a marker, never as a surface.                     */
-  --ink:        #14150f;
-  --ink-2:      #21231a;
-  --forest:     #123a2a;
-  --forest-2:   #0b241a;
-  --forest-3:   #1f5c44;
-  --paper:      #f2eee4;
-  --paper-2:    #e8e2d4;
-  --stone:      #ded6c4;
+     Paper is the ground the site actually stands on — a warm, near
+     white that lets photography do the colour work. Forest and bark
+     are the two dark bands the page is allowed to fall into; neither
+     is black, because black reads as a screen and these pages are
+     about a place. Clay and gold are rationed: gold appears as a
+     rule, a figure or a marker, never as a surface.               */
+  --ink:        #1c1d15;
+  --forest:     #16412f;
+  --forest-2:   #0d2a1e;
+  --forest-3:   #24664c;
+  --bark:       #2a2419;
+  --paper:      #faf7ef;
+  --paper-2:    #f0ebde;
   --clay:       #9d4f2e;
-  --clay-2:     #c07a55;
-  --moss:       #6c7a4a;
-  --gold:       #c19725;
-  --gold-2:     #e0bc55;
+  --clay-2:     #c78a63;
+  --gold:       #b8912c;
+  --gold-2:     #dcbb62;
 
   /* ── field variables, re-bound per section ─────────────────── */
   --bg:      var(--paper);
   --fg:      var(--ink);
-  --fg-dim:  #5b5f4f;
-  --fg-mute: #8a8b7c;
-  --rule:    rgba(20, 21, 15, 0.16);
-  --rule-2:  rgba(20, 21, 15, 0.09);
+  --fg-dim:  #56594a;
+  --fg-mute: #8b8d7e;
+  --rule:    rgba(28, 29, 21, 0.13);
+  --rule-2:  rgba(28, 29, 21, 0.07);
   --accent:  var(--clay);
 
   /* ── type ─────────────────────────────────────────────────────
@@ -60,19 +66,29 @@
   --font-display: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-text: 'Newsreader', Georgia, 'Times New Roman', serif;
 
-  --fs-mega:    min(clamp(3.1rem, 11vw, 10.5rem), 17.5svh);
-  --fs-display: clamp(2.55rem, 8.4vw, 7rem);
-  --fs-title:   clamp(2rem, 5.4vw, 4.15rem);
-  --fs-head:    clamp(1.45rem, 3vw, 2.3rem);
-  --fs-sub:     clamp(1.12rem, 1.7vw, 1.42rem);
+  --fs-mega:    min(clamp(2.9rem, 10.2vw, 9.5rem), 17svh);
+  --fs-display: clamp(2.35rem, 7.4vw, 6rem);
+  --fs-title:   clamp(1.85rem, 4.9vw, 3.7rem);
+  --fs-head:    clamp(1.35rem, 2.7vw, 2.05rem);
+  --fs-sub:     clamp(1.1rem, 1.65vw, 1.38rem);
   --fs-lede:    clamp(1.09rem, 1.42vw, 1.36rem);
   --fs-body:    clamp(0.99rem, 1.06vw, 1.075rem);
   --fs-small:   0.875rem;
   --fs-label:   0.7rem;
   --fs-micro:   0.64rem;
 
-  --track-mega:  -0.045em;
-  --track-label: 0.17em;
+  /* Weight and tracking move together: the lighter a setting is, the
+     more air it needs between letters to stay solid on screen. */
+  --w-air:     300;
+  --w-light:   340;
+  --w-plain:   400;
+  --w-sign:    520;
+  --w-strong:  600;
+
+  --track-mega:    0.028em;
+  --track-display: 0.012em;
+  --track-title:   0.006em;
+  --track-label:   0.2em;
 
   /* ── measure ──────────────────────────────────────────────────
      Line length is capped in characters, not pixels, so the serif
@@ -91,8 +107,8 @@
   --s8: 4.5rem;
   --s9: 7rem;
 
-  --section:    clamp(4.5rem, 9.5vw, 10.5rem);
-  --section-lg: clamp(6rem, 13vw, 14rem);
+  --section:    clamp(5.25rem, 11vw, 13rem);
+  --section-lg: clamp(7rem, 15vw, 17rem);
 
   /* ── grid ─────────────────────────────────────────────────────
      4 columns on a phone, 6 on a tablet, 12 on a desktop. Sections
@@ -131,35 +147,37 @@
 }
 
 /* ── fields ─────────────────────────────────────────────────────
-   The page moves light → off-white → deep green → image → stone →
-   black → light. A field re-binds the colour variables; everything
-   inside it inherits without knowing where it sits.               */
+   The page moves paper → off-white → deep green → image → bark →
+   paper. A field re-binds the colour variables; everything inside
+   it inherits without knowing where it sits.                      */
 .field { background: var(--bg); color: var(--fg); position: relative; }
 
 .field--paper { --bg: var(--paper); }
 
 .field--stone {
   --bg: var(--paper-2);
-  --rule: rgba(20, 21, 15, 0.19);
-  --rule-2: rgba(20, 21, 15, 0.11);
+  --rule: rgba(28, 29, 21, 0.15);
+  --rule-2: rgba(28, 29, 21, 0.08);
 }
 
 .field--forest {
   --bg: var(--forest);
-  --fg: #eef0e6;
-  --fg-dim: rgba(238, 240, 230, 0.72);
-  --fg-mute: rgba(238, 240, 230, 0.5);
-  --rule: rgba(238, 240, 230, 0.24);
-  --rule-2: rgba(238, 240, 230, 0.12);
+  --fg: #f0f2e8;
+  --fg-dim: rgba(240, 242, 232, 0.74);
+  --fg-mute: rgba(240, 242, 232, 0.52);
+  --rule: rgba(240, 242, 232, 0.2);
+  --rule-2: rgba(240, 242, 232, 0.1);
   --accent: var(--gold-2);
 }
 
+/* Not black. A dark band on this site is bark, soil and shadow —
+   the same warmth as the paper, turned down. */
 .field--ink {
-  --bg: var(--ink);
-  --fg: #eceade;
-  --fg-dim: rgba(236, 234, 222, 0.68);
-  --fg-mute: rgba(236, 234, 222, 0.44);
-  --rule: rgba(236, 234, 222, 0.2);
-  --rule-2: rgba(236, 234, 222, 0.1);
+  --bg: var(--bark);
+  --fg: #f0ece0;
+  --fg-dim: rgba(240, 236, 224, 0.7);
+  --fg-mute: rgba(240, 236, 224, 0.46);
+  --rule: rgba(240, 236, 224, 0.17);
+  --rule-2: rgba(240, 236, 224, 0.09);
   --accent: var(--gold-2);
 }
