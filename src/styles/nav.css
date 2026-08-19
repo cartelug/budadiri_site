@@ -13,7 +13,7 @@
   height: var(--header-h);
   display: flex;
   align-items: center;
-  color: var(--ink);
+  color: var(--basalt);
   transition: transform var(--t-mid) var(--ease-out),
               background var(--t-mid) var(--ease-ui),
               color var(--t-mid) var(--ease-ui),
@@ -21,17 +21,28 @@
   border-bottom: 1px solid transparent;
 }
 
-.header--dark { color: #f0f2e8; }
+/* Inverting `color` alone is not enough: anything in the bar that
+   paints itself from the field variables — the call to action does —
+   would still be reaching for the light-ground values and come out
+   basalt on basalt. The bar is a field, so it re-binds like one. */
+.header--dark {
+  color: var(--mist);
+  --fg: var(--mist);
+  --fg-dim: rgba(234, 231, 220, 0.78);
+  --fg-mute: rgba(234, 231, 220, 0.64);
+  --rule: rgba(234, 231, 220, 0.2);
+  --accent: var(--cherry);
+}
 
 .header--over-menu { background: transparent; border-bottom-color: transparent; }
 
 .header.is-solid {
-  background: var(--paper);
-  border-bottom-color: rgba(28, 29, 21, 0.12);
+  background: var(--mist);
+  border-bottom-color: rgba(32, 36, 29, 0.14);
 }
 .header--dark.is-solid {
-  background: var(--forest-2);
-  border-bottom-color: rgba(240, 242, 232, 0.15);
+  background: var(--basalt);
+  border-bottom-color: rgba(234, 231, 220, 0.16);
 }
 
 /* Out of the way on the way down, back on the way up. */
@@ -56,18 +67,17 @@
    not competing with the page underneath it. */
 .wordmark__name {
   font-family: var(--font-display);
-  font-size: clamp(0.86rem, 1.35vw, 0.97rem);
-  font-weight: var(--w-sign);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  font-weight: var(--w-display);
+  letter-spacing: -0.01em;
 }
 .wordmark__role {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  font-weight: var(--w-plain);
-  letter-spacing: 0.16em;
+  font-weight: 400;
+  letter-spacing: var(--track-mono);
   text-transform: uppercase;
-  opacity: 0.58;
+  opacity: 0.66;
 }
 
 /* ── desktop links ────────────────────────────────────────────── */
@@ -80,14 +90,18 @@
 
 .nav__link {
   position: relative;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  /* A pointer could hit 34px, but a tablet in landscape gets this bar
+     too, and the 44px floor is not negotiable anywhere on this site. */
+  min-height: 44px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
   font-weight: var(--w-sign);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding-block: 0.5rem;
   color: inherit;
-  opacity: 0.66;
+  opacity: 0.72;
   transition: opacity var(--t-fast) var(--ease-ui);
 }
 .nav__link::after {
@@ -95,7 +109,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0.72rem;
   height: 1px;
   background: currentColor;
   transform: scaleX(0);
@@ -150,8 +164,13 @@
   position: fixed;
   inset: 0;
   z-index: 85;
-  background: var(--forest-2);
-  color: #f0f2e8;
+  background: var(--basalt);
+  color: var(--mist);
+  --fg: var(--mist);
+  --fg-dim: rgba(234, 231, 220, 0.78);
+  --fg-mute: rgba(234, 231, 220, 0.64);
+  --rule: rgba(234, 231, 220, 0.2);
+  --accent: var(--cherry);
   display: grid;
   grid-template-rows: var(--header-h) 1fr auto;
   padding-inline: var(--pad);
@@ -171,10 +190,10 @@
 .menu__head {
   display: flex;
   align-items: center;
-  font-family: var(--font-display);
-  font-size: var(--fs-label);
-  font-weight: var(--w-sign);
-  letter-spacing: var(--track-label);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
   text-transform: uppercase;
   opacity: 0.6;
 }
@@ -183,10 +202,10 @@
   align-self: center;
   display: grid;
   padding-block: var(--s6);
-  border-top: 1px solid rgba(240, 242, 232, 0.15);
+  border-top: 1px solid rgba(234, 231, 220, 0.16);
 }
 
-.menu__item { border-bottom: 1px solid rgba(240, 242, 232, 0.15); }
+.menu__item { border-bottom: 1px solid rgba(234, 231, 220, 0.16); }
 
 .menu__link {
   display: grid;
@@ -195,19 +214,19 @@
   gap: var(--s3);
   padding-block: clamp(0.72rem, 2.2vw, 1.1rem);
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 6.6vw, 2.55rem);
-  font-weight: var(--w-air);
-  letter-spacing: 0.045em;
-  text-transform: uppercase;
-  line-height: 1.1;
+  font-size: clamp(1.6rem, 6.8vw, 2.7rem);
+  font-weight: var(--w-display);
+  letter-spacing: -0.018em;
+  line-height: 1.08;
   transition: color var(--t-fast) var(--ease-ui);
 }
 .menu__num {
+  font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  font-weight: var(--w-sign);
-  letter-spacing: 0.14em;
-  opacity: 0.42;
-  transform: translateY(-0.25em);
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
+  opacity: 0.5;
+  transform: translateY(-0.3em);
 }
 .menu__link .arrow {
   font-size: 0.9rem;
@@ -215,11 +234,11 @@
   transform: translateX(-0.4em);
   transition: opacity var(--t-fast) var(--ease-ui), transform var(--t-mid) var(--ease-out);
 }
-.menu__link[aria-current='page'] { color: var(--gold-2); }
+.menu__link[aria-current='page'] { color: var(--cherry); }
 .menu__link[aria-current='page'] .arrow,
 .menu__link:hover .arrow,
 .menu__link:focus-visible .arrow { opacity: 1; transform: none; }
-.menu__link:active { color: var(--gold-2); }
+.menu__link:active { color: var(--cherry); }
 
 /* Staged entrance; the CSS holds the closed state so the script
    only has to toggle one class. */
@@ -240,9 +259,9 @@
   display: grid;
   gap: var(--s4);
   padding-top: var(--s5);
-  border-top: 1px solid rgba(240, 242, 232, 0.15);
+  border-top: 1px solid rgba(234, 231, 220, 0.16);
 }
-.menu__foot .action { --action-fg: var(--gold-2); }
+.menu__foot .action { --action-fg: var(--cherry); }
 
 body.is-locked { overflow: hidden; }
 
@@ -256,7 +275,7 @@ body.is-locked { overflow: hidden; }
   width: 100%;
   transform: scaleX(var(--p, 0));
   transform-origin: left;
-  background: var(--gold);
+  background: var(--cherry);
   z-index: 95;
   pointer-events: none;
 }

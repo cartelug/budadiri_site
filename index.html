@@ -3,7 +3,7 @@
 <head>
 <!--@ head
   title="Budadiri County East — Office of Hon. Julius Nakiyi"
-  desc="The digital public face of Budadiri County East, Sironko District. What was raised, what moved, what reached Parliament — and how to raise an issue."
+  desc="Budadiri County East runs from the valley road at 1,150 metres to the Mount Elgon park boundary at 2,400. This site publishes what was raised, where on that slope it sits, what moved, and what is still waiting."
 -->
 </head>
 <body data-page="home">
@@ -11,98 +11,208 @@
 
 <main id="main">
 
-<!-- ── HERO ─────────────────────────────────────────────────────── -->
-<section class="hero field field--paper" data-hero>
-  <div class="hero__contours" aria-hidden="true">
-    <!--@ contours -->
+<!-- ═══ THE SLOPE ═══════════════════════════════════════════════════
+     Type and one 4 KB drawing. No photograph on the first screen: on a
+     shared phone in Bumasifwa the opening statement has to arrive
+     before any image does. -->
+<section class="slope-hero field field--basalt" data-hero>
+  <span class="grain" aria-hidden="true"></span>
+  <div class="slope-hero__drawing" aria-hidden="true">
+    <!--@ profile -->
   </div>
 
-  <div class="wrap hero__marker">
-    <span class="micro">Budadiri County East &middot; Sironko</span>
+  <div class="wrap">
+    <div class="slope-hero__eyebrow">
+      <span class="micro">Budadiri County East &middot; Sironko District</span>
+      <span class="micro">West flank, Mount Elgon</span>
+    </div>
+
+    <div class="slope-hero__inner">
+      <div>
+        <h1 class="statement">We farm the shoulder of the mountain.</h1>
+
+        <p class="lede">
+          Budadiri East runs from the valley road up to the edge of the forest.
+          Nearly everything this office deals with &mdash; the price paid for a bag
+          of coffee, a culvert that has gone, a clinic two hours away on foot &mdash;
+          is decided by where on that slope you are standing. So that is how this
+          site is arranged: by altitude, from the boundary down to the road.
+        </p>
+
+        <div class="slope-hero__actions">
+          <a class="action action--solid action--lg" href="/community.html#raise">
+            Raise an issue <span class="arrow" aria-hidden="true"></span>
+          </a>
+          <a class="action action--lg" href="#register">
+            Read the register <span class="arrow" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- The axis, in metres. Every mark states its elevation and the
+           stylesheet works out where it belongs. -->
+      <div class="scale slope-hero__scale" aria-hidden="true">
+        <span class="scale__mark" style="--alt:2400"><span class="scale__m">2,400 m</span><span class="scale__what">Park boundary</span></span>
+        <span class="scale__mark" style="--alt:2000"><span class="scale__m">2,000 m</span><span class="scale__what">Upper gardens</span></span>
+        <span class="scale__mark" style="--alt:1700"><span class="scale__m">1,700 m</span><span class="scale__what">Coffee belt</span></span>
+        <span class="scale__mark" style="--alt:1400"><span class="scale__m">1,400 m</span><span class="scale__what">Parish centres</span></span>
+        <span class="scale__mark" style="--alt:1150"><span class="scale__m">1,150 m</span><span class="scale__what">Valley road</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap slope-hero__foot">
+    <span class="micro">Schematic cross-section of the flank &middot; 1,150&ndash;2,400 m</span>
     <span class="micro">Twelfth Parliament &middot; 2026&ndash;2031</span>
   </div>
+</section>
 
-  <div class="wrap hero__body">
-    <h1 class="hero__statement statement">
-      <span class="hero__line">Progress</span>
-      <span class="hero__line">you can</span>
-      <span class="hero__line hero__line--turn">See.</span>
-    </h1>
-
-    <figure class="hero__plate" data-image-reveal>
-      <picture>
-        <source type="image/avif" srcset="/img/nakiyi-portrait-454.avif 454w, /img/nakiyi-portrait-680.avif 680w"
-                sizes="(min-width:1440px) 430px, (min-width:1100px) 380px, (min-width:760px) 40vw, 60vw">
-        <source type="image/webp" srcset="/img/nakiyi-portrait-454.webp 454w, /img/nakiyi-portrait-680.webp 680w"
-                sizes="(min-width:1440px) 430px, (min-width:1100px) 380px, (min-width:760px) 40vw, 60vw">
-        <img src="/img/nakiyi-portrait-454.jpg" width="454" height="568" fetchpriority="high" decoding="async"
-             alt="Hon. Julius Nakiyi, Member of Parliament for Budadiri County East.">
-      </picture>
-      <figcaption class="hero__plate-caption micro">Hon. Julius Nakiyi &middot; Member of Parliament</figcaption>
-    </figure>
-
-    <p class="hero__note">
-      Transparent, visible and accountable leadership, driven by the priorities
-      of the people of Budadiri East.
+<!-- ═══ THE TRANSECT ════════════════════════════════════════════════ -->
+<section class="field field--mist" aria-labelledby="transect-title">
+  <div class="wrap transect__intro" style="padding-top: var(--section)">
+    <span class="marker marker--rule">How this site is arranged</span>
+    <h2 class="title" id="transect-title" data-lines>Four bands, from the boundary down to the road.</h2>
+    <p class="lede">
+      Every project, risk and register entry here is placed in one of them. It is
+      the quickest way to tell whether a promise makes sense: a water scheme at
+      1,900 metres is a different proposition from the same scheme at 1,200, and a
+      road that is passable in January is not the same road in April.
     </p>
-
-    <div class="hero__actions">
-      <a class="action action--lg" href="#dashboard">Explore the work <span class="arrow" aria-hidden="true">&#8599;</span></a>
-      <a class="action action--lg" href="/community.html#raise">Raise an issue <span class="arrow" aria-hidden="true">&#8599;</span></a>
-    </div>
-  </div>
-
-  <div class="wrap hero__foot">
-    <span class="hero__scroll micro">Scroll</span>
-    <span class="micro">Leadership you can reach</span>
   </div>
 </section>
 
-<!-- ── PRINCIPLES ───────────────────────────────────────────────── -->
-<section class="section field field--paper principles" data-principles>
+<div class="transect">
+  <!--@ band
+    tone="basalt" lo="2000" hi="2400"
+    range="2,000&ndash;2,400 m" depth="400 m of rise"
+    name="The catchment"
+    body="The Mount Elgon park boundary and the forest above the gardens. Nobody farms this band. Everybody below it drinks from it, which is why what happens up here arrives downhill as a water story and a landslide story long before it is a forestry one."
+    label="What the office is chasing here"
+    work="Boundary and encroachment disputes|Catchment protection and tree cover|Warning when the ground starts moving"
+  -->
+  <!--@ band
+    tone="canopy" lo="1700" hi="2000"
+    range="1,700&ndash;2,000 m" depth="300 m of rise"
+    name="The steep gardens"
+    body="The best arabica in the constituency and the worst landslide risk, usually on the same hectare. Footpaths rather than roads, which means an emergency on this band is measured in hours carried rather than minutes driven."
+    label="What the office is chasing here"
+    work="Landslide risk and safe settlement|Footbridges and all-weather paths|The price actually paid at the farm gate"
+  -->
+  <!--@ band
+    tone="terrace" lo="1400" hi="1700"
+    range="1,400&ndash;1,700 m" depth="300 m of rise"
+    name="The parish belt"
+    body="Where most of Budadiri East lives. Trading centres, primary schools, health facilities, and the meetings at which this office is judged. If a commitment is going to be tested in public, it is tested on this band."
+    label="What the office is chasing here"
+    work="Classrooms, sanitation and teacher housing|Health centre staffing and supplies|Water points and power to trading centres"
+  -->
+  <!--@ band
+    tone="mist" lo="1150" hi="1400"
+    range="1,150&ndash;1,400 m" depth="250 m of rise"
+    name="The valley and the road out"
+    body="The murram road towards Mbale and the market at the end of it. This is the point at which a bag of coffee stops being ours, and the point at which one wet season adds a day and a fare to every journey out of the constituency."
+    label="What the office is chasing here"
+    work="Road and bridge repair that survives the rains|Market access and competition between buyers|Transport costs carried by the farmer"
+  -->
+</div>
+
+<section class="field field--mist">
+  <div class="wrap" style="padding-block: var(--s7)">
+    <p class="note">
+      The bands are read from published topographic ranges for the Elgon west
+      flank and are indicative. They place a matter on the slope so it can be
+      argued about sensibly &mdash; they are not survey figures, and the
+      constituency office has not yet confirmed them.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ THE REGISTER ════════════════════════════════════════════════
+     Direction A, folded in. Not a claim about transparency: the record
+     itself, with a date, a place on the slope and a source on every line. -->
+<section class="section field field--terrace" id="register">
   <div class="wrap">
-    <div class="principles__intro">
-      <span class="marker marker--rule">How this office works</span>
-      <p class="lede measure-wide" data-lines>
-        Three words decide what gets published on this site, and what does not.
-        They are not a slogan. They are the test every entry below has to pass.
+    <div class="register__head">
+      <div>
+        <span class="marker marker--rule">The public record</span>
+        <h2 class="title" style="margin-top: var(--s4)">The register</h2>
+      </div>
+      <span class="micro">Seeded from public sources &middot; awaiting office verification</span>
+    </div>
+
+    <div class="register__counts">
+      <div class="register__count"><b>5</b><span>Issues on the public record</span></div>
+      <div class="register__count"><b>2</b><span>Recorded interventions in Parliament</span></div>
+      <div class="register__count"><b>5</b><span>With no completion published</span></div>
+      <div class="register__count"><b>0</b><span>Marked delivered</span></div>
+    </div>
+
+    <div class="reg-head" aria-hidden="true">
+      <span class="micro">Ref</span>
+      <span class="micro">Subject and latest recorded action</span>
+      <span class="micro">On the slope</span>
+      <span class="micro">Status</span>
+      <span class="micro">Recorded</span>
+    </div>
+
+    <!--@ record
+      ref="01"
+      subject="Health facility access, Bukiise"
+      tags="Health|Pillar 05"
+      place="Bukiise" band="Parish belt &middot; 1,400&ndash;1,700 m"
+      stage="Raised" status="raised"
+      action="Residents publicly demanded a health centre after more than a decade of waiting, describing long journeys for basic care. No facility has been recorded as delivered."
+      date="24 Apr 2025"
+      source="Daily Express"
+      href="https://dailyexpress.co.ug/2025/04/24/2026-watch-sironko-residents-accuse-leaders-of-neglect-demand-health-centre-after-decade-of-waiting/"
+    -->
+    <!--@ record
+      ref="02"
+      subject="Solar irrigation and coffee resilience"
+      tags="Agriculture|Climate|Pillar 01"
+      place="Constituency-wide" band="All bands"
+      stage="In Parliament" status="parliament"
+      action="Hon. Nakiyi supported borrowing for Phase II of the national solar irrigation project during the &euro;168.9m loan debate, linking it to the budget financing gap. The House approved the loan."
+      date="10 Jun 2026"
+      source="Parliament of Uganda"
+      href="https://www.parliament.go.ug/index.php/news/4458/house-approves-eu1689m-loan-mega-solar-irrigation"
+    -->
+    <!--@ record
+      ref="03"
+      subject="School sanitation, Bumumulo Primary"
+      tags="Education|Pillar 02"
+      place="Bumumulo" band="Parish belt &middot; 1,400&ndash;1,700 m"
+      stage="Raised" status="raised"
+      action="Teachers and pupils were reported to be sharing one dilapidated latrine. No replacement facility has been recorded."
+      date="2025"
+      source="The Informer"
+      href="https://www.informer.co.ug/teachers-pupils-share-dilapidated-latrine-in-sironko/"
+    -->
+
+    <div class="register__foot">
+      <p class="note">
+        Nothing on this register is marked complete. Every line is a public,
+        sourced record; the elevation band is indicative and the status requires
+        confirmation by the constituency office before launch. Reference numbers
+        are assigned by this register, not by any other office.
       </p>
-    </div>
-
-    <div class="principle principle--1" data-principle>
-      <span class="principle__num num">01</span>
-      <h2 class="principle__word"><span>Transparent</span></h2>
-      <p class="principle__def">Information people can actually read, with the source attached.</p>
-    </div>
-
-    <div class="principle principle--2" data-principle>
-      <span class="principle__num num">02</span>
-      <h2 class="principle__word"><span>Visible</span></h2>
-      <p class="principle__def">Leadership that turns up in the sub-county, not only in the record.</p>
-    </div>
-
-    <div class="principle principle--3" data-principle>
-      <span class="principle__num num">03</span>
-      <h2 class="principle__word"><span>Accountable</span></h2>
-      <p class="principle__def">Commitments measured against action, with a date on every claim.</p>
+      <a class="action action--lg" href="/progress.html">
+        All five entries, in full <span class="arrow" aria-hidden="true"></span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ── TODAY → TOMORROW ─────────────────────────────────────────── -->
-<section class="section field field--forest transform" data-transform>
+<!-- ═══ TWO FRAMES ══════════════════════════════════════════════════ -->
+<section class="section field field--basalt transform" data-transform>
   <span class="grain" aria-hidden="true"></span>
-  <div class="contour-wash" aria-hidden="true"></div>
 
   <div class="wrap">
     <div class="transform__head">
-      <h2 class="transform__title display" data-lines>
-        From the Budadiri we have
-        <span class="turn">to the Budadiri we are building.</span>
-      </h2>
+      <h2 class="display" data-lines>The same road, twice.</h2>
       <p class="lede" data-reveal>
-        The left frame is the constituency as it is: one road, one trading
-        centre, one wet season away from being cut off. The right frame is
+        On the left, the constituency as it is at about 1,300 metres: one road,
+        one trading centre, one wet season away from being cut off. On the right,
         the projection this office is working towards for 2036.
       </p>
     </div>
@@ -147,309 +257,149 @@
         </div>
       </div>
 
-      <div class="transform__words">
-        <span class="transform__word" data-word>Productive</span>
-        <span class="transform__word" data-word>Educated</span>
-        <span class="transform__word" data-word>Connected</span>
-        <span class="transform__word" data-word>Climate-resilient</span>
-        <span class="transform__word" data-word>Inclusive</span>
-      </div>
-
       <div class="transform__foot">
         <p class="caption">
           The 2036 frame is an illustrative projection prepared for the
           constituency. It is not a photograph of an existing place, and nothing
           in it is presented as built.
         </p>
-        <a class="action" href="/vision.html">Read the vision <span class="arrow" aria-hidden="true">&#8599;</span></a>
+        <a class="action" href="/vision.html">Read the vision <span class="arrow" aria-hidden="true"></span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── FIVE PILLARS ─────────────────────────────────────────────── -->
-<section class="pillars" data-pillars aria-label="The five development pillars">
-  <div class="section field field--ink pillars__head-field">
-    <span class="grain" aria-hidden="true"></span>
-    <div class="wrap pillars__head">
-      <span class="marker marker--rule">The development model</span>
-      <h2 class="title" data-lines>Five priorities. One direction.</h2>
-      <p class="lede" data-reveal>
-        Each one names what should change for a household in Budadiri East, and
-        what this office is responsible for chasing.
-      </p>
-    </div>
-  </div>
-
-  <div class="pillars__stage" data-pillars-stage>
-    <div class="pillars__tone pillar-ch--1 is-on" data-tone aria-hidden="true"></div>
-    <div class="pillars__tone pillar-ch--2" data-tone aria-hidden="true"></div>
-    <div class="pillars__tone pillar-ch--3" data-tone aria-hidden="true"></div>
-    <div class="pillars__tone pillar-ch--4" data-tone aria-hidden="true"></div>
-    <div class="pillars__tone pillar-ch--5" data-tone aria-hidden="true"></div>
-
-    <div class="pillars__inner">
-      <div class="pillars__rail">
-        <button type="button" data-rail aria-current="true">01 Productive</button>
-        <button type="button" data-rail aria-current="false">02 Educated</button>
-        <button type="button" data-rail aria-current="false">03 Connected</button>
-        <button type="button" data-rail aria-current="false">04 Climate</button>
-        <button type="button" data-rail aria-current="false">05 Inclusive</button>
-      </div>
-
-      <div class="pillars__chapters">
-        <!--@ pillar
-          n="01" tone="1" slug="productive" name="Productive"
-          claim="Household income before headline growth."
-          lede="Coffee is the constituency&rsquo;s main cash crop and most of it leaves Budadiri unprocessed. The work is to keep more of that value here, and to make the trip to a buyer shorter and cheaper."
-          items="Coffee and value addition|Market and buyer access|Enterprise, savings and SACCOs|Land productivity|Work for young people"
-          alt="A brick homestead among banana gardens on a Budadiri hillside, with a boda-boda on the path beside it."
-        -->
-        <!--@ pillar
-          n="02" tone="2" slug="educated" name="Educated"
-          claim="Learning that leads somewhere."
-          lede="A classroom is not the outcome. The outcome is a young person from Bugitimwa or Bumasifwa with a skill someone will pay for, and a route to the training that produces it."
-          items="Classrooms and sanitation|Teacher support and retention|TVET and practical skills|Scholarships and bursaries|Digital access and ICT"
-          alt="A group of residents outside a skills centre in the 2036 projection for Budadiri East."
-        -->
-        <!--@ pillar
-          n="03" tone="3" slug="connected" name="Connected"
-          claim="Distance is a cost. Reduce it."
-          lede="Every kilometre of bad road is added to the price of a bag of coffee and subtracted from a mother&rsquo;s chance of reaching a health facility in time."
-          items="Roads and bridges|Electricity to trading centres|Safe water and sanitation|Mobile and internet coverage|Transport to markets"
-          alt="The main murram road out of a Budadiri trading centre, carrying pedestrians and motorcycles."
-        -->
-        <!--@ pillar
-          n="04" tone="4" slug="climate" name="Climate-resilient"
-          claim="The slope is the livelihood. Protect it."
-          lede="Budadiri East farms the shoulder of Mount Elgon. Rainfall that feeds the coffee is the same rainfall that moves the hillside, so resilience is not an environmental extra here."
-          items="Landslide risk and safe settlement|Catchment and tree cover|Irrigation and water storage|Climate-smart farming|Local early warning"
-          alt="Forested slopes above a Budadiri settlement, showing the terrain that carries both the farms and the landslide risk."
-        -->
-        <!--@ pillar
-          n="05" tone="5" slug="inclusive" name="Inclusive"
-          claim="Development must reach the household."
-          lede="A programme that never reaches a widow in Bukiise or a young person with a disability in Zesui has not been delivered. Reach is the measure, not announcement."
-          items="Young people and first work|Women&rsquo;s enterprise and finance|Children, nutrition and protection|Persons with disabilities|Vulnerable households"
-          alt="Residents of different ages and occupations reading a development map together in the 2036 projection."
-        -->
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PEOPLE'S DASHBOARD ───────────────────────────────────────── -->
-<section class="section field field--stone" id="dashboard">
+<!-- ═══ THE FIVE PILLARS, AS AN INDEX ═══════════════════════════════
+     An index, not a scroll scene. The scene lives on the development
+     page, where somebody has chosen to read about them. -->
+<section class="section field field--mist">
   <div class="wrap">
-    <div class="dash__head">
-      <h2 class="title">People&rsquo;s Dashboard</h2>
-      <span class="micro">Seeded from public sources &middot; awaiting office verification</span>
-    </div>
-
-    <div class="dash__counts">
-      <div class="dash__count">
-        <span class="dash__count-label sub">What we heard</span>
-        <span class="dash__count-figure">
-          <span class="figure-lg num">4</span>
-          <span class="dash__count-unit">issues on the public record</span>
-        </span>
+    <div class="head-split" style="margin-bottom: clamp(2rem,4vw,3rem)">
+      <div>
+        <span class="marker marker--rule">The development model</span>
+        <h2 class="title" style="margin-top: var(--s4)">Five priorities, and where each one bites.</h2>
       </div>
-      <div class="dash__count">
-        <span class="dash__count-label sub">What reached Parliament</span>
-        <span class="dash__count-figure">
-          <span class="figure-lg num">2</span>
-          <span class="dash__count-unit">recorded interventions</span>
-        </span>
-      </div>
-      <div class="dash__count">
-        <span class="dash__count-label sub">What is still open</span>
-        <span class="dash__count-figure">
-          <span class="figure-lg num">4</span>
-          <span class="dash__count-unit">no completion published</span>
-        </span>
-      </div>
-    </div>
-
-    <div class="record-head">
-      <span class="micro">Subject &amp; classification</span>
-      <span class="micro">Stage</span>
-      <span class="micro">Status</span>
-      <span class="micro">Latest recorded action</span>
-      <span class="micro">Recorded</span>
-    </div>
-
-    <!--@ record
-      subject="Health facility access, Bukiise"
-      tags="Health|Bukiise"
-      meter="20" stage="Raised" status="raised"
-      action="Residents publicly demanded a health centre after more than a decade of waiting. No facility has been recorded as delivered."
-      date="24 Apr 2025"
-      href="https://dailyexpress.co.ug/2025/04/24/2026-watch-sironko-residents-accuse-leaders-of-neglect-demand-health-centre-after-decade-of-waiting/"
-    -->
-    <!--@ record
-      subject="Solar irrigation and coffee resilience"
-      tags="Agriculture|Climate|National"
-      meter="58" stage="In Parliament" status="parliament"
-      action="Hon. Nakiyi supported borrowing for Phase II of the national solar irrigation project during the &euro;168.9m loan debate."
-      date="10 Jun 2026"
-      href="https://www.parliament.go.ug/index.php/news/4458/house-approves-eu1689m-loan-mega-solar-irrigation"
-    -->
-    <!--@ record
-      subject="School sanitation, Bumumulo Primary"
-      tags="Education|Sanitation"
-      meter="15" stage="Raised" status="raised"
-      action="Teachers and pupils reported sharing one dilapidated latrine. No replacement has been recorded."
-      date="2025"
-      href="https://www.informer.co.ug/teachers-pupils-share-dilapidated-latrine-in-sironko/"
-    -->
-
-    <div class="dash__foot">
-      <p class="note">
-        Nothing on this dashboard is marked complete. Every entry is a public,
-        sourced record; percentages describe how far a matter has travelled
-        through the process, not how much of a project has been built. Statuses
-        require confirmation by the constituency office before launch.
-      </p>
-      <a class="action action--lg" href="/progress.html">Open the full dashboard <span class="arrow" aria-hidden="true">&#8599;</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ── FRAMEWORK ────────────────────────────────────────────────── -->
-<section class="section field field--ink framework" data-framework>
-  <span class="grain" aria-hidden="true"></span>
-  <div class="wrap">
-    <div class="framework__head">
-      <span class="marker marker--rule">Where local priorities come from</span>
-      <h2 class="title" data-lines>A national plan is only a plan until it reaches a household.</h2>
-    </div>
-
-    <div class="framework__track" data-track>
-      <span class="framework__rail" aria-hidden="true"></span>
-      <span class="framework__line" data-line aria-hidden="true"></span>
-
-      <!--@ stage-doc scale="National &middot; to 2040" name="Uganda Vision 2040" note="The long-term transformation framework every plan below is written against." href="/downloads/Uganda-Vision-2040.pdf" docLabel="PDF, 21 MB" -->
-      <!--@ stage-doc scale="National &middot; 2025/26&ndash;2029/30" name="NDP IV" note="Production and value addition, human capital, infrastructure, jobs, governance." href="/downloads/NDPIV-2025-26-2029-30.pdf" docLabel="PDF, 4.9 MB" -->
-      <!--@ stage-doc scale="Party &middot; 2026&ndash;2031" name="NRM Manifesto" note="The commitments the governing party has published for this term." href="/downloads/NRM-Manifesto-2026-2031.pdf" docLabel="PDF, 33 MB" -->
-      <!--@ stage scale="Constituency" name="Budadiri East vision" note="A productive, educated, connected, climate-resilient and inclusive constituency." -->
-      <!--@ stage scale="Constituency" name="Five pillars" note="The priorities this office organises its work and its reporting around." -->
-      <!--@ stage scale="Sub-county" name="Project delivery" note="Named roads, classrooms, water points and health facilities, with a responsible institution." -->
-      <!--@ stage scale="Household" name="Household impact" note="The only level at which any of the above counts as delivered." -->
-    </div>
-
-    <div class="framework__foot" style="padding-top: var(--s7)">
-      <a class="action action--lg" href="/resources.html">Read the framework and download the documents <span class="arrow" aria-hidden="true">&#8599;</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ── PARLIAMENT ───────────────────────────────────────────────── -->
-<section class="section field field--paper">
-  <div class="wrap">
-    <div class="head-split" style="margin-bottom: clamp(2rem,5vw,4rem)">
-      <h2 class="title" data-lines>From Budadiri<br>to Parliament.</h2>
       <p class="lede">
-        Every entry carries a date and a link to the official record, so a
-        resident can check the claim without taking anyone&rsquo;s word for it.
+        Each names what should change for a household, and the part of the slope
+        it changes it on.
       </p>
     </div>
 
-    <div class="archive">
-      <!--@ entry
-        date="10 Jun 2026" title="Supported financing for solar-powered irrigation"
-        where="Agriculture &middot; Climate &middot; Plenary"
-        body="During debate on a &euro;168.9 million loan for Phase II of the national solar irrigation project, Hon. Nakiyi supported borrowing for irrigation and linked it to the budget financing gap. The project was presented as a route to higher coffee production and greater climate resilience."
-        out="Loan approved by the House"
-        href="https://www.parliament.go.ug/index.php/news/4458/house-approves-eu1689m-loan-mega-solar-irrigation"
-      -->
-      <!--@ entry
-        date="10 Jun 2026" title="Called for a fair and speedy trial in a mob-justice case"
-        where="Justice &middot; Accountability &middot; Plenary"
-        body="In a plenary discussion on mob justice, the Member for Budadiri County East supported the call for an expedited and transparent trial of the suspects."
-        out="Recorded in the Parliament report"
-        href="https://www.parliament.go.ug/index.php/news/4459/mps-seek-answers-end-mob-justice-after-rugby-stars-death"
-      -->
-    </div>
-
-    <div style="padding-top: var(--s6)">
-      <a class="action action--lg" href="/parliament.html">The full parliamentary record <span class="arrow" aria-hidden="true">&#8599;</span></a>
+    <div class="pindex">
+      <a class="pindex__row" href="/development.html#pillar-productive">
+        <span class="pindex__n">01</span>
+        <span class="pindex__name">Productive</span>
+        <span class="pindex__claim">Household income before headline growth.</span>
+        <span class="pindex__where"><span class="alt">1,150&ndash;2,000 m</span><span class="arrow" aria-hidden="true"></span></span>
+      </a>
+      <a class="pindex__row" href="/development.html#pillar-educated">
+        <span class="pindex__n">02</span>
+        <span class="pindex__name">Educated</span>
+        <span class="pindex__claim">Learning that leads somewhere.</span>
+        <span class="pindex__where"><span class="alt">1,400&ndash;1,700 m</span><span class="arrow" aria-hidden="true"></span></span>
+      </a>
+      <a class="pindex__row" href="/development.html#pillar-connected">
+        <span class="pindex__n">03</span>
+        <span class="pindex__name">Connected</span>
+        <span class="pindex__claim">Distance is a cost. Reduce it.</span>
+        <span class="pindex__where"><span class="alt">All bands</span><span class="arrow" aria-hidden="true"></span></span>
+      </a>
+      <a class="pindex__row" href="/development.html#pillar-climate">
+        <span class="pindex__n">04</span>
+        <span class="pindex__name">Climate-resilient</span>
+        <span class="pindex__claim">The slope is the livelihood. Protect it.</span>
+        <span class="pindex__where"><span class="alt">1,700&ndash;2,400 m</span><span class="arrow" aria-hidden="true"></span></span>
+      </a>
+      <a class="pindex__row" href="/development.html#pillar-inclusive">
+        <span class="pindex__n">05</span>
+        <span class="pindex__name">Inclusive</span>
+        <span class="pindex__claim">Development must reach the household.</span>
+        <span class="pindex__where"><span class="alt">All bands</span><span class="arrow" aria-hidden="true"></span></span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ── ON THE GROUND ────────────────────────────────────────────── -->
-<section class="section field field--stone">
+<!-- ═══ ON THE RECORD ═══════════════════════════════════════════════
+     What was said in the House, and what happened on the ground. One
+     band, two lists — this used to be two sections with the same shape. -->
+<section class="section field field--terrace">
   <div class="wrap">
-    <div class="dash__head" style="margin-bottom: clamp(2rem,5vw,3.5rem)">
-      <h2 class="title">On the ground</h2>
-      <a class="action" href="/news.html">All updates <span class="arrow" aria-hidden="true">&#8599;</span></a>
+    <div class="head-split" style="margin-bottom: clamp(2rem,4vw,3rem)">
+      <div>
+        <span class="marker marker--rule">Checkable, both columns</span>
+        <h2 class="title" style="margin-top: var(--s4)">On the record.</h2>
+      </div>
+      <p class="lede">
+        Every entry carries a date and a link to the source, so a resident can
+        check it without taking anyone&rsquo;s word for it.
+      </p>
     </div>
 
-    <div class="news">
-      <a class="news__lead" href="/news.html#bukiise">
-        <div class="news__lead-figure" data-image-reveal>
-          <picture>
-            <source type="image/avif" srcset="/img/pillar-connected-420.avif 420w, /img/pillar-connected-840.avif 840w" sizes="(min-width:1100px) 62vw, 100vw">
-            <source type="image/webp" srcset="/img/pillar-connected-420.webp 420w, /img/pillar-connected-840.webp 840w" sizes="(min-width:1100px) 62vw, 100vw">
-            <img src="/img/pillar-connected-840.jpg" width="840" height="560" loading="lazy" decoding="async"
-                 alt="The main road out of a Budadiri trading centre.">
-          </picture>
+    <div class="record-split">
+      <div class="record-split__col">
+        <span class="marker">In Parliament</span>
+        <div class="archive">
+          <!--@ entry
+            date="10 Jun 2026" title="Supported financing for solar-powered irrigation"
+            where="Agriculture &middot; Climate &middot; Plenary"
+            body="During debate on a &euro;168.9 million loan for Phase II of the national solar irrigation project, Hon. Nakiyi supported borrowing for irrigation and linked it to the budget financing gap. The project was presented as a route to higher coffee production and greater climate resilience."
+            out="Loan approved by the House"
+            href="https://www.parliament.go.ug/index.php/news/4458/house-approves-eu1689m-loan-mega-solar-irrigation"
+          -->
+          <!--@ entry
+            date="10 Jun 2026" title="Called for a fair and speedy trial in a mob-justice case"
+            where="Justice &middot; Accountability &middot; Plenary"
+            body="In a plenary discussion on mob justice, the Member for Budadiri County East supported the call for an expedited and transparent trial of the suspects."
+            out="Recorded in the Parliament report"
+            href="https://www.parliament.go.ug/index.php/news/4459/mps-seek-answers-end-mob-justice-after-rugby-stars-death"
+          -->
         </div>
-        <div class="news__meta">
-          <span class="micro">Bukiise</span>
-          <span class="micro">Health</span>
-          <span class="micro">24 Apr 2025</span>
-        </div>
-        <h3 class="news__lead-title">Bukiise put health access at the top of the list, in public.</h3>
-        <p class="lede">
-          Residents told a community meeting they had waited more than ten years
-          for a health centre and were still travelling for basic care. It is the
-          first entry on this constituency&rsquo;s dashboard for a reason.
-        </p>
-      </a>
+        <a class="action" href="/parliament.html">The full parliamentary record <span class="arrow" aria-hidden="true"></span></a>
+      </div>
 
-      <div class="news__side">
-        <a class="news__item" href="/parliament.html">
-          <span class="micro">Parliament &middot; 10 Jun 2026</span>
-          <h3 class="news__item-title">Irrigation financing backed as a coffee and climate measure</h3>
-          <p class="news__item-body">Phase II of the national solar irrigation project was approved after debate on the financing gap.</p>
-        </a>
-        <a class="news__item" href="/news.html">
-          <span class="micro">Sironko &middot; 22 Apr 2025</span>
-          <h3 class="news__item-title">District NRM caucus endorsement ahead of the 2026 cycle</h3>
-          <p class="news__item-body">Local reporting recorded the Sironko caucus endorsing Julius Nakiyi for the Budadiri East flag.</p>
-        </a>
-        <a class="news__item" href="/resources.html">
-          <span class="micro">Reference</span>
-          <h3 class="news__item-title">Three national documents, 873 figures, published in full</h3>
-          <p class="news__item-body">Vision 2040, NDP IV and the 2026&ndash;2031 manifesto, downloadable and searchable on this site.</p>
-        </a>
+      <div class="record-split__col">
+        <span class="marker">On the ground</span>
+        <div class="ground">
+          <a class="ground__row" href="/news.html#bukiise">
+            <span class="micro">Bukiise &middot; 24 Apr 2025</span>
+            <span class="ground__title">Bukiise put health access at the top of the list, in public</span>
+            <span class="ground__body">Residents told a community meeting they had waited more than ten years for a health centre and were still travelling for basic care.</span>
+          </a>
+          <a class="ground__row" href="/news.html">
+            <span class="micro">Sironko &middot; 22 Apr 2025</span>
+            <span class="ground__title">District NRM caucus endorsement ahead of the 2026 cycle</span>
+            <span class="ground__body">Local reporting recorded the Sironko caucus endorsing Julius Nakiyi for the Budadiri East flag.</span>
+          </a>
+          <a class="ground__row" href="/resources.html">
+            <span class="micro">Reference</span>
+            <span class="ground__title">Three national documents, 873 figures, published in full</span>
+            <span class="ground__body">Vision 2040, NDP IV and the 2026&ndash;2031 manifesto, downloadable and searchable on this site.</span>
+          </a>
+        </div>
+        <a class="action" href="/news.html">All updates <span class="arrow" aria-hidden="true"></span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CLOSING CALL ─────────────────────────────────────────────── -->
-<section class="close-call field field--forest">
-  <div class="close-call__bg" aria-hidden="true">
-    <picture>
-      <source type="image/avif" srcset="/img/budadiri-tomorrow-1170.avif 1170w, /img/budadiri-tomorrow-1560.avif 1560w" sizes="100vw">
-      <source type="image/webp" srcset="/img/budadiri-tomorrow-1170.webp 1170w, /img/budadiri-tomorrow-1560.webp 1560w" sizes="100vw">
-      <img src="/img/budadiri-tomorrow-1170.jpg" width="780" height="365" loading="lazy" decoding="async" alt="">
-    </picture>
-  </div>
+<!-- ═══ CLOSING ═════════════════════════════════════════════════════ -->
+<section class="closing field field--canopy">
   <span class="grain" aria-hidden="true"></span>
+  <div class="closing__drawing" aria-hidden="true" data-reveal>
+    <!--@ profile -->
+  </div>
 
-  <div class="wrap close-call__inner">
-    <h2 class="close-call__title display" data-lines>Leadership should be visible in the work.</h2>
-    <div class="close-call__side">
+  <div class="wrap closing__inner">
+    <h2 class="display" data-lines>When the road goes, the office should still be reachable.</h2>
+    <div class="closing__side">
       <p class="lede">
         If something in your village is broken, unfinished or unsafe, tell the
-        office directly. You will get a reference number and this site will
-        carry what happens next.
+        office. You get a reference number, this site carries what happens next,
+        and it says so plainly when nothing does.
       </p>
       <a class="action action--solid action--lg" href="/community.html#raise">
-        Raise an issue <span class="arrow" aria-hidden="true">&#8599;</span>
+        Raise an issue <span class="arrow" aria-hidden="true"></span>
       </a>
     </div>
   </div>

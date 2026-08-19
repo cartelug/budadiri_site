@@ -26,15 +26,15 @@
 .principle__word {
   font-family: var(--font-display);
   /* Sized to clear the longest word, ACCOUNTABLE, inside its columns. */
-  font-size: clamp(2.3rem, 7.2vw, 6.4rem);
-  font-weight: var(--w-air);
+  font-size: clamp(2.2rem, 6.4vw, 5.4rem);
+  font-weight: var(--w-display);
   line-height: 1.02;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
 .principle__def {
-  font-family: var(--font-text);
+  font-family: var(--font-sans);
   font-size: clamp(1.15rem, 2.1vw, 1.75rem);
   font-weight: 320;
   line-height: 1.34;
@@ -44,7 +44,7 @@
 }
 
 .principle__num {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-micro);
   font-weight: var(--w-sign);
   letter-spacing: 0.14em;

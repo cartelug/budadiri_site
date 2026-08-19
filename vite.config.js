@@ -36,6 +36,7 @@ function partials() {
         const value = args[key] ?? '';
         /* `items="a|b|c"` with `{{items::li}}` becomes a real list. */
         if (filter === 'li') return value.split('|').map((item) => `<li>${item}</li>`).join('');
+        if (filter === 'dd') return value.split('|').map((item) => `<dd>${item}</dd>`).join('');
         if (filter === 'tag') return value.split('|').map((item) => `<span class="tag">${item}</span>`).join('');
         return value;
       });

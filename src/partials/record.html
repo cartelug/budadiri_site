@@ -1,30 +1,27 @@
-<article class="record">
-  <div class="record__lead">
-    <h3 class="record__subject">{{subject}}</h3>
-    <div class="tags record__tags">{{tags::tag}}</div>
+<article class="reg">
+  <span class="reg__ref num">{{ref}}</span>
+
+  <div class="reg__main">
+    <h3 class="reg__subject">{{subject}}</h3>
+    <p class="reg__action">{{action}}</p>
+    <div class="tags">{{tags::tag}}</div>
   </div>
 
-  <div class="record__block record__meter-wrap">
-    <span class="record__key">Stage</span>
-    <div class="record__meter">
-      <span class="meter" style="--value:{{meter}}"><span class="meter__fill"></span></span>
-      <span class="micro"><span>Through the process</span><span class="num">{{meter}}%</span></span>
-    </div>
+  <div class="reg__cell">
+    <span class="reg__key">On the slope</span>
+    <span class="reg__place">{{place}}</span>
+    <span class="alt">{{band}}</span>
   </div>
 
-  <div class="record__block record__status">
-    <span class="record__key">Status</span>
+  <div class="reg__cell">
+    <span class="reg__key">Status</span>
     <span class="status status--{{status}}">{{stage}}</span>
   </div>
 
-  <div class="record__block record__action">
-    <span class="record__key">Latest recorded action</span>
-    <p class="record__value">{{action}}</p>
+  <div class="reg__cell">
+    <span class="reg__key">Recorded</span>
+    <span class="reg__date">{{date}}</span>
   </div>
 
-  <div class="record__block">
-    <span class="record__key">Recorded</span>
-    <span class="record__value num">{{date}}</span>
-    <a class="source-link" href="{{href}}" target="_blank" rel="noopener">Source <span class="arrow" aria-hidden="true">&#8599;</span></a>
-  </div>
+  <a class="source-link reg__source" href="{{href}}" target="_blank" rel="noopener">{{source}} <span class="arrow" aria-hidden="true"></span></a>
 </article>

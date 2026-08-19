@@ -1,21 +1,58 @@
 /* ─────────────────────────────────────────────────────────────────
    Interface parts.
 
-   There are three call-to-action treatments on the whole site and
-   they are not interchangeable: a text action for editorial links,
-   a bordered action for secondary routes, and exactly one solid
-   action per page for the thing we actually want people to do.
+   Three call-to-action treatments on the whole site and they are not
+   interchangeable: a text action for editorial links, a bordered one
+   for secondary routes, and exactly one solid action per page for the
+   thing we actually want people to do.
    ───────────────────────────────────────────────────────────────── */
 
+/* ── the rising mark ────────────────────────────────────────────
+   Drawn, not typed. The two faces that carry this site have no
+   arrow glyph between them, so every ↗ on the old build was quietly
+   rendering in whatever the device had lying around. This one is
+   two borders — it looks the same on every phone in the
+   constituency, and it costs nothing to download. */
+.arrow {
+  position: relative;
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  flex: none;
+  translate: 0 -0.02em;
+}
+/* the shaft, drawn up the slope */
+.arrow::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 141%;
+  height: 1.4px;
+  background: currentColor;
+  transform-origin: left bottom;
+  transform: rotate(-45deg);
+}
+/* and the head it arrives at */
+.arrow::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0.4em;
+  height: 0.4em;
+  border-top: 1.4px solid currentColor;
+  border-right: 1.4px solid currentColor;
+}
+
 /* ── text action ───────────────────────────────────────────────
-   A rule that draws itself under the label, and an arrow that
-   steps out. No pill, no shadow, no fill.                       */
+   A rule that draws itself under the label. No pill, no shadow. */
 .action {
   --action-fg: var(--fg);
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.7em;
-  font-family: var(--font-display);
+  align-items: center;
+  gap: 0.75em;
+  font-family: var(--font-sans);
   font-size: var(--fs-label);
   font-weight: var(--w-sign);
   letter-spacing: var(--track-label);
@@ -24,7 +61,6 @@
   padding-block: 0.95em;
   position: relative;
   min-height: 44px;
-  align-content: center;
   transition: color var(--t-fast) var(--ease-ui);
 }
 .action::after {
@@ -35,28 +71,19 @@
   bottom: 0.45em;
   height: 1px;
   background: currentColor;
-  opacity: 0.32;
+  opacity: 0.34;
   transform-origin: left;
-  transition: opacity var(--t-fast) var(--ease-ui),
-              transform var(--t-mid) var(--ease-out);
-}
-.action .arrow {
-  font-size: 0.95em;
-  line-height: 1;
-  transition: transform var(--t-mid) var(--ease-out);
-  will-change: transform;
+  transition: opacity var(--t-fast) var(--ease-ui);
 }
 @media (hover: hover) {
   .action:hover { color: var(--accent); }
-  .action:hover::after { opacity: 1; transform: scaleX(1); }
-  .action:hover .arrow { transform: translate(0.22em, -0.22em); }
+  .action:hover::after { opacity: 1; }
+  .action:hover .arrow { translate: 0.16em -0.18em; }
 }
+.action .arrow { transition: translate var(--t-mid) var(--ease-out); }
 .action:active { transform: translateY(1px); }
 
-.action--lg {
-  font-size: 0.78rem;
-  letter-spacing: 0.19em;
-}
+.action--lg { font-size: 0.78rem; }
 
 /* ── bordered action ─────────────────────────────────────────── */
 .action--outline {
@@ -78,24 +105,24 @@
 
 /* ── solid action — one per page ─────────────────────────────── */
 .action--solid {
-  background: var(--forest);
-  color: #f7f4ec;
+  background: var(--canopy-2);
+  color: var(--mist);
   padding: 1.3em 2em;
   border-radius: var(--r0);
-  overflow: hidden;
-  transition: background var(--t-fast) var(--ease-ui);
+  transition: background var(--t-fast) var(--ease-ui), color var(--t-fast) var(--ease-ui);
 }
 .action--solid::after { display: none; }
-.field--forest .action--solid,
-.field--ink .action--solid { background: var(--gold); color: var(--ink); }
+/* On a dark band the green disappears into the ground, so the ripe
+   cherry takes over and the type inverts to basalt. */
+.field--canopy .action--solid,
+.field--basalt .action--solid { background: var(--cherry); color: var(--basalt); }
 @media (hover: hover) {
-  .action--solid:hover { background: var(--ink); color: #f7f4ec; }
-  .field--forest .action--solid:hover,
-  .field--ink .action--solid:hover { background: #faf7ef; color: var(--ink); }
+  .action--solid:hover { background: var(--basalt); color: var(--mist); }
+  .field--canopy .action--solid:hover,
+  .field--basalt .action--solid:hover { background: var(--mist); color: var(--basalt); }
 }
 
-/* ── inline editorial link ─────────────────────────────────────
-   Underline sits clear of the descenders and thickens on hover. */
+/* ── inline editorial link ───────────────────────────────────── */
 .link {
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -107,38 +134,42 @@
   .link:hover { text-decoration-color: currentColor; }
 }
 
+/* The source link is set in the instrument face: it is the one link
+   on the page that exists purely so a claim can be checked. */
 .source-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
-  font-family: var(--font-display);
-  font-size: var(--fs-small);
-  font-weight: 520;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
   color: var(--fg-dim);
-  padding-block: 0.5rem;
-  min-height: 40px;
+  padding-block: 0.6rem;
+  min-height: 44px;
   transition: color var(--t-fast) var(--ease-ui);
 }
-.source-link .arrow { transition: transform var(--t-mid) var(--ease-out); }
 @media (hover: hover) {
   .source-link:hover { color: var(--accent); }
-  .source-link:hover .arrow { transform: translate(0.2em, -0.2em); }
+  .source-link:hover .arrow { translate: 0.14em -0.16em; }
 }
+.source-link .arrow { transition: translate var(--t-mid) var(--ease-out); }
 
-/* ── tags ───────────────────────────────────────────────────────
-   Set as text between hairlines rather than as coloured chips.  */
+/* ── tags ──────────────────────────────────────────────────────
+   Text between hairlines rather than coloured chips.            */
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem 1.15rem; }
 .tag {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-micro);
   font-weight: var(--w-sign);
-  letter-spacing: 0.13em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--fg-mute);
   white-space: nowrap;
 }
-/* The separator trails its own tag rather than leading the next one, so
-   a wrapped list never starts a line with an orphaned dot. */
+/* The separator trails its own tag rather than leading the next one,
+   so a wrapped list never starts a line with an orphaned dot. */
 .tag:not(:last-child)::after {
   content: '';
   display: inline-block;
@@ -149,16 +180,18 @@
   margin-right: -0.62rem;
 }
 
-/* ── status ─────────────────────────────────────────────────────
-   Status is a word with a coloured mark, not a coloured badge.  */
+/* ── status ────────────────────────────────────────────────────
+   A word with a mark, not a coloured badge. Colour is doing a job
+   here: cherry is ripening, canopy is standing, laterite is the
+   soil coming down the hill.                                    */
 .status {
   display: inline-flex;
   align-items: center;
-  gap: 0.55em;
-  font-family: var(--font-display);
+  gap: 0.6em;
+  font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  font-weight: var(--w-sign);
-  letter-spacing: 0.13em;
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -168,38 +201,26 @@
   background: currentColor;
   flex: none;
 }
-.status--raised { color: var(--gold); }
-.status--parliament { color: var(--forest-3); }
-.status--verified { color: var(--clay); }
-.field--forest .status--parliament,
-.field--ink .status--parliament { color: #7fc4a3; }
-.field--forest .status--verified,
-.field--ink .status--verified { color: var(--clay-2); }
+.status--raised { color: var(--cherry-2); }
+.status--parliament { color: var(--canopy); }
+.status--verified { color: var(--canopy); }
+.status--waiting { color: var(--laterite); }
+.field--canopy .status--raised,
+.field--basalt .status--raised { color: var(--cherry); }
+.field--canopy .status--parliament,
+.field--canopy .status--verified,
+.field--basalt .status--parliament,
+.field--basalt .status--verified { color: var(--canopy-3); }
+.field--canopy .status--waiting,
+.field--basalt .status--waiting { color: var(--laterite-2); }
 
-/* ── progress line ──────────────────────────────────────────────
-   A measured rule, not a rounded candy bar.                     */
-.meter {
-  --value: 0;
-  position: relative;
-  height: 2px;
-  background: var(--rule-2);
-  overflow: hidden;
-}
-.meter__fill {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: calc(var(--value) * 1%);
-  background: var(--accent);
-  transform-origin: left;
-}
-
-/* ── forms ──────────────────────────────────────────────────────
+/* ── forms ─────────────────────────────────────────────────────
    Large, quiet fields. The label sits above and stays visible, so
    nobody loses context halfway through typing on a phone.       */
 .field-row { display: grid; gap: 0.55rem; }
 
 .field-row > label {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-label);
   font-weight: var(--w-sign);
   letter-spacing: var(--track-label);
@@ -216,7 +237,7 @@
   background: color-mix(in srgb, var(--fg) 3%, transparent);
   border: 1px solid var(--rule);
   border-radius: var(--r1);
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.0625rem;
   line-height: 1.45;
   transition: border-color var(--t-fast) var(--ease-ui),
@@ -243,13 +264,13 @@
   outline-offset: 2px;
 }
 .input[aria-invalid='true'], .textarea[aria-invalid='true'], .select[aria-invalid='true'] {
-  border-color: var(--clay);
+  border-color: var(--laterite);
 }
 
 .field-error {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-small);
-  color: var(--clay);
+  color: var(--laterite);
   display: flex;
   align-items: center;
   gap: 0.45em;
@@ -257,7 +278,7 @@
 }
 .field-error:empty { display: none; }
 
-/* Choice chips: square, bordered, real 44px targets. */
+/* Choice chips: square, bordered, real 48px targets. */
 .choices { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .choice {
   position: relative;
@@ -267,34 +288,27 @@
   padding: 0.7rem 1.05rem;
   border: 1px solid var(--rule);
   border-radius: var(--r1);
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: var(--w-med);
   cursor: pointer;
   transition: border-color var(--t-fast) var(--ease-ui),
               background var(--t-fast) var(--ease-ui),
               color var(--t-fast) var(--ease-ui);
 }
-.choice input {
-  position: absolute;
-  opacity: 0;
-  inset: 0;
-  cursor: pointer;
-}
+.choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
 .choice:has(input:checked) {
   background: var(--fg);
   color: var(--bg);
   border-color: var(--fg);
 }
 .choice:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
-@media (hover: hover) {
-  .choice:hover { border-color: var(--fg); }
-}
+@media (hover: hover) { .choice:hover { border-color: var(--fg); } }
 .choice:active { transform: translateY(1px); }
 
-/* ── data table ────────────────────────────────────────────────
+/* ── data table ───────────────────────────────────────────────
    Ruled, tabular, left-aligned. Reads like a published return.  */
-.table { font-family: var(--font-display); font-size: var(--fs-small); }
+.table { font-family: var(--font-sans); font-size: var(--fs-small); }
 .table th, .table td {
   text-align: left;
   padding: 1rem 1.2rem 1rem 0;
@@ -302,9 +316,10 @@
   vertical-align: top;
 }
 .table th {
+  font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  font-weight: var(--w-sign);
-  letter-spacing: 0.13em;
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
   text-transform: uppercase;
   color: var(--fg-mute);
   border-bottom-color: var(--rule);
@@ -312,14 +327,15 @@
 }
 .table td.num { font-variant-numeric: tabular-nums; }
 
-/* ── notes ──────────────────────────────────────────────────────
-   Where the site tells the truth about its own data.            */
+/* ── notes ─────────────────────────────────────────────────────
+   Where the site tells the truth about its own data. Marked with
+   laterite: this is the site showing you the crack, not hiding it. */
 .note {
   border-left: 2px solid var(--accent);
   padding: 0.15rem 0 0.15rem 1.1rem;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-small);
-  line-height: 1.55;
+  line-height: 1.58;
   color: var(--fg-dim);
   max-width: 62ch;
 }

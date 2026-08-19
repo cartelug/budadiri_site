@@ -1,0 +1,510 @@
+/* ─────────────────────────────────────────────────────────────────
+   THE SLOPE
+
+   The sections that carry the organising idea: the constituency is a
+   mountainside, and where a thing sits on that mountainside is the
+   first fact about it.
+
+   Two rules run through everything here.
+
+   1. Altitude is computed, never eyeballed. Anything placed against
+      the scale carries --alt in metres and works out its own position
+      between the valley floor and the park boundary. Move the token,
+      and every mark on the site moves with the mountain.
+
+   2. The axis is a real line. The 1px rule down the left of the
+      transect is the same rule in the hero scale and the same rule
+      beside a register row — one continuous edge, which is what makes
+      four separate sections read as one slope.
+   ───────────────────────────────────────────────────────────────── */
+
+/* ── the drawn profile ─────────────────────────────────────────── */
+.profile {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  vector-effect: non-scaling-stroke;
+}
+.profile__ridge {
+  stroke-width: 1.5px;
+  stroke-opacity: 0.85;
+  vector-effect: non-scaling-stroke;
+}
+.profile__strata path {
+  stroke-width: 1px;
+  stroke-opacity: var(--o, 0.2);
+  vector-effect: non-scaling-stroke;
+}
+.profile__tick {
+  stroke-width: 1px;
+  stroke-opacity: 0.28;
+  stroke-dasharray: 3 5;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Drawn on once, left to right, like a pen going up the hill. The
+   whole thing is inert without scripting — the path is already there. */
+.js .profile__ridge,
+.js .profile__strata path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.9s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 0.07s);
+}
+.js .is-drawn .profile__ridge,
+.js .is-drawn .profile__strata path,
+.js .is-in .profile__ridge,
+.js .is-in .profile__strata path { stroke-dashoffset: 0; }
+
+/* ── the altitude scale ────────────────────────────────────────────
+   A vertical axis in metres. Each mark states an elevation and the
+   stylesheet works out where that lands — the layout is a function of
+   the terrain, not of taste. */
+.scale {
+  position: relative;
+  border-left: 1px solid var(--rule);
+  min-height: 15rem;
+  align-self: stretch;
+}
+.scale__mark {
+  position: absolute;
+  left: 0;
+  top: calc((var(--alt-ridge) - var(--alt)) / var(--alt-span) * 100%);
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  white-space: nowrap;
+  padding-left: 0;
+}
+.scale__mark::before {
+  content: '';
+  width: 15px;
+  height: 1px;
+  background: var(--tick);
+  flex: none;
+}
+.scale__m {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.scale__what {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-med);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+/* ═══ HERO ═══════════════════════════════════════════════════════
+   Type first, mountain drawn behind it. The first screen is text and
+   one 4 KB vector — it arrives before any photograph on the site, on
+   any connection, which is the floor this project has to clear.   */
+.slope-hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 7vw, 5.5rem));
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+  min-height: min(100svh, 900px);
+  display: grid;
+  align-content: space-between;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+
+.slope-hero__drawing {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: clamp(180px, 46%, 420px);
+  color: var(--cherry);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.slope-hero__inner {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+  align-items: end;
+}
+@media (min-width: 1000px) {
+  .slope-hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 20rem);
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+}
+
+.slope-hero__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+@media (min-width: 760px) { .slope-hero__eyebrow { justify-content: space-between; } }
+
+.slope-hero h1 { margin-bottom: clamp(1.25rem, 3vw, 1.75rem); }
+.slope-hero .lede { max-width: 46ch; }
+
+.slope-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s4) var(--s6);
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.slope-hero__scale { display: none; }
+@media (min-width: 1000px) {
+  .slope-hero__scale { display: block; height: 19rem; }
+}
+
+.slope-hero__foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule-2);
+}
+
+/* ═══ TRANSECT ═══════════════════════════════════════════════════
+   The constituency read from the boundary down to the road. Four
+   bands, each one a real elevation range, and each one as tall on the
+   page as it is on the mountain.                                   */
+.transect__intro { padding-bottom: clamp(2rem, 5vw, 3.25rem); }
+.transect__intro .marker { margin-bottom: var(--s4); }
+.transect__intro h2 { margin-bottom: var(--s5); }
+
+.band__inner {
+  /* Page height tracks vertical extent: 400 metres of mountain takes
+     more of the page than 250 does. */
+  min-height: max(10rem, calc((var(--alt-hi) - var(--alt-lo)) * 0.4px));
+  padding-block: clamp(1.6rem, 3.5vw, 2.5rem);
+  display: grid;
+  gap: var(--s4) clamp(1.5rem, 3vw, 3rem);
+  align-content: center;
+}
+@media (min-width: 900px) {
+  .band__inner { grid-template-columns: 9.5rem minmax(0, 1.45fr) minmax(0, 1fr); }
+}
+
+.band__alt {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+  position: relative;
+}
+@media (min-width: 900px) {
+  .band__alt {
+    padding-left: 1.15rem;
+    border-left: 1px solid var(--tick);
+    margin-block: -0.35rem;
+  }
+  /* The tick that ties the band to the axis. */
+  .band__alt::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 0.7rem;
+    height: 1px;
+    background: var(--accent);
+  }
+}
+.band__range {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.band__depth {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--fg-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+.band__body { display: grid; gap: var(--s3); align-content: start; }
+.band__name { font-family: var(--font-display); font-size: var(--fs-head); font-weight: var(--w-display); }
+.band__body p { font-family: var(--font-sans); color: var(--fg-dim); max-width: 52ch; text-wrap: pretty; }
+
+.band__work {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--fg-dim);
+}
+.band__work dt {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-sign);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.band__work dd { display: flex; gap: 0.6rem; align-items: baseline; }
+.band__work dd::before {
+  content: '';
+  width: 5px; height: 5px;
+  flex: none;
+  background: var(--accent);
+  transform: translateY(-0.15em);
+}
+
+/* ═══ REGISTER ═══════════════════════════════════════════════════
+   Direction A, folded in: the dashboard is not a claim about being
+   transparent, it is the record itself. Every line carries a date, a
+   place on the slope, a status and a source.                       */
+.register__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3) var(--s5);
+  padding-bottom: var(--s5);
+}
+
+.register__counts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+@media (min-width: 760px) { .register__counts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.register__count {
+  background: var(--bg);
+  padding: var(--s4) var(--s4) var(--s5);
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+.register__count b {
+  font-family: var(--font-mono);
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.register__count span {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-med);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  text-wrap: balance;
+}
+
+/* Column headings appear only where there are columns to head. */
+.reg-head { display: none; }
+@media (min-width: 1000px) {
+  .reg-head {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 2fr) minmax(0, 1.1fr) 9.5rem 6.5rem;
+    gap: var(--s4);
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule);
+  }
+}
+
+.reg {
+  display: grid;
+  gap: var(--s3) var(--s4);
+  padding-block: clamp(1.15rem, 2.5vw, 1.5rem);
+  border-bottom: 1px solid var(--rule-2);
+  align-items: baseline;
+}
+@media (min-width: 1000px) {
+  .reg {
+    grid-template-columns: 4.5rem minmax(0, 2fr) minmax(0, 1.1fr) 9.5rem 6.5rem;
+    align-items: start;
+  }
+}
+
+.reg__ref {
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
+  color: var(--fg-mute);
+}
+
+.reg__main { display: grid; gap: 0.45rem; }
+.reg__subject {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: var(--w-display);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.reg__action {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--fg-dim);
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+.reg__main .tags { margin-top: 0.15rem; }
+
+.reg__cell { display: grid; gap: 0.3rem; align-content: start; }
+.reg__key {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-sign);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+@media (min-width: 1000px) { .reg__key { display: none; } }
+
+.reg__place {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--fg-dim);
+}
+.reg__date {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-dim);
+}
+.reg__source { margin-top: -0.35rem; }
+@media (min-width: 1000px) {
+  .reg__source { grid-column: 2; margin-top: -0.15rem; }
+}
+
+.register__foot {
+  display: grid;
+  gap: var(--s5);
+  padding-top: clamp(1.75rem, 4vw, 2.5rem);
+}
+@media (min-width: 900px) {
+  .register__foot {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--s7);
+  }
+}
+
+/* ═══ PILLAR INDEX ═══════════════════════════════════════════════
+   The five priorities as an index, not as a scroll scene. The scene
+   lives on the development page, where somebody has chosen to read
+   about them.                                                     */
+.pindex { border-top: 1px solid var(--rule); }
+.pindex__row {
+  display: grid;
+  gap: 0.4rem var(--s5);
+  padding-block: clamp(1.15rem, 2.4vw, 1.5rem);
+  border-bottom: 1px solid var(--rule-2);
+  align-items: baseline;
+  transition: background var(--t-fast) var(--ease-ui);
+}
+@media (min-width: 860px) {
+  .pindex__row {
+    grid-template-columns: 3rem minmax(0, 12rem) minmax(0, 1fr) 8.5rem;
+    align-items: baseline;
+  }
+}
+@media (hover: hover) {
+  .pindex__row:hover { background: color-mix(in srgb, var(--fg) 4%, transparent); }
+  .pindex__row:hover .arrow { translate: 0.16em -0.18em; }
+}
+.pindex__n {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
+  color: var(--fg-mute);
+}
+.pindex__name {
+  font-family: var(--font-display);
+  font-size: 1.16rem;
+  font-weight: var(--w-display);
+  letter-spacing: -0.01em;
+}
+.pindex__claim { font-family: var(--font-sans); font-size: var(--fs-small); color: var(--fg-dim); text-wrap: pretty; }
+.pindex__where {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+.pindex__row .arrow { transition: translate var(--t-mid) var(--ease-out); }
+
+/* ═══ CLOSING ════════════════════════════════════════════════════ */
+.closing { position: relative; overflow: hidden; padding-block: var(--section); }
+.closing__drawing {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  color: var(--cherry-lit);
+  opacity: 0.32;
+  pointer-events: none;
+}
+.closing__inner {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  position: relative;
+}
+@media (min-width: 900px) {
+  .closing__inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: end; }
+}
+.closing__side { display: grid; gap: var(--s5); justify-items: start; align-content: end; }
+
+/* ═══ ON THE RECORD ══════════════════════════════════════════════
+   What was said in the House beside what happened on the ground.
+   Two lists, one band — these used to be two sections with an
+   identical shape, which is exactly the rhythm this rebuild is
+   trying to break.                                               */
+.record-split { display: grid; gap: clamp(2.5rem, 5vw, 3.5rem); }
+@media (min-width: 960px) {
+  .record-split {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 5rem);
+  }
+}
+.record-split__col { display: grid; align-content: start; gap: var(--s5); justify-items: start; }
+.record-split__col > .archive,
+.record-split__col > .ground { width: 100%; }
+
+.ground { display: grid; }
+.ground__row {
+  display: grid;
+  gap: 0.4rem;
+  padding-block: var(--s4);
+  border-top: 1px solid var(--rule-2);
+  transition: background var(--t-fast) var(--ease-ui);
+}
+.ground__row:last-child { border-bottom: 1px solid var(--rule-2); }
+.ground__title {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: var(--w-display);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.ground__body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--fg-dim);
+  text-wrap: pretty;
+}
+@media (hover: hover) {
+  .ground__row:hover { background: color-mix(in srgb, var(--fg) 4%, transparent); }
+  .ground__row:hover .ground__title { color: var(--accent); }
+}

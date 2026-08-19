@@ -42,15 +42,6 @@
   clip-path: inset(0 0 0 0);
 }
 
-/* Contour draw-on, used once in the hero. */
-.js .contours path {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 2.4s var(--ease-out);
-  transition-delay: calc(var(--i) * 0.055s + 0.25s);
-}
-.js .is-drawn .contours path { stroke-dashoffset: 0; }
-
 /* A parallax offset of a few per cent, applied only where a photograph
    sits inside a taller frame. The script writes --shift. */
 .js [data-parallax] > img { will-change: transform; }
@@ -64,6 +55,5 @@
     opacity: 1 !important;
     transition: none !important;
   }
-  .js .contours path { stroke-dashoffset: 0; transition: none; }
-  .hero__scroll::after { animation: none; transform: scaleX(1); }
+  .js .profile path { stroke-dashoffset: 0 !important; transition: none !important; }
 }

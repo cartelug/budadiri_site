@@ -1,34 +1,81 @@
 #!/usr/bin/env python3
-"""Trim the two variable faces to what this site actually sets.
+"""Fetch and trim the three faces this site sets.
 
-The Google latin subset carries about twice the glyphs these pages use,
-plus a variation axis Newsreader never varies. On a metered connection in
-Sironko the webfont is the largest single cost of a first visit, so both
-files are instanced and subset here, and the results are committed.
+Budadiri East runs on three voices and nothing else:
 
-    Montserrat  38 KB -> 23 KB   (weight range trimmed, full wght axis kept)
-    Newsreader 132 KB -> 32 KB   (optical size pinned at 20, weight kept)
+    Vollkorn      the mountain voice — headlines, statements, ledes
+    Chivo         the working voice — running text, labels, interface
+    IBM Plex Mono the instrument voice — altitudes, refs, dates, status
 
-Newsreader's optical-size axis costs 40 KB on its own. It is pinned at
-20 rather than dropped to a display value because the serif does more
-work as running text than as display type here.
+On a metered connection in Sironko the webfont is the largest single
+cost of a first visit, so each face is downloaded from Google Fonts,
+instanced to the weight range the site actually varies, subset to the
+characters the pages actually contain, and committed.
+
+    Vollkorn   variable, wght 400:800
+    Chivo      variable, wght 300:700
+    Plex Mono  static 400 and 500, uppercase-and-figures charset only
+
+The mono is never set in running text — it labels and it counts — so it
+carries a much smaller character set than the other two.
 
 Run: python3 tools/build-fonts.py
 """
+import re
 import subprocess
 import sys
+import urllib.request
 from pathlib import Path
 
-SRC = Path("src/media/fonts")
-OUT = Path("public/fonts")
-CHARS = OUT.parent.parent / "tools" / "font-charset.txt"
+ROOT = Path(__file__).resolve().parent.parent
+SRC = ROOT / "src/media/fonts"
+OUT = ROOT / "public/fonts"
+CHARS = ROOT / "tools/font-charset.txt"
+CHARS_MONO = ROOT / "tools/font-charset-mono.txt"
+
+CSS_API = "https://fonts.googleapis.com/css2?family={}&display=swap"
+# Google serves woff2 variable fonts only to a browser it recognises.
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 
 FACES = [
-    ("montserrat-latin", ["wght=300:900"]),
-    ("newsreader-latin", ["opsz=20", "wght=200:700"]),
+    # name,           google query,                     instancer axes, charset
+    ("vollkorn",      "Vollkorn:wght@400..900",         ["wght=400:800"], CHARS),
+    ("chivo",         "Chivo:wght@100..900",            ["wght=300:700"], CHARS),
+    ("plex-mono-400", "IBM+Plex+Mono:wght@400",         [],               CHARS_MONO),
+    ("plex-mono-500", "IBM+Plex+Mono:wght@500",         [],               CHARS_MONO),
 ]
 
 FEATURES = "kern,liga,calt,tnum,lnum,ccmp,locl,mark,mkmk"
+
+# The block Google labels `latin`: ASCII, Latin-1 and general punctuation.
+# It is the only one of the nine subsets this site needs.
+LATIN = "U+0000-00FF"
+
+
+def fetch(url, referer=None):
+    request = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(request, timeout=60) as response:
+        return response.read()
+
+
+def source(name, query):
+    """Download the latin cut of a face, unless it is already here."""
+    dest = SRC / f"{name}.woff2"
+    if dest.exists():
+        return dest
+
+    css = fetch(CSS_API.format(query)).decode("utf8")
+    blocks = css.split("@font-face")
+    for block in blocks:
+        if LATIN not in block:
+            continue
+        url = re.search(r"src:\s*url\((https://[^)]+)\)", block)
+        if url:
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(fetch(url.group(1)))
+            return dest
+    raise SystemExit(f"no latin cut found for {query}")
 
 
 def run(args):
@@ -37,23 +84,32 @@ def run(args):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    for name, axes in FACES:
-        src = SRC / f"{name}.woff2"
-        instanced = Path("/tmp") / f"{name}-instanced.ttf"
+    total = 0
+    for name, query, axes, charset in FACES:
+        src = source(name, query)
         dest = OUT / f"{name}.woff2"
+        subset_input = src
 
-        run([sys.executable, "-m", "fontTools.varLib.instancer", str(src), *axes, "-o", str(instanced)])
+        if axes:
+            subset_input = Path("/tmp") / f"{name}-instanced.ttf"
+            run([sys.executable, "-m", "fontTools.varLib.instancer",
+                 str(src), *axes, "-o", str(subset_input)])
+
         run([
-            sys.executable, "-m", "fontTools.subset", str(instanced),
+            sys.executable, "-m", "fontTools.subset", str(subset_input),
             f"--output-file={dest}",
-            f"--text-file={CHARS}",
+            f"--text-file={charset}",
             "--flavor=woff2",
             f"--layout-features={FEATURES}",
             "--no-hinting",
             "--desubroutinize",
             "--name-IDs=1,2,3,4,6",
         ])
-        print(f"{name}: {src.stat().st_size // 1024} KB -> {dest.stat().st_size // 1024} KB")
+        size = dest.stat().st_size
+        total += size
+        print(f"{name}: {src.stat().st_size // 1024} KB -> {size / 1024:.1f} KB")
+
+    print(f"total webfont payload: {total / 1024:.1f} KB")
 
 
 if __name__ == "__main__":

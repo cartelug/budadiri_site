@@ -95,7 +95,7 @@
 }
 
 .footer__link {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: var(--w-plain);
   color: var(--fg-dim);
@@ -143,7 +143,7 @@
   border-block: 1px solid var(--rule-2);
 }
 .filter {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-label);
   font-weight: var(--w-sign);
   letter-spacing: 0.12em;
@@ -192,13 +192,13 @@
   position: absolute;
   left: 0; bottom: 0;
   padding: 0.3rem 0.45rem;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 0.56rem;
   font-weight: var(--w-sign);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--basalt);
+  color: var(--mist);
   opacity: 0;
   transition: opacity var(--t-fast) var(--ease-ui);
 }
@@ -208,7 +208,7 @@
   position: fixed;
   inset: 0;
   z-index: 120;
-  background: var(--forest-2);
+  background: var(--canopy-2);
   display: grid;
   place-items: center;
   padding: clamp(1rem, 5vw, 3rem);
@@ -221,7 +221,7 @@
   right: clamp(0.75rem, 3vw, 1.75rem);
   width: 48px; height: 48px;
   display: grid; place-items: center;
-  color: var(--paper);
+  color: var(--mist);
   border: 1px solid rgba(242, 238, 228, 0.3);
 }
 
@@ -235,7 +235,7 @@
 }
 .console__side { display: grid; gap: 0; }
 .console__side a {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-small);
   padding-block: 0.7rem;
   border-top: 1px solid var(--rule-2);
@@ -257,14 +257,14 @@
 .cmap__road { fill: none; stroke: var(--fg); stroke-width: 1.5; opacity: 0.35; }
 .cmap__marks circle { fill: var(--accent); }
 .cmap__marks text {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 560;
   letter-spacing: 0.04em;
   fill: var(--fg);
 }
 .cmap__region {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 15px;
   font-weight: var(--w-sign);
   letter-spacing: 0.02em;
@@ -279,16 +279,16 @@
 }
 
 /* ── the vision statement, given its own room ────────────────────
-   One block of serif at quotation scale, hung on the grid rather
+   The mountain voice at quotation scale, hung on the grid rather
    than centred, with the attribution set beneath a rule. */
 .statement-block { display: grid; gap: var(--s6); }
 
 .statement-block__text {
-  font-family: var(--font-text);
-  font-size: clamp(1.5rem, 3.9vw, 3.35rem);
-  font-weight: 300;
-  line-height: 1.2;
-  letter-spacing: -0.018em;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.7vw, 3.1rem);
+  font-weight: var(--w-display);
+  line-height: 1.16;
+  letter-spacing: var(--track-mega);
   margin: 0;
   max-width: 24ch;
   text-wrap: pretty;
@@ -330,16 +330,16 @@
   align-items: baseline;
 }
 .clause:last-child { border-bottom: 1px solid var(--rule-2); }
-.clause__num { font-family: var(--font-display); font-size: var(--fs-micro); font-weight: var(--w-sign); letter-spacing: 0.14em; color: var(--fg-mute); }
+.clause__num { font-family: var(--font-mono); font-size: var(--fs-micro); font-weight: 500; letter-spacing: var(--track-mono); color: var(--fg-mute); }
 .clause__word {
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 3.4vw, 2.45rem);
-  font-weight: var(--w-light);
-  line-height: 1.14;
-  letter-spacing: 0.006em;
+  font-size: clamp(1.45rem, 3.2vw, 2.3rem);
+  font-weight: var(--w-display);
+  line-height: 1.12;
+  letter-spacing: var(--track-title);
 }
 .clause__obliges {
-  font-family: var(--font-text);
+  font-family: var(--font-sans);
   font-size: 1.03rem;
   line-height: 1.55;
   color: var(--fg-dim);

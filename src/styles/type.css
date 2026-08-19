@@ -1,11 +1,17 @@
 /* ─────────────────────────────────────────────────────────────────
    Typographic roles.
 
-   Hierarchy is built from scale, width and space rather than from
-   weight, colour or decoration. Headings are set light and open: at
-   these sizes a light letterform reads as confidence and a heavy one
-   reads as a poster. Emphasis, where a heading needs it, comes from
-   the serif turning a phrase — not from more ink.
+   Three faces, three jobs, and the split is a rule rather than a
+   preference:
+
+     Vollkorn   speaks.   Statements, titles, the turned phrase.
+     Chivo      explains. Ledes, running text, labels, controls.
+     Plex Mono  reports.  Altitudes, references, dates, statuses.
+
+   Nothing checkable is set in the serif, and nothing written in a
+   human voice is set in the mono. A reader who never notices the
+   rule still gets the benefit of it: on this site, monospaced type
+   means there is a source.
    ───────────────────────────────────────────────────────────────── */
 
 .statement,
@@ -13,78 +19,91 @@
 .title,
 .head {
   font-family: var(--font-display);
-  font-weight: var(--w-light);
+  font-weight: var(--w-display);
   text-wrap: balance;
 }
 
-/* Hero-scale. Occupies 30–45% of a desktop viewport by design. */
+/* Hero scale. Sentence case: the mountain does not shout. */
 .statement {
   font-size: var(--fs-mega);
-  font-weight: var(--w-air);
-  line-height: 1.02;
+  line-height: 1.03;
   letter-spacing: var(--track-mega);
-  text-transform: uppercase;
-  text-wrap: nowrap;
+  max-width: 15ch;
 }
 
 .display {
   font-size: var(--fs-display);
-  font-weight: var(--w-air);
-  line-height: 1.1;
-  letter-spacing: var(--track-display);
+  line-height: 1.08;
+  letter-spacing: var(--track-mega);
+  max-width: 19ch;
 }
 
 .title {
   font-size: var(--fs-title);
-  font-weight: var(--w-light);
-  line-height: 1.16;
+  line-height: 1.13;
   letter-spacing: var(--track-title);
+  max-width: 22ch;
 }
 
 .head {
   font-size: var(--fs-head);
-  font-weight: var(--w-plain);
-  line-height: 1.32;
-  letter-spacing: 0.004em;
+  line-height: 1.24;
+  letter-spacing: -0.008em;
+  max-width: 30ch;
   text-wrap: pretty;
 }
 
-.sub {
-  font-family: var(--font-display);
-  font-size: var(--fs-sub);
-  font-weight: var(--w-plain);
-  line-height: 1.42;
-  letter-spacing: 0.004em;
-}
+/* A phrase inside a heading that turns — the second half of a
+   sentence, the consequence, the part that carries the argument. */
+.turn { color: var(--accent); }
 
-/* The serif carries anything written in a human voice. */
+/* ── the working voice ────────────────────────────────────────── */
 .lede {
-  font-family: var(--font-text);
+  font-family: var(--font-sans);
   font-size: var(--fs-lede);
-  font-weight: 350;
-  line-height: 1.52;
-  letter-spacing: 0.003em;
+  font-weight: var(--w-plain);
+  line-height: 1.58;
+  letter-spacing: 0.002em;
+  color: var(--fg-dim);
   max-width: var(--measure);
   text-wrap: pretty;
 }
+/* On a dark band the same size needs less weight to hold the same
+   colour — the ground is doing half the work. */
+.field--canopy .lede,
+.field--basalt .lede { font-weight: var(--w-light); }
 
 .prose {
-  font-family: var(--font-text);
-  font-size: 1.05rem;
-  font-weight: 380;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--w-plain);
   line-height: 1.66;
-  max-width: var(--measure);
   color: var(--fg-dim);
+  max-width: var(--measure);
   text-wrap: pretty;
 }
 .prose > * + * { margin-top: 0.95em; }
-.prose strong { font-weight: var(--w-strong); color: var(--fg); }
+.prose strong { font-weight: var(--w-sign); color: var(--fg); }
 
-/* Signage: section markers, field labels, table headers, eyebrows.
-   Small type is the one place weight is spent, because a 0.7rem
-   label set light disappears on a cheap screen. */
+.sub {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sub);
+  font-weight: var(--w-plain);
+  line-height: 1.44;
+}
+
+.caption {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: var(--w-plain);
+  line-height: 1.52;
+  color: var(--fg-mute);
+  max-width: 46ch;
+}
+
+/* ── signage ──────────────────────────────────────────────────── */
 .marker {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--fs-label);
   font-weight: var(--w-sign);
   letter-spacing: var(--track-label);
@@ -93,64 +112,62 @@
   display: block;
 }
 
+/* The marker's rule is a contour tick, not a plain dash: two short
+   lines offset the way a slope is drawn on a map. */
 .marker--rule {
   display: flex;
   align-items: center;
-  gap: 1.1em;
+  gap: 1em;
 }
 .marker--rule::before {
   content: '';
-  width: 2.6em;
-  height: 1px;
-  background: var(--accent);
+  width: 2.4em;
+  height: 5px;
   flex: none;
+  background:
+    linear-gradient(var(--accent), var(--accent)) left top / 100% 1px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) right bottom / 62% 1px no-repeat;
 }
 
+/* ── the instrument voice ─────────────────────────────────────── */
 .micro {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  font-weight: var(--w-sign);
-  letter-spacing: 0.18em;
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
   text-transform: uppercase;
   color: var(--fg-mute);
+  font-variant-numeric: tabular-nums;
 }
 
-.caption {
-  font-family: var(--font-display);
-  font-size: var(--fs-small);
-  font-weight: var(--w-plain);
-  line-height: 1.5;
-  color: var(--fg-mute);
-  max-width: 44ch;
-}
-
-/* Figures line up in columns wherever they are compared. */
 .num {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums lining-nums;
   font-feature-settings: 'tnum' 1, 'lnum' 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
-.figure-lg {
-  font-size: clamp(2.6rem, 6.5vw, 5.2rem);
-  font-weight: var(--w-air);
-  line-height: 0.94;
-  letter-spacing: -0.01em;
+/* ── altitude ─────────────────────────────────────────────────────
+   The site's one recurring readout. Set once here so a metre figure
+   looks the same in the hero, in a register row and in a caption. */
+.alt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--track-mono);
+  color: var(--accent);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
+.alt__unit { opacity: 0.65; }
 
-/* Chapter numbering. Set in outline so it never shouts. */
 .index {
-  font-family: var(--font-display);
-  font-weight: var(--w-light);
-  font-size: clamp(2.4rem, 6.4vw, 5rem);
-  line-height: 0.86;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1;
   letter-spacing: -0.02em;
-  /* currentColor would resolve to the transparent fill, so the stroke
-     colour has to be named outright. */
-  -webkit-text-stroke: 1px var(--fg);
-  color: transparent;
-  opacity: 0.4;
+  color: var(--fg-mute);
 }
 
 .measure-wide { max-width: var(--measure-wide); }

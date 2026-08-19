@@ -15,7 +15,7 @@ initAnchors();
 initReveals();
 initLines();
 
-/* Draw the hero contours once the first paint is out of the way. */
+/* Draw the hero profile once the first paint is out of the way. */
 const hero = document.querySelector('[data-hero]');
 if (hero) requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('is-drawn')));
 
