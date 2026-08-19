@@ -1,0 +1,63 @@
+# Publish the constituency site to GitHub Pages.
+#
+# BASE_PATH is derived from where Pages will actually serve this repo:
+# a project site lives under /<repo>/, a user site or a custom domain
+# lives at the root. Nothing else in the build needs to know.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it half-uploaded.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - run: npm ci
+
+      # configure-pages reports /<repo> for a project site and / for a user
+      # site or custom domain. Vite wants a trailing slash either way.
+      - name: Build
+        run: |
+          BASE="${{ steps.pages.outputs.base_path }}"
+          [ -z "$BASE" ] && BASE="/"
+          case "$BASE" in */) ;; *) BASE="$BASE/" ;; esac
+          echo "Building for base $BASE"
+          BASE_PATH="$BASE" npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -64,6 +64,32 @@ Partial syntax, expanded by `vite.config.js`:
 `{{key}}` substitutes; `{{key::li}}` and `{{key::tag}}` split a `|`-separated
 value into list items or tags.
 
+## Deploying
+
+`.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every
+push to `main`, and can also be run by hand from the Actions tab.
+
+Before the first run, enable Pages once: **Settings → Pages → Source →
+GitHub Actions**. Without that the workflow fails at the *Configure Pages*
+step.
+
+The build takes its base path from wherever Pages will serve it:
+
+| Where it is served | `BASE_PATH` | Set by |
+| --- | --- | --- |
+| `cartelug.github.io/budadiri_site/` | `/budadiri_site/` | workflow, automatically |
+| a custom domain, or a `*.github.io` user repo | `/` | workflow, automatically |
+| anywhere else | whatever you pass | `BASE_PATH=/path/ npm run build` |
+
+Every path in the output follows — page links, public assets, CSS `url()`
+and the archive's runtime fetches. Nothing is hardcoded to a root.
+
+The published site is about 130 MB, and roughly 120 MB of that is the three
+national PDFs and the 873 extracted figures. That is inside the 1 GB Pages
+limit but makes the upload step slow. To publish the site without the
+archive, drop `public/downloads` and `public/pdf-images` from the artifact
+and host them elsewhere.
+
 ## Editing content
 
 Content lives in the page HTML, not in a data file, so it is indexable and
