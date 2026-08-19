@@ -21,7 +21,18 @@
   border-bottom: 1px solid transparent;
 }
 
-.header--dark { color: var(--mist); }
+/* Inverting `color` alone is not enough: anything in the bar that
+   paints itself from the field variables — the call to action does —
+   would still be reaching for the light-ground values and come out
+   basalt on basalt. The bar is a field, so it re-binds like one. */
+.header--dark {
+  color: var(--mist);
+  --fg: var(--mist);
+  --fg-dim: rgba(234, 231, 220, 0.78);
+  --fg-mute: rgba(234, 231, 220, 0.64);
+  --rule: rgba(234, 231, 220, 0.2);
+  --accent: var(--cherry);
+}
 
 .header--over-menu { background: transparent; border-bottom-color: transparent; }
 
@@ -155,6 +166,11 @@
   z-index: 85;
   background: var(--basalt);
   color: var(--mist);
+  --fg: var(--mist);
+  --fg-dim: rgba(234, 231, 220, 0.78);
+  --fg-mute: rgba(234, 231, 220, 0.64);
+  --rule: rgba(234, 231, 220, 0.2);
+  --accent: var(--cherry);
   display: grid;
   grid-template-rows: var(--header-h) 1fr auto;
   padding-inline: var(--pad);

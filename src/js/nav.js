@@ -24,19 +24,25 @@ export function initHeader() {
   /* Which sections want a light header. Read once; sections do not move. */
   const darkFields = [...document.querySelectorAll('.field--canopy, .field--basalt, [data-nav="dark"]')];
 
+  /* Viewport coordinates, not offsetTop: several of these sections sit
+     inside a positioned parent, which would offset the reading. */
+  const darkAt = (probe) => darkFields.some((section) => {
+    const rect = section.getBoundingClientRect();
+    return rect.top <= probe && rect.bottom >= probe;
+  });
+
   const measure = () => {
     const y = window.scrollY;
-    /* Viewport coordinates, not offsetTop: several of these sections sit
-       inside a positioned parent, which would offset the reading. */
-    const probe = header.offsetHeight * 0.55;
+    const height = header.offsetHeight;
+    const topDark = darkAt(2);
+    const footDark = darkAt(height - 2);
 
-    let dark = false;
-    for (const section of darkFields) {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= probe && rect.bottom >= probe) { dark = true; break; }
-    }
-    header.classList.toggle('header--dark', dark);
-    header.classList.toggle('is-solid', y > window.innerHeight * 0.75);
+    header.classList.toggle('header--dark', topDark || footDark);
+    /* A band boundary running through the bar would leave half the type
+       on the wrong ground — light on light, or dark on dark. When the
+       two edges disagree the bar stops being transparent and stands on
+       a ground of its own. */
+    header.classList.toggle('is-solid', topDark !== footDark || y > window.innerHeight * 0.75);
 
     if (header.classList.contains('header--over-menu')) { ticking = false; return; }
     const menuOpen = document.body.classList.contains('is-locked');

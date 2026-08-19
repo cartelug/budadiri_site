@@ -72,10 +72,12 @@
   --canopy-3:   #8ba471;
   --cherry:     #c58a4a;
   /* Two more cherries, and neither is decoration: a ripening tint
-     that clears 4.5:1 on the canopy band, and a deep one for the
-     rare warm accent on mist, where cherry itself is unreadable. */
+     that clears 4.5:1 on the canopy band and on every pillar tone,
+     and a deep one for the warm accent on the light grounds, where
+     cherry itself is unreadable. Both are picked against the darkest
+     and lightest ground each is used on, not against one of them. */
   --cherry-lit: #e3ae76;
-  --cherry-2:   #8a5a1e;
+  --cherry-2:   #7a4e18;
   --laterite:   #8c3b26;
   --laterite-2: #c67a5e;
   --mist:       #eae7dc;

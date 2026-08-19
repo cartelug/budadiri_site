@@ -24,8 +24,22 @@
 /* Five grounds, read as a descent: canopy green at the top of the
    slope, soil brown by the time the road is doing the work. */
 /* Every chapter ground is dark, so the accent is cherry throughout —
-   laterite would sink into the soil tones. */
-.pillar-ch { --tone: var(--canopy-2); --tone-fg: #f2efe4; --accent: var(--cherry); }
+   laterite would sink into the soil tones. The ripening tint rather
+   than plain cherry: at 11px against the lightest tone here, cherry
+   itself only reaches 3.2:1. */
+.pillar-ch {
+  --tone: var(--canopy-2);
+  --tone-fg: #f2efe4;
+  /* It paints its own ground, so it re-binds the field variables too —
+     otherwise a .micro or a .tag inside it reaches for the light-ground
+     greys and lands at 2.4:1 on the tone. */
+  --fg: #f2efe4;
+  --fg-dim: rgba(242, 239, 228, 0.86);
+  --fg-mute: rgba(242, 239, 228, 0.72);
+  --rule: rgba(242, 239, 228, 0.26);
+  --rule-2: rgba(242, 239, 228, 0.12);
+  --accent: var(--cherry-lit);
+}
 .pillar-ch--1 { --tone: #3a4a31; }
 .pillar-ch--2 { --tone: #2f3f2c; }
 .pillar-ch--3 { --tone: #262d22; }
@@ -180,7 +194,7 @@
     grid-column: 1 / 3;
     display: grid;
     gap: 0.35rem;
-    color: #f0f2e8;
+    color: #f2efe4;
   }
   .pillars__rail button {
     display: flex;
