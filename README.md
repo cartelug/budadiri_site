@@ -69,6 +69,13 @@ value into list items or tags.
 `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every
 push to `main`, and can also be run by hand from the Actions tab.
 
+Pages must be building **from GitHub Actions**, not from a branch. A branch
+source publishes the repository root — the unbuilt Vite source, whose
+partials are still HTML comments — and it finishes after this workflow, so
+it silently overwrites each deploy. The workflow asks the Pages API to
+switch the source itself and warns if it cannot; the manual equivalent is
+Settings → Pages → Source → GitHub Actions.
+
 **The build does not need to know where it will live.** Every URL it emits is
 relative, so the same `dist/` works at a domain root, under `/<repo>/` on
 GitHub Pages, or in a subfolder on shared hosting. There is no base path to
