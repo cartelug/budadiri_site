@@ -32,9 +32,14 @@ jobs:
           node-version: 22
           cache: npm
 
+      # enablement flips the repository from the legacy "deploy from a
+      # branch" mode — which would publish the unbuilt repo root — to
+      # building from this workflow. Safe to leave on; it is idempotent.
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - run: npm ci
 
