@@ -1,4 +1,4 @@
-import { stopScroll } from './motion.js';
+import { stopScroll, scrollTo } from './motion.js';
 
 /* Mark the current page in both navigations from one attribute on the
  * body, so the markup carries no duplicated state. */
@@ -113,7 +113,7 @@ export function initMenu() {
 
 /* In-page anchors clear the fixed header and respect the motion setting. */
 export function initAnchors() {
-  document.addEventListener('click', async (e) => {
+  document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="#"], a[href*=".html#"]');
     if (!link) return;
     const url = new URL(link.href, location.href);
@@ -121,7 +121,6 @@ export function initAnchors() {
     const target = document.querySelector(url.hash);
     if (!target) return;
     e.preventDefault();
-    const { scrollTo } = await import('./motion.js');
     const header = document.querySelector('[data-header]');
     scrollTo(target, -((header?.offsetHeight ?? 72) + 16));
     history.pushState(null, '', url.hash);

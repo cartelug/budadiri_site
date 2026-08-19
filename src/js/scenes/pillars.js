@@ -28,7 +28,8 @@ export async function initPillars(section) {
   section.classList.add('is-pinned');
   setActive(0);
 
-  const { ScrollTrigger } = await import('../motion.js').then((m) => m.scroller());
+  const { scroller, scrollTo } = await import('../motion.js');
+  const { ScrollTrigger } = await scroller();
   const trigger = ScrollTrigger.create({
     /* The stage is both the trigger and the pinned element: the section
        also contains its heading, and pinning against that would park the
@@ -45,11 +46,9 @@ export async function initPillars(section) {
   });
 
   rail.forEach((btn, i) => {
-    btn.addEventListener('click', async () => {
+    btn.addEventListener('click', () => {
       const span = trigger.end - trigger.start;
-      const target = trigger.start + (span * (i + 0.4)) / chapters.length;
-      const { scrollTo } = await import('../motion.js');
-      scrollTo(target);
+      scrollTo(trigger.start + (span * (i + 0.4)) / chapters.length);
     });
   });
 }
