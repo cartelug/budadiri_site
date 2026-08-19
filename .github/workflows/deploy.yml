@@ -32,8 +32,26 @@ jobs:
           node-version: 22
           cache: npm
 
-      # enablement moves the repository off the legacy "deploy from a
-      # branch" mode, which would publish the unbuilt source. Idempotent.
+      # This repository had Pages on the legacy "deploy from a branch"
+      # source, which publishes the repo root verbatim — the unbuilt
+      # source — and finishes after this workflow, overwriting it every
+      # time. configure-pages' `enablement` only creates a site that does
+      # not exist yet; it will not move an existing one off legacy. So ask
+      # the API directly. The workflow token already has pages: write.
+      - name: Take Pages off the legacy branch build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          current=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type 2>/dev/null || echo none)
+          echo "Pages build_type is currently: $current"
+          if [ "$current" != "workflow" ]; then
+            if gh api -X PUT "repos/${{ github.repository }}/pages" -f build_type=workflow; then
+              echo "switched Pages to building from this workflow"
+            else
+              echo "::warning::Could not switch automatically. Set Settings -> Pages -> Source -> GitHub Actions, or the branch build will keep overwriting this deploy."
+            fi
+          fi
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
