@@ -3,6 +3,8 @@
  *  The constituency supplied four authentic visuals. Three of them carry
  *  burned-in poster typography, so every derivative below is a deliberate
  *  crop that removes the graphic furniture and keeps only the photograph.
+ *  Five separately named vision concepts are generated editorial studies;
+ *  the consuming markup labels them as illustrative, never as evidence.
  *  Nothing here is decorative resizing: each entry is a framing decision.
  *
  *  Run with: npm run media
@@ -62,6 +64,30 @@ const plates = [
     crop: { left: 280, top: 462, width: 420, height: 280 }, widths: [420, 840] },
   { name: 'pillar-inclusive', file: 'budadiri-tomorrow.jpg',
     crop: { left: 200, top: 560, width: 390, height: 260 }, widths: [420, 840] },
+
+  /* High-resolution editorial vision studies. These are intentionally kept
+     under a `vision-*-concept` name so they cannot be mistaken for project
+     documentation when reused outside the pillar component. */
+  { name: 'vision-productive-concept', file: 'vision-productive-concept.webp',
+    crop: { left: 0, top: 0, width: 1536, height: 1024 }, widths: [640, 1280] },
+  { name: 'vision-educated-concept', file: 'vision-educated-concept.webp',
+    crop: { left: 0, top: 0, width: 1536, height: 1024 }, widths: [640, 1280] },
+  { name: 'vision-connected-concept', file: 'vision-connected-concept.webp',
+    crop: { left: 0, top: 0, width: 1536, height: 1024 }, widths: [640, 1280] },
+  { name: 'vision-climate-concept', file: 'vision-climate-concept.webp',
+    crop: { left: 0, top: 0, width: 1536, height: 1024 }, widths: [640, 1280] },
+  { name: 'vision-inclusive-concept', file: 'vision-inclusive-concept.webp',
+    crop: { left: 0, top: 0, width: 1536, height: 1024 }, widths: [640, 1280] },
+
+  /* Generated studies of Hon. Julius Nakiyi. The homepage captions make the
+     distinction explicit: these are art-directed illustrative concepts based
+     on constituency-supplied reference photography, never event evidence. */
+  { name: 'nakiyi-portrait-concept', file: 'nakiyi-portrait-concept.png',
+    crop: { left: 0, top: 0, width: 1122, height: 1402 }, widths: [454, 680] },
+  { name: 'nakiyi-listening-concept', file: 'nakiyi-listening-concept.png',
+    crop: { left: 0, top: 0, width: 1536, height: 1024 }, widths: [768, 1280] },
+  { name: 'nakiyi-working-concept', file: 'nakiyi-working-concept.png',
+    crop: { left: 0, top: 0, width: 1536, height: 1024 }, widths: [768, 1280] },
 
   /* The official portrait, cropped to 4:5 with the eyes near the upper third. */
   {
