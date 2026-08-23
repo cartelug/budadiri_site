@@ -110,8 +110,16 @@ or a news row, copy the matching `<!--@ … -->` line and change the values.
 
 ## Photography
 
-The site uses only material supplied by the constituency: two official
-portraits and a two-part visual of Budadiri today and a 2036 projection. The
-2036 frame is an illustrative projection and is labelled as one everywhere it
-appears. Where a photograph of Budadiri East does not exist, the page uses
-typography and drawn geography rather than stock imagery of somewhere else.
+Official identity and documentary visuals come from material supplied by the
+constituency: two portraits and a two-part visual of Budadiri today and a 2036
+projection. The 2036 frame is labelled as an illustrative projection wherever
+it appears.
+
+The five pillar plates are high-resolution AI-generated editorial vision
+concepts. The homepage also contains three AI-generated MP studies, based on
+constituency-supplied portrait references, that consistently use Hon. Julius
+Nakiyi's blue suit, white shirt and orange tie. Every caption and alt
+description identifies these images as illustrative, and the filenames retain
+`*-concept`. They must never be reused as evidence of an existing project, a
+completed activity or a real office visit. Verified local photography should
+replace them as the office builds a permissioned documentary archive.

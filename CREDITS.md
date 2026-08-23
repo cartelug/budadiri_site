@@ -15,6 +15,25 @@ appears on. The constituency map card informed the drawn schematic used on
 the vision and community pages; that schematic is an original drawing and is
 marked "not to scale".
 
+## AI-generated vision concepts
+
+Five high-resolution editorial studies illustrate the productive, educated,
+connected, climate-resilient and inclusive pillars. They were generated for
+this website and are labelled on every appearance as **AI-generated vision
+concepts, not existing projects**. They are visual direction only and must not
+be used in the dashboard, news archive or any other evidence context.
+
+## AI-generated MP studies
+
+The homepage portrait and two service scenes of Hon. Julius Nakiyi are
+AI-generated illustrative studies, made from constituency-supplied portrait
+references. They use the blue suit, white shirt and orange tie associated with
+the supplied source photography. The visual itself is not a record of an
+actual office visit, meeting or activity; each appearance carries that
+disclosure in its caption and alt text. These files must not be used in a
+news story, evidence archive, performance report or social post that suggests
+they document a real event.
+
 ## National framework documents
 
 - *Uganda Vision 2040* — Government of Uganda

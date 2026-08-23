@@ -15,14 +15,14 @@
   <div class="wrap">
     <div class="opener__marker">
       <span class="micro">Digital constituency office</span>
-      <span class="micro">Open at any hour</span>
+      <span class="micro">Prototype &middot; browser only</span>
     </div>
     <div class="opener__body">
       <h1 class="opener__title display" data-lines>Tell us what your community needs.</h1>
       <p class="opener__lede lede">
-        You should not have to travel to Budadiri Town to report that a bridge
-        is unsafe. Four questions, two minutes, and a reference number you can
-        quote back to the office.
+        The production service is designed to ask four questions and return a
+        reference number. This prototype demonstrates that journey, but it
+        does not send anything to the constituency office yet.
       </p>
     </div>
   </div>
@@ -32,19 +32,22 @@
 <section class="section field field--stone office" id="raise">
   <div class="wrap office__frame">
     <div class="office__aside stack stack-5">
-      <span class="marker marker--rule">What happens to it</span>
+      <span class="marker marker--rule">The production journey</span>
       <ul class="office__path">
         <li><span class="num">01</span><span>You submit and receive a reference number</span></li>
         <li><span class="num">02</span><span>The office classifies it by area and pillar</span></li>
         <li><span class="num">03</span><span>It is put to the responsible institution</span></li>
         <li><span class="num">04</span><span>The response is published, whatever it says</span></li>
       </ul>
-      <p class="note">
-        This build stores submissions in your own browser only. There is no
-        server behind this form yet, and the office cannot see what you type
-        here. Before public launch it must be connected to a secure backend
-        with consent, retention and access rules in place.
-      </p>
+      <div class="prototype-notice" role="note">
+        <span class="micro">Prototype mode</span>
+        <strong>Nothing entered here is sent to the office.</strong>
+        <p>
+          Use sample information only. This build saves the demonstration on
+          this browser so the local workflow can be reviewed. A secure backend,
+          consent, retention and access rules are required before public use.
+        </p>
+      </div>
     </div>
 
     <div class="office__form">
@@ -58,6 +61,7 @@
       </noscript>
 
       <form data-office-form novalidate>
+        <p class="visually-hidden" aria-live="polite" data-step-live>Step 1 of 4: Where</p>
         <div class="steps" aria-hidden="true">
           <span class="step-mark" data-step-mark data-state="current"><span class="step-mark__bar"></span><span class="step-mark__label">01 <span>Where</span></span></span>
           <span class="step-mark" data-step-mark data-state="todo"><span class="step-mark__bar"></span><span class="step-mark__label">02 <span>What</span></span></span>
@@ -69,7 +73,7 @@
           <!-- 01 -->
           <fieldset class="step" data-step>
             <legend class="visually-hidden">Step 1 of 4: where are you?</legend>
-            <h2 class="step__question">Where are you?</h2>
+            <h2 class="step__question" tabindex="-1">Where are you?</h2>
             <p class="step__hint">
               The sub-county tells the office who is responsible. The village or
               parish tells them where to go.
@@ -112,7 +116,7 @@
           <!-- 02 -->
           <fieldset class="step" data-step hidden>
             <legend class="visually-hidden">Step 2 of 4: what is the issue?</legend>
-            <h2 class="step__question">What is the issue?</h2>
+            <h2 class="step__question" tabindex="-1">What is the issue?</h2>
             <p class="step__hint">Pick the closest category. The office will refine it.</p>
             <div class="field-row">
               <span class="visually-hidden" id="cat-label">Category</span>
@@ -143,7 +147,7 @@
           <!-- 03 -->
           <fieldset class="step" data-step hidden>
             <legend class="visually-hidden">Step 3 of 4: tell us more</legend>
-            <h2 class="step__question">Tell us more.</h2>
+            <h2 class="step__question" tabindex="-1">Tell us more.</h2>
             <p class="step__hint">
               What is happening, since when, who it affects, and what would fix
               it. Plain language is fine &mdash; nobody is marking this.
@@ -168,7 +172,7 @@
           <!-- 04 -->
           <fieldset class="step" data-step hidden>
             <legend class="visually-hidden">Step 4 of 4: how should we reach you?</legend>
-            <h2 class="step__question">How should we reach you?</h2>
+            <h2 class="step__question" tabindex="-1">How should we reach you?</h2>
             <p class="step__hint">
               A phone number lets the office confirm details and tell you what
               happened. You can leave it out and still submit.
@@ -200,14 +204,14 @@
                 <span class="arrow" aria-hidden="true">&#8592;</span> Back
               </button>
               <button class="action action--solid action--lg" type="submit">
-                Submit issue <span class="arrow" aria-hidden="true">&#8599;</span>
+                Save prototype report <span class="arrow" aria-hidden="true">&#8599;</span>
               </button>
             </div>
           </fieldset>
         </div>
 
         <div class="receipt" data-receipt hidden tabindex="-1">
-          <span class="marker marker--rule">Issue received</span>
+          <span class="marker marker--rule">Saved on this device</span>
           <p class="receipt__ref num" data-ref>BE-2026-0000</p>
           <div class="receipt__grid">
             <div class="receipt__cell">

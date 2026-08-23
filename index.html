@@ -29,32 +29,174 @@
       <span class="hero__line hero__line--turn">See.</span>
     </h1>
 
+    <div class="hero__actions" aria-label="Start here">
+      <a class="action action--lg action--solid" href="/community.html#raise">Raise an issue <span class="arrow" aria-hidden="true">&#8599;</span></a>
+      <a class="action action--lg" href="/progress.html">Track progress <span class="arrow" aria-hidden="true">&#8599;</span></a>
+    </div>
+
     <figure class="hero__plate" data-image-reveal>
       <picture>
-        <source type="image/avif" srcset="/img/nakiyi-portrait-454.avif 454w, /img/nakiyi-portrait-680.avif 680w"
+        <source type="image/avif" srcset="/img/nakiyi-portrait-concept-454.avif 454w, /img/nakiyi-portrait-concept-680.avif 680w"
                 sizes="(min-width:1440px) 430px, (min-width:1100px) 380px, (min-width:760px) 40vw, 60vw">
-        <source type="image/webp" srcset="/img/nakiyi-portrait-454.webp 454w, /img/nakiyi-portrait-680.webp 680w"
+        <source type="image/webp" srcset="/img/nakiyi-portrait-concept-454.webp 454w, /img/nakiyi-portrait-concept-680.webp 680w"
                 sizes="(min-width:1440px) 430px, (min-width:1100px) 380px, (min-width:760px) 40vw, 60vw">
-        <img src="/img/nakiyi-portrait-454.jpg" width="454" height="568" fetchpriority="high" decoding="async"
-             alt="Hon. Julius Nakiyi, Member of Parliament for Budadiri County East.">
+        <img src="/img/nakiyi-portrait-concept-454.jpg" width="454" height="568" fetchpriority="high" decoding="async"
+             alt="AI-generated illustrative portrait of Hon. Julius Nakiyi, Member of Parliament for Budadiri County East, based on supplied reference photography.">
       </picture>
-      <figcaption class="hero__plate-caption micro">Hon. Julius Nakiyi &middot; Member of Parliament</figcaption>
+      <figcaption class="hero__plate-caption micro">
+        <span>Hon. Julius Nakiyi &middot; Member of Parliament</span>
+        <span>AI-generated illustrative portrait</span>
+      </figcaption>
     </figure>
 
     <p class="hero__note">
       Transparent, visible and accountable leadership, driven by the priorities
       of the people of Budadiri East.
     </p>
-
-    <div class="hero__actions">
-      <a class="action action--lg" href="#dashboard">Explore the work <span class="arrow" aria-hidden="true">&#8599;</span></a>
-      <a class="action action--lg" href="/community.html#raise">Raise an issue <span class="arrow" aria-hidden="true">&#8599;</span></a>
-    </div>
   </div>
 
   <div class="wrap hero__foot">
     <span class="hero__scroll micro">Scroll</span>
     <span class="micro">Leadership you can reach</span>
+  </div>
+</section>
+
+<!-- ── DIRECT ACCESS ───────────────────────────────────────────── -->
+<section class="access field field--paper" aria-labelledby="access-title">
+  <div class="wrap">
+    <a class="access__latest" href="/parliament.html" data-reveal>
+      <span class="micro">Latest sourced record</span>
+      <span class="access__latest-copy">
+        <span class="access__latest-title">Solar-powered irrigation financing backed in Parliament</span>
+        <span class="micro">10 Jun 2026 &middot; Official Parliament source attached</span>
+      </span>
+      <span class="access__latest-arrow" aria-hidden="true">&#8599;</span>
+    </a>
+
+    <div class="access__intro">
+      <h2 class="title" id="access-title" data-lines>Start with what you need.</h2>
+      <p class="lede" data-reveal="delay-1">
+        Reach the public record, open opportunities or the issue-reporting
+        prototype without searching through the full constituency story.
+      </p>
+    </div>
+
+    <div class="access__cards">
+      <a class="access-card" href="/community.html#raise" data-reveal>
+        <span class="access-card__num micro num">01</span>
+        <span class="access-card__copy">
+          <span class="access-card__title">Raise an issue</span>
+          <span class="access-card__note">Use the four-step reporting prototype and receive a local reference.</span>
+        </span>
+        <span class="access-card__arrow" aria-hidden="true">&#8599;</span>
+      </a>
+      <a class="access-card" href="/progress.html" data-reveal="delay-1">
+        <span class="access-card__num micro num">02</span>
+        <span class="access-card__copy">
+          <span class="access-card__title">Track progress</span>
+          <span class="access-card__note">Read each public issue, action, status, date and source.</span>
+        </span>
+        <span class="access-card__arrow" aria-hidden="true">&#8599;</span>
+      </a>
+      <a class="access-card" href="/community.html#opportunities" data-reveal="delay-2">
+        <span class="access-card__num micro num">03</span>
+        <span class="access-card__copy">
+          <span class="access-card__title">Find opportunities</span>
+          <span class="access-card__note">See the categories that will carry verified openings and deadlines.</span>
+        </span>
+        <span class="access-card__arrow" aria-hidden="true">&#8599;</span>
+      </a>
+    </div>
+
+    <aside class="access__snapshot" aria-labelledby="access-snapshot-title" data-reveal>
+      <div class="access__snapshot-head">
+        <span class="marker" id="access-snapshot-title">Progress snapshot</span>
+        <span class="micro">Awaiting office verification</span>
+      </div>
+      <dl class="access__snapshot-grid">
+        <div><dt>Public issues</dt><dd class="num">4</dd></div>
+        <div><dt>Parliament records</dt><dd class="num">2</dd></div>
+        <div><dt>No completion published</dt><dd class="num">4</dd></div>
+      </dl>
+      <a class="action" href="/progress.html">Open the evidence <span class="arrow" aria-hidden="true">&#8599;</span></a>
+    </aside>
+
+    <form class="access__area" action="community.html#raise" method="get" data-reveal>
+      <span class="access__area-copy">
+        <label class="marker" for="home-area">Your area</label>
+        <span class="caption">Choose manually. This site never asks for your location.</span>
+      </span>
+      <span class="access__area-fields">
+        <select class="select" id="home-area" name="area" required>
+          <option value="">Choose a sub-county or town council</option>
+          <option>Budadiri Town Council</option>
+          <option>Buhugu</option>
+          <option>Bugitimwa</option>
+          <option>Bukiise</option>
+          <option>Bukyambi</option>
+          <option>Bumalimba</option>
+          <option>Bumasifwa</option>
+          <option>Busulani</option>
+          <option>Butandiga</option>
+          <option>Zesui</option>
+          <option>Elgon</option>
+          <option>Elsewhere in Budadiri East</option>
+        </select>
+        <button class="action action--solid" type="submit">
+          Start for this area <span class="arrow" aria-hidden="true">&#8594;</span>
+        </button>
+      </span>
+    </form>
+  </div>
+</section>
+
+<!-- ── LEADERSHIP STUDIES ─────────────────────────────────────── -->
+<section class="section field field--stone leadership" aria-labelledby="leadership-title">
+  <div class="wrap">
+    <header class="leadership__head">
+      <span class="marker marker--rule">A people-first office</span>
+      <div>
+        <h2 class="title" id="leadership-title" data-lines>Listening is where the work starts.</h2>
+        <p class="lede" data-reveal="delay-1">
+          The office should make it easier to hear a concern, trace what happens next,
+          and return to the public record with a source.
+        </p>
+      </div>
+    </header>
+
+    <div class="leadership__studies">
+      <figure class="leadership-study leadership-study--listening" data-image-reveal>
+        <picture>
+          <source type="image/avif" srcset="/img/nakiyi-listening-concept-768.avif 768w, /img/nakiyi-listening-concept-1280.avif 1280w"
+                  sizes="(min-width:1100px) 58vw, 100vw">
+          <source type="image/webp" srcset="/img/nakiyi-listening-concept-768.webp 768w, /img/nakiyi-listening-concept-1280.webp 1280w"
+                  sizes="(min-width:1100px) 58vw, 100vw">
+          <img src="/img/nakiyi-listening-concept-1280.jpg" width="1280" height="853" loading="lazy" decoding="async"
+               alt="AI-generated illustrative scene of Hon. Julius Nakiyi listening to two adult constituents in a rural trading centre.">
+        </picture>
+        <figcaption>
+          <span class="micro">Illustrative service concept</span>
+          <span class="leadership-study__title">Listen closely. Record clearly.</span>
+          <span class="caption">AI-generated scene based on supplied portrait references; not a photograph of an actual office visit.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="leadership-study leadership-study--working" data-image-reveal>
+        <picture>
+          <source type="image/avif" srcset="/img/nakiyi-working-concept-768.avif 768w, /img/nakiyi-working-concept-1280.avif 1280w"
+                  sizes="(min-width:1100px) 38vw, 100vw">
+          <source type="image/webp" srcset="/img/nakiyi-working-concept-768.webp 768w, /img/nakiyi-working-concept-1280.webp 1280w"
+                  sizes="(min-width:1100px) 38vw, 100vw">
+          <img src="/img/nakiyi-working-concept-1280.jpg" width="1280" height="853" loading="lazy" decoding="async"
+               alt="AI-generated illustrative scene of Hon. Julius Nakiyi in a small community planning session with adult representatives.">
+        </picture>
+        <figcaption>
+          <span class="micro">Illustrative working concept</span>
+          <span class="leadership-study__title">Turn a concern into a next step.</span>
+          <span class="caption">AI-generated scene based on supplied portrait references; not a photograph of an actual meeting.</span>
+        </figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -200,38 +342,43 @@
       <div class="pillars__chapters">
         <!--@ pillar
           n="01" tone="1" slug="productive" name="Productive"
+          image="vision-productive-concept"
           claim="Household income before headline growth."
           lede="Coffee is the constituency&rsquo;s main cash crop and most of it leaves Budadiri unprocessed. The work is to keep more of that value here, and to make the trip to a buyer shorter and cheaper."
           items="Coffee and value addition|Market and buyer access|Enterprise, savings and SACCOs|Land productivity|Work for young people"
-          alt="A brick homestead among banana gardens on a Budadiri hillside, with a boda-boda on the path beside it."
+          alt="AI-generated illustrative concept of farmers sorting coffee cherries at a small hillside processing shelter."
         -->
         <!--@ pillar
           n="02" tone="2" slug="educated" name="Educated"
+          image="vision-educated-concept"
           claim="Learning that leads somewhere."
           lede="A classroom is not the outcome. The outcome is a young person from Bugitimwa or Bumasifwa with a skill someone will pay for, and a route to the training that produces it."
           items="Classrooms and sanitation|Teacher support and retention|TVET and practical skills|Scholarships and bursaries|Digital access and ICT"
-          alt="A group of residents outside a skills centre in the 2036 projection for Budadiri East."
+          alt="AI-generated illustrative concept of practical solar-electrical training in a modest open workshop."
         -->
         <!--@ pillar
           n="03" tone="3" slug="connected" name="Connected"
+          image="vision-connected-concept"
           claim="Distance is a cost. Reduce it."
           lede="Every kilometre of bad road is added to the price of a bag of coffee and subtracted from a mother&rsquo;s chance of reaching a health facility in time."
           items="Roads and bridges|Electricity to trading centres|Safe water and sanitation|Mobile and internet coverage|Transport to markets"
-          alt="The main murram road out of a Budadiri trading centre, carrying pedestrians and motorcycles."
+          alt="AI-generated illustrative concept of an all-weather bridge and feeder-road connection in the Mount Elgon foothills."
         -->
         <!--@ pillar
           n="04" tone="4" slug="climate" name="Climate-resilient"
+          image="vision-climate-concept"
           claim="The slope is the livelihood. Protect it."
           lede="Budadiri East farms the shoulder of Mount Elgon. Rainfall that feeds the coffee is the same rainfall that moves the hillside, so resilience is not an environmental extra here."
           items="Landslide risk and safe settlement|Catchment and tree cover|Irrigation and water storage|Climate-smart farming|Local early warning"
-          alt="Forested slopes above a Budadiri settlement, showing the terrain that carries both the farms and the landslide risk."
+          alt="AI-generated illustrative concept of farmers planting trees and protecting contours on a steep cultivated slope."
         -->
         <!--@ pillar
           n="05" tone="5" slug="inclusive" name="Inclusive"
+          image="vision-inclusive-concept"
           claim="Development must reach the household."
           lede="A programme that never reaches a widow in Bukiise or a young person with a disability in Zesui has not been delivered. Reach is the measure, not announcement."
           items="Young people and first work|Women&rsquo;s enterprise and finance|Children, nutrition and protection|Persons with disabilities|Vulnerable households"
-          alt="Residents of different ages and occupations reading a development map together in the 2036 projection."
+          alt="AI-generated illustrative concept of an accessible community enterprise planning session with residents of different ages."
         -->
       </div>
     </div>
@@ -279,6 +426,7 @@
     </div>
 
     <!--@ record
+      id="home-health-bukiise"
       subject="Health facility access, Bukiise"
       tags="Health|Bukiise"
       meter="20" stage="Raised" status="raised"
@@ -287,6 +435,7 @@
       href="https://dailyexpress.co.ug/2025/04/24/2026-watch-sironko-residents-accuse-leaders-of-neglect-demand-health-centre-after-decade-of-waiting/"
     -->
     <!--@ record
+      id="home-solar-irrigation"
       subject="Solar irrigation and coffee resilience"
       tags="Agriculture|Climate|National"
       meter="58" stage="In Parliament" status="parliament"
@@ -295,6 +444,7 @@
       href="https://www.parliament.go.ug/index.php/news/4458/house-approves-eu1689m-loan-mega-solar-irrigation"
     -->
     <!--@ record
+      id="home-school-sanitation"
       subject="School sanitation, Bumumulo Primary"
       tags="Education|Sanitation"
       meter="15" stage="Raised" status="raised"

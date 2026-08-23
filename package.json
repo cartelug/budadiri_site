@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "check": "vite build && node tools/check-site.mjs",
     "preview": "vite preview",
     "media": "node tools/build-media.mjs"
   },
