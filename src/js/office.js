@@ -5,6 +5,8 @@
  * one was wrong. There is no backend yet, and the interface says so
  * rather than implying a submission went somewhere.
  */
+import { env } from './env.js';
+
 const STORE = 'budadiri.issues';
 
 const messages = {
@@ -32,15 +34,25 @@ export function initOffice(form) {
   const steps = [...form.querySelectorAll('[data-step]')];
   const marks = [...form.querySelectorAll('[data-step-mark]')];
   const receipt = form.querySelector('[data-receipt]');
+  const live = form.querySelector('[data-step-live]');
   if (!steps.length) return;
 
   let current = 0;
 
-  const paint = () => {
+  /* A manual area choice on the home page can prefill step one. No
+     location permission is requested and unknown values are ignored. */
+  const requestedArea = new URLSearchParams(window.location.search).get('area');
+  const area = form.querySelector('select[name="area"]');
+  if (requestedArea && area) {
+    const known = [...area.options].some((option) => option.value === requestedArea);
+    if (known) area.value = requestedArea;
+  }
+
+  const paint = (direction = 'forward') => {
     steps.forEach((step, i) => {
       step.hidden = i !== current;
       if (i === current) {
-        step.setAttribute('data-enter', '');
+        step.setAttribute('data-enter', direction);
         /* Re-trigger the entrance without leaving the attribute behind. */
         requestAnimationFrame(() => step.removeAttribute('data-enter'));
       }
@@ -48,6 +60,11 @@ export function initOffice(form) {
     marks.forEach((mark, i) => {
       mark.dataset.state = i < current ? 'done' : i === current ? 'current' : 'todo';
     });
+    const question = steps[current]?.querySelector('.step__question')?.textContent?.trim() || '';
+    if (live) live.textContent = `Step ${current + 1} of ${steps.length}: ${question}`;
+    document.dispatchEvent(new CustomEvent('office:step', {
+      detail: { step: current + 1, total: steps.length },
+    }));
   };
 
   const showError = (field, message) => {
@@ -80,13 +97,13 @@ export function initOffice(form) {
       e.preventDefault();
       if (!validate(current)) return;
       current = Math.min(steps.length - 1, current + 1);
-      paint();
-      steps[current].querySelector('h3, .step__question')?.focus?.();
+      paint('forward');
+      steps[current].querySelector('.step__question')?.focus();
     }
     if (back) {
       e.preventDefault();
       current = Math.max(0, current - 1);
-      paint();
+      paint('back');
     }
   });
 
@@ -109,12 +126,25 @@ export function initOffice(form) {
       receipt.querySelector('[data-receipt-area]').textContent = record.area || '—';
       receipt.querySelector('[data-receipt-category]').textContent = record.category || '—';
       receipt.hidden = false;
+      if (!env.reduced && typeof receipt.animate === 'function') {
+        receipt.animate(
+          [
+            { opacity: 0, transform: 'translateY(10px)' },
+            { opacity: 1, transform: 'translateY(0)' },
+          ],
+          {
+            duration: env.tier === 'mobile' ? 360 : 520,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          },
+        );
+      }
     }
     form.querySelector('[data-flow]').hidden = true;
     /* The step rail described a journey that is now finished. */
     form.querySelector('.steps')?.setAttribute('hidden', '');
     receipt?.focus();
+    document.dispatchEvent(new CustomEvent('office:complete'));
   });
 
-  paint();
+  paint('initial');
 }

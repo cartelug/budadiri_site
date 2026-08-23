@@ -7,17 +7,28 @@
  */
 import { initHeader, initMenu, initAnchors, markCurrent } from './nav.js';
 import { initReveals, initLines } from './reveal.js';
+import { initMobileDock, initRecordDisclosures } from './engagement.js';
+import { initMotionEnvironment } from './env.js';
 
+initMotionEnvironment();
 markCurrent();
 initHeader();
 initMenu();
 initAnchors();
+initMobileDock();
+initRecordDisclosures();
 initReveals();
 initLines();
 
 /* Draw the hero contours once the first paint is out of the way. */
 const hero = document.querySelector('[data-hero]');
-if (hero) requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('is-drawn')));
+if (hero) {
+  /* Let first paint land before the opening sequence. This prevents a
+     transition from competing with font layout or the initial image decode. */
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    hero.classList.add('is-ready', 'is-drawn');
+  }));
+}
 
 const load = async (selector, loader) => {
   const node = document.querySelector(selector);

@@ -12,6 +12,28 @@
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
 }
+
+.prototype-notice {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid var(--clay);
+  border-left-width: 3px;
+  background: color-mix(in srgb, var(--clay) 5%, transparent);
+}
+.prototype-notice .micro { color: var(--clay); }
+.prototype-notice strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: var(--w-strong);
+  line-height: 1.4;
+}
+.prototype-notice p {
+  font-family: var(--font-text);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--fg-dim);
+}
 @media (min-width: 1100px) {
   .office__frame {
     grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
@@ -44,7 +66,7 @@
   background: var(--fg);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.5s var(--ease-out);
+  transition: transform var(--motion-enter) var(--ease-out);
 }
 .step-mark[data-state='done'] .step-mark__bar::after,
 .step-mark[data-state='current'] .step-mark__bar::after { transform: scaleX(1); }
@@ -104,16 +126,26 @@
 .step__nav .action--solid { order: 2; }
 .step__back { order: 1; }
 
+@media (max-width: 559.98px) {
+  .step__nav { display: grid; grid-template-columns: 1fr; gap: var(--s3); }
+  .step__nav .action { width: 100%; justify-content: center; }
+  .step__nav .action--solid { order: 1; }
+  .step__back { order: 2; }
+  .choices { display: grid; grid-template-columns: 1fr; }
+  .choice { width: 100%; }
+}
+
 /* Entrance is a short vertical settle, not a slide-in from off-screen. */
 .js .step[data-enter] > * {
   opacity: 0;
   transform: translateY(10px);
-  animation: settle 0.5s var(--ease-out) forwards;
+  animation: settle var(--motion-enter) var(--ease-out) forwards;
 }
-.js .step[data-enter] > *:nth-child(1) { animation-delay: 0.02s; }
-.js .step[data-enter] > *:nth-child(2) { animation-delay: 0.07s; }
-.js .step[data-enter] > *:nth-child(3) { animation-delay: 0.12s; }
-.js .step[data-enter] > *:nth-child(4) { animation-delay: 0.17s; }
+.js .step[data-enter='back'] > * { transform: translateY(-8px); }
+.js .step[data-enter] > *:nth-child(1) { animation-delay: 20ms; }
+.js .step[data-enter] > *:nth-child(2) { animation-delay: calc(20ms + var(--motion-stagger)); }
+.js .step[data-enter] > *:nth-child(3) { animation-delay: calc(20ms + var(--motion-stagger) + var(--motion-stagger)); }
+.js .step[data-enter] > *:nth-child(4) { animation-delay: calc(20ms + var(--motion-stagger) + var(--motion-stagger) + var(--motion-stagger)); }
 @keyframes settle { to { opacity: 1; transform: none; } }
 
 /* ── receipt ─────────────────────────────────────────────────── */

@@ -92,14 +92,72 @@
   color: var(--fg-dim);
   max-width: 46ch;
 }
+.record__toggle { display: none; }
 @media (max-width: 759.98px) {
-  /* Phone: an editorial block, never a squeezed table — and it reads in
-     the order a person asks the questions in. */
+  /* Phone: compact evidence cards, never a squeezed table. The status is
+     visible at a glance; the source trail opens only when requested. */
+  .record {
+    gap: var(--s4);
+    margin-top: var(--s4);
+    padding: 1.2rem;
+    border: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--paper) 64%, var(--bg));
+  }
+  .record + .record { margin-top: var(--s3); }
   .record__lead { order: 1; }
   .record__status { order: 2; }
-  .record__meter-wrap { order: 3; }
-  .record__action { order: 4; }
-  .record > .record__block:last-child { order: 5; }
+  .record__toggle { order: 3; }
+  .record__meter-wrap { order: 4; }
+  .record__action { order: 5; }
+  .record > .record__block:last-child { order: 6; }
+  .record__subject { font-size: clamp(1.2rem, 5.1vw, 1.5rem); }
+  .record__status {
+    grid-template-columns: minmax(4.5rem, auto) 1fr;
+    align-items: center;
+    gap: var(--s3);
+  }
+  .record__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 48px;
+    padding-top: var(--s3);
+    border-top: 1px solid var(--rule-2);
+    font-family: var(--font-display);
+    font-size: var(--fs-micro);
+    font-weight: var(--w-sign);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+  }
+  .record__toggle-mark {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex: none;
+  }
+  .record__toggle-mark::before,
+  .record__toggle-mark::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 14px;
+    height: 1px;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+    transition: transform var(--t-mid) var(--ease-out);
+  }
+  .record__toggle-mark::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .record.is-open .record__toggle-mark::after { transform: translate(-50%, -50%) rotate(0); }
+  .js .record:not(.is-open) [data-record-detail] { display: none; }
+  .record[data-record] [data-record-detail] { padding-top: var(--s2); }
+  .js .record .meter__fill {
+    transform: scaleX(0);
+    transition: transform var(--motion-enter) var(--ease-out);
+  }
+  .js .record.is-open .meter__fill { transform: scaleX(1); }
 }
 
 @media (min-width: 760px) {

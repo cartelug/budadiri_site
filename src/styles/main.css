@@ -9,6 +9,8 @@
 @import './nav.css';
 @import './motion.css';
 @import './sections/hero.css';
+@import './sections/access.css';
+@import './sections/leadership.css';
 @import './sections/principles.css';
 @import './sections/transformation.css';
 @import './sections/pillars.css';
@@ -18,3 +20,4 @@
 @import './sections/news.css';
 @import './sections/office.css';
 @import './sections/page.css';
+@import './mobile.css';

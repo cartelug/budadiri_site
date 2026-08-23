@@ -30,6 +30,10 @@ export async function initPillars(section) {
 
   const { scroller, scrollTo } = await import('../motion.js');
   const { ScrollTrigger } = await scroller();
+  if (!ScrollTrigger) {
+    section.classList.remove('is-pinned');
+    return;
+  }
   const trigger = ScrollTrigger.create({
     /* The stage is both the trigger and the pinned element: the section
        also contains its heading, and pinning against that would park the

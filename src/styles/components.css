@@ -312,6 +312,54 @@
 }
 .table td.num { font-variant-numeric: tabular-nums; }
 
+@media (max-width: 759.98px) {
+  /* Comparison tables become labelled records instead of asking a phone
+     user to discover a sideways scrollbar. Admin data keeps its real table. */
+  .table--stack,
+  .table--stack tbody,
+  .table--stack tr,
+  .table--stack th,
+  .table--stack td { display: block; width: 100%; }
+
+  .table--stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .table--stack tr {
+    padding-block: 1.15rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .table--stack tbody tr:first-child { border-top: 1px solid var(--rule); }
+  .table--stack tbody th {
+    padding: 0 0 var(--s3);
+    border: 0;
+    font-size: 1rem;
+    color: var(--fg);
+  }
+  .table--stack td {
+    display: grid;
+    grid-template-columns: 5.7rem minmax(0, 1fr);
+    gap: var(--s3);
+    padding: 0.42rem 0;
+    border: 0;
+    line-height: 1.5;
+  }
+  .table--stack td::before {
+    content: attr(data-label);
+    font-family: var(--font-display);
+    font-size: var(--fs-micro);
+    font-weight: var(--w-sign);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--fg-mute);
+  }
+}
+
 /* ── notes ──────────────────────────────────────────────────────
    Where the site tells the truth about its own data.            */
 .note {

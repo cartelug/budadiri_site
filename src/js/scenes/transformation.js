@@ -48,6 +48,7 @@ export async function initTransformation(section) {
 
   if (env.scenes) {
     const { ScrollTrigger } = await import('../motion.js').then((m) => m.scroller());
+    if (!ScrollTrigger) return;
     const hold = section.querySelector('[data-transform-stage]');
     ScrollTrigger.create({
       trigger: hold,

@@ -99,6 +99,13 @@
   color: var(--fg-mute);
   white-space: nowrap;
 }
+.hero__plate-caption span { display: block; }
+.hero__plate-caption span + span {
+  margin-top: 0.5rem;
+  color: var(--fg-mute);
+  font-size: 0.9em;
+  letter-spacing: 0.12em;
+}
 @media (max-width: 759.98px) {
   /* Vertical setting needs a margin the phone does not have; the credit
      runs under the plate instead — and is allowed to wrap, because the
@@ -111,6 +118,7 @@
     line-height: 1.5;
     padding-top: 0.6rem;
   }
+  .hero__plate-caption span + span { margin-top: 0.2rem; }
 }
 
 .hero__note {
@@ -161,14 +169,35 @@
 
 /* ── phone: type stays enormous, the plate becomes a right column ── */
 @media (max-width: 759.98px) {
-  .hero { min-height: auto; }
+  .hero { min-height: auto; padding-bottom: var(--s6); }
   .hero__body { gap: var(--s5); }
   .hero__statement { margin-left: -0.04em; }
+  /* On a phone, the two useful routes arrive before the portrait. The
+     image still carries identity, but it cannot hide the service entry. */
+  .hero__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--s2);
+    width: 100%;
+  }
+  .hero__actions .action {
+    min-height: 54px;
+    justify-content: center;
+    padding: 0.75rem 0.65rem;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .hero__actions .action .arrow { display: none; }
+  .hero__actions .action:not(.action--solid) {
+    border: 1px solid var(--rule);
+    color: var(--fg);
+  }
+  .hero__actions .action:not(.action--solid)::after { display: none; }
   /* The plate rises into the second line; its left edge is already
      dissolved, so the type reads straight through it. */
   .hero__plate {
-    width: 56%;
-    margin-top: -23vw;
+    width: min(72%, 336px);
+    margin-top: calc(var(--s2) * -1);
     margin-right: calc(var(--pad) * -0.6);
   }
   .hero__note { font-size: 1.04rem; }

@@ -124,6 +124,9 @@
   padding-block: var(--s5) var(--s6);
   border-top: 1px solid var(--rule-2);
 }
+@media (max-width: 1219.98px) {
+  .footer__base { padding-bottom: calc(var(--s6) + var(--mobile-dock-h) + env(safe-area-inset-bottom)); }
+}
 @media (min-width: 900px) {
   .footer__base {
     grid-template-columns: auto minmax(0, 1.4fr) auto;

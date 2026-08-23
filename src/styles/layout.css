@@ -23,6 +23,9 @@
 .section { padding-block: var(--section); }
 .section--flush-top { padding-top: 0; }
 
+/* Cross-page hash links land clear of the fixed header. */
+main [id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); }
+
 /* The terrace mark: nine hairlines cut to a hillside profile. Used
    where a section change needs more than a single line. */
 .terrace {
@@ -87,4 +90,3 @@
   padding-top: var(--s3);
   border-top: 1px solid var(--rule);
 }
-

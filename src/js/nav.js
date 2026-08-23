@@ -69,10 +69,12 @@ export function initMenu() {
 
   const focusables = () => menu.querySelectorAll('a[href], button:not([disabled])');
   let lastFocus = null;
+  let focusTimer = null;
 
   const header = document.querySelector('[data-header]');
 
-  const setOpen = (open) => {
+  const setOpen = (open, { restoreFocus = true } = {}) => {
+    window.clearTimeout(focusTimer);
     btn.setAttribute('aria-expanded', String(open));
     /* The menu is a deep green field and the header sits on top of it,
        so the wordmark has to invert with it. */
@@ -90,9 +92,10 @@ export function initMenu() {
       lastFocus = document.activeElement;
       /* Wait for the clip to open before moving focus, or the browser
          scrolls the hidden panel into view. */
-      setTimeout(() => focusables()[0]?.focus(), 220);
+      focusTimer = window.setTimeout(() => focusables()[0]?.focus(), 220);
     } else {
-      lastFocus?.focus();
+      if (restoreFocus) lastFocus?.focus();
+      lastFocus = null;
     }
   };
 
@@ -106,9 +109,20 @@ export function initMenu() {
     const items = [...focusables()];
     const first = items[0];
     const last = items[items.length - 1];
+    if (!first || !last) return;
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
+
+  /* The wide navigation replaces the overlay at 1220px. Close an
+     in-flight compact menu so desktop never inherits a hidden page
+     scroll or an overlay that has lost its visible trigger. */
+  const desktopNav = window.matchMedia('(min-width: 1220px)');
+  const closeForDesktop = (event) => {
+    if (event.matches && menu.classList.contains('is-open')) setOpen(false, { restoreFocus: false });
+  };
+  if (desktopNav.addEventListener) desktopNav.addEventListener('change', closeForDesktop);
+  else desktopNav.addListener(closeForDesktop);
 }
 
 /* In-page anchors clear the fixed header and respect the motion setting. */
@@ -118,7 +132,9 @@ export function initAnchors() {
     if (!link) return;
     const url = new URL(link.href, location.href);
     if (url.pathname !== location.pathname || !url.hash) return;
-    const target = document.querySelector(url.hash);
+    /* IDs are more robust than a CSS selector here: a valid URL hash can
+       contain characters that would otherwise throw inside querySelector. */
+    const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
     if (!target) return;
     e.preventDefault();
     const header = document.querySelector('[data-header]');

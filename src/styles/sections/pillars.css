@@ -82,10 +82,16 @@
   aspect-ratio: 3 / 2;
   object-fit: cover;
 }
-.pillar-ch__plate figcaption {
+.pillar-ch__caption {
+  display: grid;
+  gap: 0.25rem;
   padding-top: 0.7rem;
   border-top: 1px solid rgba(240, 242, 232, 0.2);
   margin-top: 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(240, 242, 232, 0.72);
 }
 
 /* ── phone / tablet: honest vertical chapters ────────────────── */
@@ -102,7 +108,7 @@
   /* Each chapter closes on its photograph, run edge to edge so the tone
      change between chapters lands on an image rather than a margin. */
   .pillars.is-pinned .pillar-ch__plate { margin-inline: calc(var(--pad) * -1); }
-  .pillar-ch__plate figcaption { margin-inline: var(--pad); }
+  .pillar-ch__caption { margin-inline: var(--pad); }
 }
 
 /* ── the default: five chapters, stacked and all visible ─────────
