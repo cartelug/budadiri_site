@@ -58,8 +58,11 @@ const plates = [
     crop: { left: 20, top: 480, width: 420, height: 280 }, widths: [420, 840] },
   { name: 'pillar-educated', file: 'budadiri-tomorrow.jpg',
     crop: { left: 470, top: 490, width: 330, height: 220 }, widths: [420, 840] },
-  { name: 'pillar-connected', file: 'budadiri-today.jpg',
-    crop: { left: 380, top: 520, width: 420, height: 280 }, widths: [420, 840] },
+  /* Replaces the earlier composite crop: a full, uncropped constituency
+     photograph supplied for the "On the ground" lead story, already close
+     to 16:9 so the site's aspect-ratio box needs almost no trim. */
+  { name: 'pillar-connected', file: 'bukiise-community-meeting.png',
+    crop: { left: 0, top: 0, width: 1672, height: 940 }, widths: [420, 840] },
   { name: 'pillar-climate', file: 'budadiri-today.jpg',
     crop: { left: 280, top: 462, width: 420, height: 280 }, widths: [420, 840] },
   { name: 'pillar-inclusive', file: 'budadiri-tomorrow.jpg',
